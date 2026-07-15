@@ -79,3 +79,4 @@ crypto.subtle.digest('SHA-256', new TextEncoder().encode('密码'))
 - 服务号小程序版（需后端API）
 - 添加短信验证码（需短信服务商）
 - 添加报表定时更新机制
+# trigger redeploy
