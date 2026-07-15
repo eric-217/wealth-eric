@@ -28,49 +28,48 @@ tr.tt{font-weight:700;background:#f0f4f8}
 
 <!--
   === 使用说明 ===
-  替换所有 {{...}} 占位符为真实数据。
-  删除不需要的板块（如没有固收则删除固收板块）。
-  KPI 卡片用 .kv 后面的文字替换。
+  将所有 ¥{{...}} 替换为真实金额。
+  不需要的板块（如没有固收）删除整个 .card 区块。
 -->
 
 <div class="card">
 <h2>资产总览</h2>
 <div class="krow">
-<div class="kbox"><div class="kl">总资产</div><div class="kv">≈{{总资产}}</div></div>
-<div class="kbox"><div class="kl">总负债</div><div class="kv" style="color:#dc2626">{{总负债}}</div></div>
-<div class="kbox"><div class="kl">净资产</div><div class="kv" style="color:#16a34a">{{净资产}}</div></div>
-<div class="kbox"><div class="kl">年被动收入</div><div class="kv" style="color:#d97706">{{被动收入}}</div></div>
+<div class="kbox"><div class="kl">总资产</div><div class="kv">¥{{金额}}</div></div>
+<div class="kbox"><div class="kl">总负债</div><div class="kv" style="color:#dc2626">¥{{金额}}</div></div>
+<div class="kbox"><div class="kl">净资产</div><div class="kv" style="color:#16a34a">¥{{金额}}</div></div>
+<div class="kbox"><div class="kl">年被动收入</div><div class="kv" style="color:#d97706">¥{{金额}}</div></div>
 </div>
 
 <h3>资产结构</h3>
-<div class="placeholder">
-📌 以下为示例，请替换为真实数据。不需要的类别删除整行。
-</div>
+<div class="placeholder">📌 以下为示例行，请替换为真实数据。不需要的类别删除整行。</div>
 <table>
 <tr><th>类别</th><th style="text-align:right">金额</th><th>备注</th></tr>
-<tr><td>固收理财</td><td class="r">{{固收金额}}</td><td>{{固收备注}}</td></tr>
-<tr><td>保险（现金价值）</td><td class="r">{{保险金额}}</td><td>{{保单数}}份</td></tr>
-<tr><td>房产</td><td class="r">{{房产金额}}</td><td>{{房产备注}}</td></tr>
-<tr><td>银行存款</td><td class="r">{{存款金额}}</td><td></td></tr>
-<tr class="tt"><td>合计</td><td class="r">{{资产合计}}</td><td></td></tr>
+<tr><td>固收理财</td><td class="r">¥{{金额}}</td><td>{{备注}}</td></tr>
+<tr><td>保险（现金价值）</td><td class="r">¥{{金额}}</td><td>{{备注}}</td></tr>
+<tr><td>房产</td><td class="r">¥{{金额}}</td><td>{{备注}}</td></tr>
+<tr><td>银行存款</td><td class="r">¥{{金额}}</td><td></td></tr>
+<tr class="tt"><td>合计</td><td class="r">¥{{金额}}</td><td></td></tr>
 </table>
 </div>
 
 <div class="card">
-<h2>支出计划</h2>
-<div class="placeholder">📌 填写近期支出项目，不需要则删除本板块</div>
+<h2>支出计划（示例）</h2>
+<div class="placeholder">📌 没有支出计划可删除本板块</div>
 <table>
 <tr><th>类别</th><th>项目</th><th style="text-align:right">金额</th></tr>
-<tr><td>{{类别}}</td><td>{{项目名}}</td><td class="r">{{金额}}</td></tr>
+<tr><td>生活支出</td><td>{{项目名}}</td><td class="r">¥{{金额}}</td></tr>
+<tr><td>子女教育</td><td>{{项目名}}</td><td class="r">¥{{金额}}</td></tr>
 </table>
+<p style="font-size:11px;color:#888">支出类别：A生活 B子女教育 C交通 D家庭事务 E旅游 F创业 G医疗 H住房 I人情</p>
 </div>
 
 <div class="card">
-<h2>负债明细</h2>
-<div class="placeholder">📌 没有负债则删除本板块</div>
+<h2>负债明细（示例）</h2>
+<div class="placeholder">📌 没有负债可删除本板块</div>
 <table>
-<tr><th>负债类型</th><th style="text-align:right">本金</th><th>月供/备注</th></tr>
-<tr><td>{{负债类型}}</td><td class="r">{{本金}}</td><td>{{月供}}</td></tr>
+<tr><th>负债类型</th><th style="text-align:right">本金</th><th>月供/利息</th></tr>
+<tr><td>{{如：保单贷款}}</td><td class="r">¥{{金额}}</td><td>¥{{金额}}/月</td></tr>
 </table>
 </div>
 

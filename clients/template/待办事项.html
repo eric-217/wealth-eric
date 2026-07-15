@@ -1,132 +1,38 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>待办事项</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
-.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
-h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
-.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
-.card h3{font-size:14px;color:#1a3a5c;margin-bottom:10px}
-.task{display:flex;align-items:flex-start;padding:10px 8px;border-bottom:1px solid #f0f0f0;gap:10px;cursor:pointer}
-.task:last-child{border-bottom:none}
-.task input[type=checkbox]{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:#16a34a}
-.task .tb{flex:1}
-.task .tbt{font-weight:600;font-size:13px}
-.task .tbd{font-size:11px;color:#888;margin-top:2px}
-.task.done .tbt{text-decoration:line-through;color:#999}
-.msg{font-size:12px;margin-top:8px;text-align:center}
-.msg.ok{color:#16a34a}
-textarea{width:100%;height:100px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:14px;font-family:inherit;resize:vertical;margin-top:8px}
-.btn{display:block;width:100%;padding:12px;background:#1a3a5c;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
-.btn:disabled{opacity:0.5}
-</style>
-</head>
-<body>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>待办事项 · 模板</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}.card h3{font-size:14px;color:#1a3a5c;margin-bottom:10px}.task{display:flex;align-items:flex-start;padding:10px 8px;border-bottom:1px solid #f0f0f0;gap:10px;cursor:pointer}.task:last-child{border-bottom:none}.task input[type=checkbox]{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:#16a34a}.task .tb{flex:1}.task .tbt{font-weight:600;font-size:13px}.task .tbd{font-size:11px;color:#888;margin-top:2px}.task.done .tbt{text-decoration:line-through;color:#999}.msg{font-size:12px;margin-top:8px;text-align:center}.msg.ok{color:#16a34a}textarea{width:100%;height:100px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:14px;font-family:inherit;resize:vertical;margin-top:8px}.btn{display:block;width:100%;padding:12px;background:#1a3a5c;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}.btn:disabled{opacity:0.5}.hint{background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:10px;margin:8px 0;font-size:12px;color:#92400e}</style></head><body>
 <a href="菜单.html" class="back">← 返回菜单</a>
-
 <h2>待办事项 · 完成后勾选</h2>
 
+<div class="hint">📌 分类列出待办。客户勾选后自动保存在本地。建议分"保单""资金""报告"等分类。</div>
+
 <div class="card">
-<h3>保单操作（5项）</h3>
-<div id="tasks1"></div>
+<h3>{{分类名：如"保单操作"}}</h3>
+<div class="task"><input type="checkbox"><div class="tb"><div class="tbt">{{保单名}} — {{事项}}</div><div class="tbd">{{补充说明}}</div></div></div>
+<div class="task"><input type="checkbox"><div class="tb"><div class="tbt">{{保单名}} — {{事项}}</div><div class="tbd">{{补充说明}}</div></div></div>
 </div>
+
 <div class="card">
-<h3>资金与账务（5项）</h3>
-<div id="tasks2"></div>
+<h3>{{分类名：如"资金与账务"}}</h3>
+<div class="task"><input type="checkbox"><div class="tb"><div class="tbt">{{事项}}</div><div class="tbd">{{补充说明}}</div></div></div>
 </div>
-<div class="card">
-<h3>报告与沟通（5项）</h3>
-<div id="tasks3"></div>
-</div>
+
 <div class="card">
 <h3>意见和建议</h3>
 <textarea id="msg" placeholder="请在此写下您的建议、问题或需求..."></textarea>
-<button class="btn" id="send-btn" onclick="send()">发送给理财顾问用于更新数据</button>
+<button class="btn" id="send-btn" onclick="alert('请配置 API 端点')">发送给理财顾问用于更新数据</button>
 <div class="msg" id="fb-msg"></div>
 </div>
 
 <script>
-var allTodos = [
-  // 保单操作
-  {cat:1, text:'新华惠鑫宝 — 确认投保人变更材料已提交', detail:'携带材料到新华柜面办理'},
-  {cat:1, text:'确认永明港险第2年保费已缴', detail:'8月26日前缴费USD {{金额}}'},
-  {cat:1, text:'确认周大福港险保单已承保', detail:'登录周大福APP确认保单状态'},
-  {cat:1, text:'确认11月新华贷款利息已扣', detail:'月息3750元，每半年扣一次'},
-  {cat:1, text:'新华惠鑫宝生存金是否转入万能账户', detail:'36000元，每年11月16日自动转入'},
-  // 资金与账务
-  {cat:2, text:'确认众享淳盈60期到期到账', detail:'本金30万+利息30600元，8月到期'},
-  {cat:2, text:'确认浩腾恒烨Q3利息到账', detail:'9月利息7350元'},
-  {cat:2, text:'车贷月供是否正常扣款', detail:'每月3520元，还剩18期'},
-  {cat:2, text:'固收到期资金已转入指定账户', detail:'每次固收到期后确认资金到账'},
-  {cat:2, text:'家庭月度支出是否在预算内', detail:'月均基础支出6250元'},
-  // 报告与沟通  
-  {cat:3, text:'保单分红报告 — 转发给理财顾问', detail:'平安钟爱一生、阳光财富年年年底派发'},
-  {cat:3, text:'港险年度报告 — 转发给理财顾问', detail:'永明、周大福每年6-8月发布'},
-  {cat:3, text:'年终复核所有保单现金价值', detail:'12月底登录各保司APP查看最新数字'},
-  {cat:3, text:'更新万能账户最新余额', detail:'登录新华APP查看惠鑫宝UA最新值'},
-  {cat:3, text:'有其他需要协助的事项请写在下方建议框', detail:''},
-];
-
-var done = JSON.parse(localStorage.getItem('wm_todos') || '[]');
-
-function renderTodos(cat, containerId) {
-  var list = allTodos.filter(function(t) { return t.cat === cat; });
-  var h = '';
-  list.forEach(function(t) {
-    var d = done.indexOf(t.text) >= 0;
-    h += '<div class="task' + (d ? ' done' : '') + '" onclick="toggle(\'' + t.text.replace(/'/g, "\\'") + '\')">';
-    h += '<input type="checkbox" ' + (d ? 'checked' : '') + ' onclick="event.stopPropagation();toggle(\'' + t.text.replace(/'/g, "\\'") + '\')">';
-    h += '<div class="tb"><div class="tbt">' + t.text + '</div>';
-    if (t.detail) h += '<div class="tbd">' + t.detail + '</div>';
-    h += '</div></div>';
-  });
-  document.getElementById(containerId).innerHTML = h;
+// 简单勾选保存（localStorage 版本）
+var done=JSON.parse(localStorage.getItem('wm_todos')||'[]');
+document.querySelectorAll('.task input[type=checkbox]').forEach(function(cb,i){
+if(done.includes(i)){cb.checked=true;cb.parentElement.classList.add('done')}
+cb.onchange=function(){
+if(cb.checked){done.push(i);cb.parentElement.classList.add('done')}
+else{done=done.filter(function(x){return x!==i});cb.parentElement.classList.remove('done')}
+localStorage.setItem('wm_todos',JSON.stringify(done));
 }
-
-function toggle(text) {
-  var i = done.indexOf(text);
-  if (i >= 0) done.splice(i, 1); else done.push(text);
-  localStorage.setItem('wm_todos', JSON.stringify(done));
-  renderTodos(1, 'tasks1');
-  renderTodos(2, 'tasks2');
-  renderTodos(3, 'tasks3');
-}
-
-renderTodos(1, 'tasks1');
-renderTodos(2, 'tasks2');
-renderTodos(3, 'tasks3');
-
-async function send() {
-  var msg = document.getElementById('msg').value.trim();
-  if (!msg) { show('fb-msg', '请输入内容', ''); return; }
-  var btn = document.getElementById('send-btn');
-  btn.disabled = true; btn.textContent = '发送中...';
-  try {
-    var r = await fetch('/api/feedback', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: msg })
-    });
-    var d = await r.json();
-    if (d.ok) {
-      show('fb-msg', '已发送给理财顾问', 'ok');
-      document.getElementById('msg').value = '';
-    } else {
-      show('fb-msg', '发送失败，请稍后重试', '');
-    }
-  } catch(e) { show('fb-msg', '发送失败，请稍后重试', ''); }
-  btn.disabled = false; btn.textContent = '发送给理财顾问用于更新数据';
-}
-
-function show(id, text, cls) {
-  var el = document.getElementById(id);
-  el.textContent = text; el.className = 'msg ' + cls;
-  setTimeout(function() { el.textContent = ''; el.className = 'msg'; }, 3000);
-}
+});
 </script>
-</body>
-</html>
+</body></html>
