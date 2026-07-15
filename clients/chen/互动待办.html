@@ -31,11 +31,17 @@ textarea{width:100%;height:100px;border:1px solid #ddd;border-radius:8px;padding
 <h2>待办事项 · 完成后勾选</h2>
 
 <div class="card">
-<h3>保单操作确认</h3>
-<div id="tasks"></div>
-<div class="msg" id="todo-msg"></div>
+<h3>保单操作（5项）</h3>
+<div id="tasks1"></div>
 </div>
-
+<div class="card">
+<h3>资金与账务（5项）</h3>
+<div id="tasks2"></div>
+</div>
+<div class="card">
+<h3>报告与沟通（5项）</h3>
+<div id="tasks3"></div>
+</div>
 <div class="card">
 <h3>意见和建议</h3>
 <textarea id="msg" placeholder="请在此写下您的建议、问题或需求..."></textarea>
@@ -44,68 +50,82 @@ textarea{width:100%;height:100px;border:1px solid #ddd;border-radius:8px;padding
 </div>
 
 <script>
-var todos=[
-{id:1, text:'新华惠鑫宝 — 确认投保人变更', detail:'携带材料到新华柜面办理'},
-{id:2, text:'确认众享淳盈60期(¥300,000)到期到账', detail:'8月到期，确认本金+利息¥30,600已入银行账户'},
-{id:3, text:'确认浩腾恒烨Q3利息到账', detail:'9月利息¥7,350'},
-{id:4, text:'确认11月新华贷款利息已扣', detail:'月息¥3,750'},
-{id:5, text:'确认永明港险第2年保费已缴', detail:'8月26日前缴费5,000'},
-{id:6, text:'确认周大福港险保单已承保', detail:'登录周大福APP确认'},
-{id:7, text:'确认11月众享淳盈60期利息已入账', detail:'到期同时付息¥30,600'},
-{id:8, text:'年终复核所有保单现金价值', detail:'12月底登录各保司APP查看最新数字'},
-{id:9, text:'车贷月供¥3,520是否正常扣款', detail:'每月检查银行扣款记录'},
-{id:10, text:'固收到期资金是否已转入指定账户', detail:'每次固收到期后确认资金到账'},
-{id:11, text:'家庭日常支出是否在预算内', detail:'月均基础支出¥6,250，含车贷则¥9,770'},
-{id:12, text:'保单分红报告 — 转发给理财顾问', detail:'平安钟爱一生/阳光财富年年年底派发'},
-{id:13, text:'新华惠鑫宝生存金¥36,000是否转入万能账户', detail:'11月16日自动转入'},
-{id:14, text:'港险年度报告 — 转发给理财顾问', detail:'永明+周大福每年6-8月发布'},
-{id:15, text:'有其他需要协助的事项请写在下方建议框', detail:''},
-];];
+var allTodos = [
+  // 保单操作
+  {cat:1, text:'新华惠鑫宝 — 确认投保人变更材料已提交', detail:'携带材料到新华柜面办理'},
+  {cat:1, text:'确认永明港险第2年保费已缴', detail:'8月26日前缴费USD 15000'},
+  {cat:1, text:'确认周大福港险保单已承保', detail:'登录周大福APP确认保单状态'},
+  {cat:1, text:'确认11月新华贷款利息已扣', detail:'月息3750元，每半年扣一次'},
+  {cat:1, text:'新华惠鑫宝生存金是否转入万能账户', detail:'36000元，每年11月16日自动转入'},
+  // 资金与账务
+  {cat:2, text:'确认众享淳盈60期到期到账', detail:'本金30万+利息30600元，8月到期'},
+  {cat:2, text:'确认浩腾恒烨Q3利息到账', detail:'9月利息7350元'},
+  {cat:2, text:'车贷月供是否正常扣款', detail:'每月3520元，还剩18期'},
+  {cat:2, text:'固收到期资金已转入指定账户', detail:'每次固收到期后确认资金到账'},
+  {cat:2, text:'家庭月度支出是否在预算内', detail:'月均基础支出6250元'},
+  // 报告与沟通  
+  {cat:3, text:'保单分红报告 — 转发给理财顾问', detail:'平安钟爱一生、阳光财富年年年底派发'},
+  {cat:3, text:'港险年度报告 — 转发给理财顾问', detail:'永明、周大福每年6-8月发布'},
+  {cat:3, text:'年终复核所有保单现金价值', detail:'12月底登录各保司APP查看最新数字'},
+  {cat:3, text:'更新万能账户最新余额', detail:'登录新华APP查看惠鑫宝UA最新值'},
+  {cat:3, text:'有其他需要协助的事项请写在下方建议框', detail:''},
+];
 
-var done=JSON.parse(localStorage.getItem('wm_todos')||'[]');
+var done = JSON.parse(localStorage.getItem('wm_todos') || '[]');
 
-function render(){
-var h='';
-todos.forEach(function(t){
-var d=done.includes(t.id);
-h+='<div class="task'+(d?' done':'')+'">';
-h+='<input type=checkbox '+(d?'checked':'')+' onclick="toggle('+t.id+')">';
-h+='<div class=tb><div class=tbt>'+t.text+'</div><div class=tbd>'+t.detail+'</div></div>';
-h+='</div>';
-});
-document.getElementById('tasks').innerHTML=h;
-}
-render();
-
-function toggle(id){
-var i=done.indexOf(id);
-if(i>=0) done.splice(i,1); else done.push(id);
-localStorage.setItem('wm_todos',JSON.stringify(done));
-render();
+function renderTodos(cat, containerId) {
+  var list = allTodos.filter(function(t) { return t.cat === cat; });
+  var h = '';
+  list.forEach(function(t) {
+    var d = done.indexOf(t.text) >= 0;
+    h += '<div class="task' + (d ? ' done' : '') + '" onclick="toggle(\'' + t.text.replace(/'/g, "\\'") + '\')">';
+    h += '<input type="checkbox" ' + (d ? 'checked' : '') + ' onclick="event.stopPropagation();toggle(\'' + t.text.replace(/'/g, "\\'") + '\')">';
+    h += '<div class="tb"><div class="tbt">' + t.text + '</div>';
+    if (t.detail) h += '<div class="tbd">' + t.detail + '</div>';
+    h += '</div></div>';
+  });
+  document.getElementById(containerId).innerHTML = h;
 }
 
-async function send(){
-var msg=document.getElementById('msg').value.trim();
-if(!msg){show('fb-msg','请输入内容','');return}
-var btn=document.getElementById('send-btn');
-btn.disabled=true;btn.textContent='发送中...';
-try{
-var r=await fetch('/api/feedback',{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({message:msg})
-});
-var d=await r.json();
-if(d.ok){show('fb-msg','✓ 已发送给理财顾问用于更新数据','ok');document.getElementById('msg').value=''}
-else{show('fb-msg','发送失败，请稍后重试','')}
-}catch(e){show('fb-msg','发送失败，请稍后重试','')}
-btn.disabled=false;btn.textContent='发送给理财顾问用于更新数据';
+function toggle(text) {
+  var i = done.indexOf(text);
+  if (i >= 0) done.splice(i, 1); else done.push(text);
+  localStorage.setItem('wm_todos', JSON.stringify(done));
+  renderTodos(1, 'tasks1');
+  renderTodos(2, 'tasks2');
+  renderTodos(3, 'tasks3');
 }
 
-function show(id,text,cls){
-var el=document.getElementById(id);
-el.textContent=text;el.className='msg '+cls;
-setTimeout(function(){el.textContent='';el.className='msg'},3000);
+renderTodos(1, 'tasks1');
+renderTodos(2, 'tasks2');
+renderTodos(3, 'tasks3');
+
+async function send() {
+  var msg = document.getElementById('msg').value.trim();
+  if (!msg) { show('fb-msg', '请输入内容', ''); return; }
+  var btn = document.getElementById('send-btn');
+  btn.disabled = true; btn.textContent = '发送中...';
+  try {
+    var r = await fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
+    });
+    var d = await r.json();
+    if (d.ok) {
+      show('fb-msg', '已发送给理财顾问', 'ok');
+      document.getElementById('msg').value = '';
+    } else {
+      show('fb-msg', '发送失败，请稍后重试', '');
+    }
+  } catch(e) { show('fb-msg', '发送失败，请稍后重试', ''); }
+  btn.disabled = false; btn.textContent = '发送给理财顾问用于更新数据';
+}
+
+function show(id, text, cls) {
+  var el = document.getElementById(id);
+  el.textContent = text; el.className = 'msg ' + cls;
+  setTimeout(function() { el.textContent = ''; el.className = 'msg'; }, 3000);
 }
 </script>
 </body>
