@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>资产配置建议</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
+.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
+h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
+h3{font-size:14px;color:#1a3a5c;margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid #eee}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+table{width:{{利率}}%;border-collapse:collapse;font-size:12px;margin:6px 0}
+th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left}
+td{padding:5px 8px;border:1px solid #ddd;font-size:11.5px}
+td.r{text-align:right}
+tr:nth-child(even){background:#fafafa}
+tr.tt{font-weight:700;background:#f0f4f8}
+.timeline{margin:10px 0;padding-left:16px;border-left:3px solid #1a3a5c}
+.timeline .tl{padding:8px 0 8px 14px;position:relative}
+.timeline .tl::before{content:'';position:absolute;left:-9px;top:14px;width:14px;height:14px;background:#1a3a5c;border-radius:{{利率}}%}
+.timeline .tl.done::before{background:#16a34a}
+.timeline .tl .tly{font-weight:700;font-size:13px;color:#1a3a5c}
+.timeline .tl .tld{font-size:12px;color:#555;margin-top:2px}
+.urgent{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;margin:8px 0;font-size:12px}
+.urgent strong{color:#dc2626}
+</style>
+</head>
+<body>
+<a href="菜单.html" class="back">← 菜单</a>
+
+<h2>资产配置建议</h2>
+
+<div class="card">
+<h3>当前配置（{{日期}}）</h3>
+<table>
+<tr><th>资产类别</th><th>金额</th><th>占比</th><th>评价</th></tr>
+<tr><td>固收理财</td><td class="r">≈¥{{金额}}万</td><td class="r">{{利率}}%</td><td>高息但不可持续，全部2029前退出</td></tr>
+<tr><td>国内保险(现金价值)</td><td class="r">¥{{金额}}万</td><td class="r">{{利率}}%</td><td>养老+教育双目标覆盖</td></tr>
+<tr><td>房产</td><td class="r">¥{{金额}}万</td><td class="r">{{利率}}%</td><td>自住为主，可考虑出租一套</td></tr>
+<tr><td>港险</td><td class="r">≈¥{{金额}}万</td><td class="r">{{利率}}%</td><td>美元资产，长期复利</td></tr>
+<tr><td>银行存款</td><td class="r">⚠待更新</td><td class="r">—</td><td>流动性储备</td></tr>
+<tr><td>私募股权</td><td class="r">≈¥{{金额}}万</td><td class="r">{{利率}}%</td><td>流动性极差，需评估</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>近1年配置建议（2026.07 - 2027.06）</h3>
+<div class="timeline">
+<div class="tl done">
+<div class="tly">🔄 还清信美贷款 ¥{{金额}}万</div>
+<div class="tld">已执行。释放月利息¥{{金额}}，减少负债率</div>
+</div>
+<div class="tl">
+<div class="tly">2026年8-11月：固收¥{{金额}}万到期 → 港险</div>
+<div class="tld">60期¥{{金额}}万(8月)+浩腾¥{{金额}}万(11月)。签约后缴费，享趸交5-{{利率}}%优惠。佣金回流¥{{金额}}-42万。</div>
+</div>
+<div class="tl">
+<div class="tly">{{日期}}：永明保费$15,000</div>
+<div class="tld">已安排。2年缴完成后，永明$3万全部到位。</div>
+</div>
+<div class="tl">
+<div class="tly">{{日期}}：付新华贷款利息 ¥{{金额}}</div>
+<div class="tld">每180天付息一次，本金续贷至2028年还清。</div>
+</div>
+<div class="tl">
+<div class="tly">2026年底：保留¥{{金额}}万现金池</div>
+<div class="tld">灵活宝为主，覆盖6个月支出+应急。</div>
+</div>
+<div class="tl">
+<div class="tly">季度复核：固收到期进度、港险分红报告</div>
+<div class="tld">每3个月检查一次：固收是否按时到账、永明首年分红实现率</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>近3年配置建议（2026.07 - 2029.06）</h3>
+<div class="timeline">
+<div class="tl">
+<div class="tly">2027下半年：固收集中到期 → 港险二期</div>
+<div class="tld">4笔合计¥{{金额}}万(7-12月)。优先趸交或预缴。佣金回流¥{{金额}}-48万。</div>
+</div>
+<div class="tl">
+<div class="tly">2028年：固收¥{{金额}}万到期 + 还清新华贷款</div>
+<div class="tld">293期¥{{金额}}万(10月)+328期¥{{金额}}万(11月)+36851¥{{金额}}万(6月)。还贷¥{{金额}}万后，剩余¥{{金额}}万继续港险。</div>
+</div>
+<div class="tl">
+<div class="tly">2029年初：最后一笔固收¥{{金额}}万到期</div>
+<div class="tld">产品A(3月)。全部固收退出完成。总港险底仓约$52万。</div>
+</div>
+<div class="tl">
+<div class="tly">2029年：启动大额支出规划</div>
+<div class="tld">装修¥{{金额}}万→郴州置业¥{{金额}}-60万→房车¥{{金额}}-50万，有序展开。</div>
+</div>
+<div class="tl">
+<div class="tly">永明第5年(2031)：可行使价值锁定</div>
+<div class="tld">最高锁{{利率}}%终期红利，积存利率{{利率}}%。建议届时评估是否锁定。</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>近5年配置建议（2026 - 2031）</h3>
+<div class="timeline">
+<div class="tl">
+<div class="tly">保险配置：保障缺口补齐</div>
+<div class="tld">用户母亲：医疗+意外（紧急）。子女A+B：少儿医保+百万医疗。陈莹已有附加重疾¥{{金额}}万(至2044年)。</div>
+</div>
+<div class="tl">
+<div class="tly">房产策略：考虑出租一套</div>
+<div class="tld">佛山两套住宅，一套自住一套出租。租金约¥{{金额}}-5K/月，可补2029年后被动收入缺口。</div>
+</div>
+<div class="tl">
+<div class="tly">港险策略：归原红利提取规划</div>
+<div class="tld">永明归原红利公布即保证，周大福只保证面值。优先从永明提取。周大福第10年可选财富跃进。</div>
+</div>
+<div class="tl">
+<div class="tly">被动收入缺口：¥{{金额}}.3万/年</div>
+<div class="tld">方案A：留¥{{金额}}万配固收({{利率}}%→¥{{金额}}.8万)；方案B：出租一套房(¥{{金额}}-5万)；方案C：港险红利提取。推荐A+B组合。</div>
+</div>
+<div class="tl">
+<div class="tly">新华惠鑫宝：2036年满期</div>
+<div class="tld">¥{{金额}}.2万+UA一次性到账。这是2029年缺口和2036年盈余之间的桥梁。在此之前不提前退保。</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>保险配置建议</h3>
+<table>
+<tr><th>成员</th><th>已有</th><th>建议补充</th><th>年成本估</th><th>优先级</th></tr>
+<tr><td>陈莹(43)</td><td>医疗🔄 重疾¥{{金额}}万🔄 意外¥{{金额}}万🔄 定寿¥{{金额}}万🔄</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>用户(~45)</td><td>医疗🔄 意外🔄 定寿🔄</td><td>重疾(可选)</td><td class="r">¥{{金额}}-5,000</td><td>低</td></tr>
+<tr><td>用户母亲(~70)</td><td>—</td><td>医疗+意外</td><td class="r">¥{{金额}}-3,000</td><td style="color:#dc2626">高</td></tr>
+<tr><td>子女A+B(9)</td><td>养老金🔄</td><td>少儿医保+百万医疗+意外</td><td class="r">¥{{金额}}-2,000</td><td style="color:#d97706">中</td></tr>
+</table>
+<div class="urgent"><strong>配置原则：</strong>18岁前不配重疾。底线：社保+百万医疗。保障年成本约¥{{金额}}.5-2.5万，从固收利息中支付，不伤本金。</div>
+</div>
+
+</body>
+</html>
