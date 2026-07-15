@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>登录 · 财富管理规划</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="page">
+<div class="card">
+<h2>客户登录</h2>
+<div class="sub">输入手机号和密码查看专属报表</div>
+
+<div class="input-group">
+<label>手机号</label>
+<input type="tel" id="phone" placeholder="请输入手机号" maxlength="11">
+</div>
+<div class="input-group">
+<label>密码</label>
+<input type="password" id="password" placeholder="请输入密码" onkeydown="if(event.key==='Enter')doLogin()">
+</div>
+
+<button class="btn" onclick="doLogin()">登 录</button>
+<div class="err-msg" id="error"></div>
+</div>
+</div>
+<footer>© 2026 财富管理规划</footer>
+
+<script src="assets/auth.js"></script>
+<script>
+async function doLogin(){
+var phone=document.getElementById('phone').value.trim();
+var pwd=document.getElementById('password').value;
+var err=document.getElementById('error');
+err.classList.remove('show');
+if(!phone){err.textContent='请输入手机号';err.classList.add('show');return}
+if(!pwd){err.textContent='请输入密码';err.classList.add('show');return}
+var r=await authLogin(phone,pwd);
+if(!r.ok){err.textContent=r.msg;err.classList.add('show');return}
+window.location.href='dashboard.html';
+}
+</script>
+</body>
+</html>

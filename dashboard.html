@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>财富管理规划 · 报表</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.header{background:var(--pri);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.header .title{font-size:15px;font-weight:600}
+.header button{background:rgba(255,255,255,0.15);color:#fff;border:none;padding:6px 14px;border-radius:5px;font-size:13px;cursor:pointer}
+.iframe-wrap{flex:1;width:100%;overflow:hidden;position:absolute;top:44px;bottom:0;left:0;right:0}
+iframe{width:100%;height:100%;border:none}
+.no-auth{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px 20px}
+.no-auth p{color:var(--muted);font-size:14px;margin-bottom:16px}
+</style>
+</head>
+<body style="height:100vh;overflow:hidden">
+
+<div id="no-auth" class="no-auth" style="display:none">
+  <p>请先登录</p>
+  <a href="login.html" class="btn" style="text-decoration:none;width:200px">去登录</a>
+</div>
+
+<div id="authed" style="display:none;height:100%">
+  <div class="header">
+    <div class="title" id="client-name"></div>
+    <button onclick="logout()">退出</button>
+  </div>
+  <div class="iframe-wrap">
+    <iframe id="report-frame" src=""></iframe>
+  </div>
+</div>
+
+<script src="assets/auth.js"></script>
+<script>
+if (!checkAuth()) {
+  document.getElementById('no-auth').style.display = 'flex';
+} else {
+  document.getElementById('authed').style.display = 'block';
+  document.getElementById('client-name').textContent = getClientName() + ' · 财务总览';
+  document.getElementById('report-frame').src = 'clients/' + getClientPath();
+}
+</script>
+</body>
+</html>

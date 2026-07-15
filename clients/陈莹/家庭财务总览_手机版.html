@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>家庭财务 · 手机版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px;-webkit-text-size-adjust:100%}
+#lock{position:fixed;top:0;left:0;width:100%;height:100%;background:#1a3a5c;z-index:9999;display:flex;align-items:center;justify-content:center}
+#lock.hidden{display:none}
+#lock .lb{background:#fff;border-radius:14px;padding:36px 28px;text-align:center;width:320px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+#lock h2{font-size:22px;color:#1a3a5c;margin-bottom:4px}
+#lock .st{font-size:13px;color:#889;margin-bottom:28px}
+#lock input{width:100%;padding:14px 18px;border:2px solid #d0d9e3;border-radius:10px;font-size:17px;text-align:center;margin-bottom:14px;outline:none}
+#lock input:focus{border-color:#1a3a5c}
+#lock button{width:100%;padding:14px;background:#1a3a5c;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:600;cursor:pointer}
+#lock .err{color:#dc2626;font-size:13px;margin-top:10px;display:none}
+.menu{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:4px 6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.menu button{padding:8px 14px;border:none;border-radius:5px;font-size:13px;font-weight:600;color:#8899aa;background:transparent;margin:2px;display:inline-block}
+.menu button.active{color:#fff;background:rgba(255,255,255,0.18)}
+.c{padding:10px}
+.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h2{font-size:17px;color:#1a3a5c;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8eaed}
+.card h3{font-size:15px;color:#334;margin:14px 0 8px}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
+.kbox .kl{font-size:11px;color:#889;margin-bottom:2px}
+.kbox .kv{font-size:20px;font-weight:700}
+.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}.kbox .kv.b{color:#2563eb}.kbox .kv.a{color:#d97706}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;-webkit-overflow-scrolling:touch}
+th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left;border:1px solid #1a3a5c}
+td{padding:7px 6px;border:1px solid #ddd;font-size:12px}
+td.tr{text-align:right}
+tr:nth-child(even){background:#fafafa}
+tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
+tr.warn{background:#fef2f2}
+tr.done{color:#aaa;text-decoration:line-through}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px -4px;padding:0 4px}
+.tbl-wrap table{min-width:500px}
+.nt{font-size:12px;color:#888;padding:6px 8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+.bg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#f0fdf4;color:#16a34a}
+.ba{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#fefce8;color:#d97706}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style>
+</head>
+<body>
+
+<div id="app">
+<div class="menu" id="menu"></div>
+<div class="c"></div>
+<footer>更新：2026-07-15 · 密码保护</footer>
+</div>
+
+<script>
+
+
+// Panels
+var panels={
+dashboard:`
+<div class="krow">
+<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1379万</div></div>
+<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥111万</div></div>
+<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1269万</div></div>
+<div class="kbox"><div class="kl">被动收入</div><div class="kv a">¥57.2万</div></div>
+<div class="kbox"><div class="kl">固收剩余</div><div class="kv a">¥480万</div></div>
+<div class="kbox"><div class="kl">保险CV</div><div class="kv b">¥324万</div></div>
+<div class="kbox"><div class="kl">银行存款</div><div class="kv g">⚠待更新</div></div>
+<div class="kbox"><div class="kl">投保人</div><div class="kv g">8/9 ✅</div></div>
+</div>
+<h3>变更进度</h3>
+<table><tr><td>平安钟爱一生</td><td><span class="bg">✅</span></td><td>阳光升</td><td><span class="bg">✅</span></td></tr>
+<tr><td>阳光财富年年</td><td><span class="bg">✅</span></td><td>信美×2</td><td><span class="bg">✅</span></td></tr>
+<tr><td>国寿99鸿福</td><td><span class="bg">✅</span></td><td class="warn">新华惠鑫宝</td><td><span class="ba">⚠</span></td></tr></table>`,
+
+assets:`
+<h3>固收（10笔·¥480万）</h3>
+<div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>
+<tr class="done"><td>众享淳盈37期</td><td class="tr">80万</td><td class="tr">10.2%</td><td>✅退出</td></tr>
+<tr><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>08月</td></tr>
+<tr><td>浩腾恒烨</td><td class="tr">30万</td><td class="tr">9.8%</td><td>11月</td></tr>
+<tr><td>悦享9.4%</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>
+<tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td>2027-08</td></tr>
+<tr><td>悦享9.0%</td><td class="tr">20万</td><td class="tr">9.0%</td><td>2027-10</td></tr>
+<tr><td>众享淳盈137期</td><td class="tr">90万</td><td class="tr">9.4%</td><td>2027-12</td></tr>
+<tr><td>悦享36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td>2028-06</td></tr>
+<tr><td>众享淳盈293期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-10</td></tr>
+<tr><td>众享淳盈328期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-11</td></tr>
+<tr><td>产品A</td><td class="tr">50万</td><td class="tr">8.4%</td><td>2029-03</td></tr></table></div>
+<h3>保险（9份·¥324万）</h3>
+<div class="tbl-wrap"><table><tr><th>保单</th><th>CV</th><th>核心</th></tr>
+<tr><td>新华主险</td><td class="tr">137.5万</td><td>满期¥173万 <span class="ba">⚠</span></td></tr>
+<tr><td>新华UA</td><td class="tr">39.0万</td><td>保证2.5%</td></tr>
+<tr><td>信美·硕</td><td class="tr">53.6万</td><td>60岁月领¥14,520 <span class="bg">✅</span></td></tr>
+<tr><td>信美·岚</td><td class="tr">53.6万</td><td>60岁月领¥14,080 <span class="bg">✅</span></td></tr>
+<tr><td>钟爱一生</td><td class="tr">17.8万</td><td>60岁养老金 <span class="bg">✅</span></td></tr>
+<tr><td>阳光升</td><td class="tr">10.3万</td><td>3.45%复利 <span class="bg">✅</span></td></tr>
+<tr><td>财富年年</td><td class="tr">6.3万</td><td>¥1,700/年 <span class="bg">✅</span></td></tr>
+<tr><td>国寿99鸿福</td><td class="tr">3.9万</td><td>保额5%/年递增 <span class="bg">✅</span></td></tr></table></div>`,
+
+debt:`
+<table><tr><th>负债</th><th>本金</th><th>月供/息</th></tr>
+<tr><td>新华贷款</td><td class="tr">¥100万</td><td class="tr">¥3,750</td></tr>
+<tr><td>车贷</td><td class="tr">¥63,360</td><td class="tr">¥3,520</td></tr>
+<tr><td>网贷</td><td class="tr">¥46,000</td><td class="tr">待确认</td></tr>
+<tr class="tt"><td>合计</td><td class="tr">¥111万</td><td class="tr">¥7,270/月</td></tr></table>
+<p class="nt">信美贷款已还清 | 负债率 8.0%</p>`,
+
+income:`
+<table><tr><th>来源</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>
+<tr><td>固收利息</td><td class="tr">¥523K</td><td class="tr">¥381K</td><td class="tr">¥226K</td><td class="tr">¥11K</td></tr>
+<tr><td>新华生存金</td><td class="tr">¥36K</td><td class="tr">¥36K</td><td class="tr">¥36K</td><td class="tr">¥36K</td></tr>
+<tr><td>新华UA</td><td class="tr">¥11K</td><td class="tr">¥11K</td><td class="tr">¥11K</td><td class="tr">¥11K</td></tr>
+<tr><td>国寿99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">¥5K</td><td class="tr">—</td></tr>
+<tr><td>财富年年</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td></tr></table>
+<br>
+<table><tr><th>年份</th><th>到期本金</th></tr>
+<tr><td>2026</td><td class="tr">¥60万(另37期已退出)</td></tr>
+<tr><td>2027</td><td class="tr">¥160万</td></tr>
+<tr><td>2028</td><td class="tr">¥210万</td></tr>
+<tr><td>2029</td><td class="tr">¥50万</td></tr></table>`,
+
+expense:`
+<table><tr><th>项目</th><th>金额</th></tr>
+<tr><td>A 手机</td><td class="tr">¥15,000</td></tr>
+<tr><td>B 校服+餐费+夏令营</td><td class="tr">¥8,600</td></tr>
+<tr><td>B 托管+班费+文具</td><td class="tr">¥9,500</td></tr>
+<tr><td>C 车贷×6</td><td class="tr">¥21,120</td></tr>
+<tr><td>D 家庭事务</td><td class="tr">¥9,100</td></tr>
+<tr><td>E 秋游+秋假</td><td class="tr">¥3,500</td></tr>
+<tr class="tt"><td>合计</td><td class="tr">¥66,820</td></tr></table>`,
+
+expense_plan:`
+<table><tr><th>项目</th><th>预算</th><th>时间</th></tr>
+<tr><td>住房装修</td><td class="tr">¥20万</td><td>2029</td></tr>
+<tr><td>郴州置业</td><td class="tr">¥45-60万</td><td>2029</td></tr>
+<tr><td>房车</td><td class="tr">¥30-50万</td><td>29-30</td></tr>
+<tr><td>教育婚嫁</td><td class="tr">¥120-180万</td><td>32-47</td></tr></table>
+<h3>车贷偿还</h3>
+<table><tr><td>2026下</td><td class="tr">6期·¥21,120</td><td>2027</td><td class="tr">12期·¥42,240</td></tr></table>`,
+
+cashflow_asset:`
+<table><tr><th>月</th><th>产品</th><th>利息</th><th>到期</th></tr>
+<tr class="done"><td>7</td><td>众享37期</td><td class="tr">81.6K</td><td>✅已退</td></tr>
+<tr><td>8</td><td>众享60期</td><td class="tr">30.6K</td><td>300K</td></tr>
+<tr><td>9</td><td>浩腾Q3</td><td class="tr">7.4K</td><td>—</td></tr>
+<tr><td>11</td><td>浩腾到期</td><td class="tr">7.4K</td><td>300K</td></tr>
+<tr class="tt"><td>合计</td><td></td><td class="tr">127K</td><td>1,400K</td></tr></table>`,
+
+cashflow_monthly:`
+<table><tr><th>月</th><th>利息进</th><th>固收到</th><th>支出</th><th>净</th></tr>
+<tr><td>7</td><td class="tr">+81.6</td><td class="tr">+800</td><td class="tr">-25.8</td><td class="tr" style="color:#16a34a">+855.8</td></tr>
+<tr><td>8</td><td class="tr">+30.6</td><td class="tr">+300</td><td class="tr">-25.8</td><td class="tr" style="color:#16a34a">+304.8</td></tr>
+<tr><td>9</td><td class="tr">+7.4</td><td class="tr">—</td><td class="tr">-19.8</td><td class="tr" style="color:#dc2626">-12.4</td></tr>
+<tr><td>10</td><td class="tr">—</td><td class="tr">—</td><td class="tr">-16.8</td><td class="tr" style="color:#dc2626">-16.8</td></tr>
+<tr><td>11</td><td class="tr">+7.4</td><td class="tr">+300</td><td class="tr">-16.8</td><td class="tr" style="color:#16a34a">+290.6</td></tr>
+<tr><td>12</td><td class="tr">+7.4</td><td class="tr">—</td><td class="tr">-16.8</td><td class="tr" style="color:#dc2626">-9.4</td></tr>
+<tr class="tt"><td>半年</td><td class="tr">+134.3</td><td class="tr">+1,400</td><td class="tr">-110.4</td><td class="tr" style="color:#16a34a">+1,423.8</td></tr></table>
+<p class="nt">单位: K = 千元</p>`,
+
+insurance_cf:`
+<p style="font-size:12px;color:#888;margin-bottom:8px">实际现金流入（到银行卡）</p>
+<table><tr><th>保单</th><th>2026</th><th>2027</th><th>2028</th></tr>
+<tr><td>国寿99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">¥5,000</td></tr>
+<tr><td>财富年年</td><td class="tr">¥1,700</td><td class="tr">¥1,700</td><td class="tr">¥1,700</td></tr></table>
+<p style="font-size:12px;color:#888;margin:12px 0 8px">账面现金价值（保单内，非现金）</p>
+<div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2030</th><th>2036</th></tr>
+<tr><td>新华主险</td><td class="tr">1,375K</td><td class="tr">—</td><td class="tr">1,732K</td></tr>
+<tr><td>新华UA</td><td class="tr">390K</td><td class="tr">540K</td><td class="tr">680K</td></tr>
+<tr><td>信美×2</td><td class="tr">1,072K</td><td class="tr">1,440K</td><td class="tr">1,920K</td></tr></table></div>`,
+
+forecast10:`
+<div class="tbl-wrap"><table><tr><th>年</th><th>固收</th><th>保险CV</th><th>港险</th><th>净资产</th><th>事件</th></tr>
+<tr><td>2026</td><td class="tr">480万</td><td class="tr">324万</td><td class="tr">$184K</td><td class="tr">1063万</td><td>37期退出</td></tr>
+<tr><td>2028</td><td class="tr">160万</td><td class="tr">348万</td><td class="tr">$400K</td><td class="tr">1185万</td><td>还贷</td></tr>
+<tr class="warn"><td>2029</td><td class="tr">0</td><td class="tr">358万</td><td class="tr">$420K</td><td class="tr">1236万</td><td>固收清零</td></tr>
+<tr style="font-weight:700"><td>2036</td><td class="tr">0</td><td class="tr">482万</td><td class="tr">$590K</td><td class="tr">1903万</td><td>新华满期</td></tr></table></div>`,
+
+freedom:`
+<div class="krow">
+<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">¥57.2万</div></div>
+<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">577%</div></div>
+<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">¥6.0万</div></div>
+<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div>
+</div>
+<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>
+<tr><td>2026</td><td class="tr">¥571.7K</td><td class="tr">¥99K</td><td style="color:#16a34a">577%</td></tr>
+<tr><td>2027</td><td class="tr">¥429.7K</td><td class="tr">¥90K</td><td>477%</td></tr>
+<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">¥59.7K</td><td class="tr">¥90K</td><td style="color:#dc2626">66%⚠</td></tr>
+<tr><td>2036</td><td class="tr">¥94K</td><td class="tr">¥90K</td><td>104%</td></tr></table>`};
+
+// Build menu & panels
+var keys=['dashboard','assets','debt','income','expense','expense_plan','cashflow_asset','cashflow_monthly','insurance_cf','forecast10','freedom'];
+var labels={dashboard:'总览',assets:'资产',debt:'负债',income:'收入',expense:'支出',expense_plan:'计划',cashflow_asset:'固收流',cashflow_monthly:'月现金',insurance_cf:'保单流',forecast10:'10年',freedom:'自由'};
+var menu=document.getElementById('menu');
+var container=document.querySelector('.c');
+
+keys.forEach(function(k){
+var btn=document.createElement('button');
+btn.textContent=labels[k];
+btn.onclick=function(){showMobile(k)};
+if(k==='dashboard')btn.classList.add('active');
+menu.appendChild(btn);
+var div=document.createElement('div');div.className='card';div.id=k;div.style.display=k==='dashboard'?'block':'none';
+div.innerHTML='<h2>'+labels[k]+'</h2>'+panels[k];
+container.appendChild(div);
+});
+
+function showMobile(id){
+document.querySelectorAll('.card').forEach(function(c){c.style.display='none'});
+document.querySelectorAll('.menu button').forEach(function(b){b.classList.remove('active')});
+document.getElementById(id).style.display='block';
+var btns=document.querySelectorAll('.menu button');
+btns.forEach(function(b){if(b.textContent===labels[id])b.classList.add('active')});
+}
+</script>
+</body>
+</html>
