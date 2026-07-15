@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>菜单</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#1a3a5c;color:#fff;min-height:100vh;padding:24px 16px}
+.header{text-align:center;padding:20px 0 30px}
+.header h1{font-size:22px;margin-bottom:4px}
+.header .sub{font-size:13px;opacity:0.7}
+.menu{display:flex;flex-direction:column;gap:10px;max-width:400px;margin:0 auto}
+.menu a{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:16px 20px;color:#fff;text-decoration:none;font-size:15px;font-weight:600;transition:all .2s}
+.menu a:hover{background:rgba(255,255,255,0.2)}
+.menu a .icon{font-size:24px;width:36px;text-align:center}
+.menu a .arrow{margin-left:auto;opacity:0.5;font-size:18px}
+.help{text-align:center;margin-top:30px;opacity:0.5;font-size:12px}
+</style>
+</head>
+<body>
+<div class="header">
+<h1 id="cname">客户名称</h1>
+<div class="sub">请选择要查看的内容</div>
+</div>
+
+<div class="menu">
+<!--
+  菜单项规则：有什么展示什么。
+  复制下面的 a 标签，修改 href 和文字即可。
+  没有对应数据 → 删除整行。
+-->
+<a href="家庭财务总览_手机版.html"><span class="icon">📊</span>总览<span class="arrow">›</span></a>
+<a href="固收现金流明细.html"><span class="icon">💰</span>固收现金流<span class="arrow">›</span></a>
+<a href="保险明细.html"><span class="icon">🛡️</span>保险明细<span class="arrow">›</span></a>
+<a href="保单管理.html"><span class="icon">📋</span>保单管理<span class="arrow">›</span></a>
+<a href="负债明细.html"><span class="icon">💳</span>负债明细<span class="arrow">›</span></a>
+<a href="配置建议.html"><span class="icon">🎯</span>配置建议<span class="arrow">›</span></a>
+<a href="待办事项.html"><span class="icon">✅</span>待办事项<span class="arrow">›</span></a>
+</div>
+
+<div class="help">📌 模板文件 · 请替换为真实客户数据</div>
+</body>
+</html>
