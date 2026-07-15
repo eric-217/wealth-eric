@@ -4,8 +4,8 @@
 var CLIENTS = {
   // 手机号: { password: 'SHA256哈希', name: '显示名', path: '数据文件路径' }
   '15107572598': {
-    name: '陈莹',
-    path: '陈莹/家庭财务总览_手机版.html',
+    name: '陈女士',
+    path: 'chen/家庭财务总览_手机版.html',
     hash: 'fe438d7c548ecc2818ccf0117f6b3150a7c40bb8cb24c28af6e1da5364c01229'
   }
 };
