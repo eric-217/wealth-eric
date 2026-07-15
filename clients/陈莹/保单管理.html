@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>保单管理</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
+.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
+h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:14px;color:#1a3a5c;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
+.task{display:flex;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f0f0f0;gap:10px}
+.task:last-child{border-bottom:none}
+.task .dot{width:10px;height:10px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.task .dot.red{background:#dc2626}.task .dot.amber{background:#d97706}.task .dot.green{background:#16a34a}
+.task .dot.blue{background:#2563eb}
+.task .tb{flex:1}
+.task .tbt{font-weight:600;font-size:13px}
+.task .tbd{font-size:11.5px;color:#666;margin-top:2px}
+.task .tbd .tag{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;margin-left:4px}
+.tag.red{background:#fef2f2;color:#dc2626}.tag.amber{background:#fefce8;color:#d97706}
+.tag.green{background:#f0fdf4;color:#16a34a}.tag.blue{background:#dbeafe;color:#2563eb}
+.month-hdr{font-size:15px;font-weight:700;color:#1a3a5c;padding:12px 0 4px;margin-top:8px}
+</style>
+</head>
+<body>
+<a href="菜单.html" class="back">← 菜单</a>
+
+<h2>保单管理 · 近12个月待办</h2>
+
+<div class="card">
+<h3>🔴 紧急（本月）</h3>
+<div class="task">
+<div class="dot red"></div>
+<div class="tb"><div class="tbt">新华惠鑫宝 — 投保人+受益人变更 <span class="tag red">仅剩此份</span></div>
+<div class="tbd">谭绮纶→陈莹。联系新华保险柜面，携带死亡证明+陈莹身份证+保单原件。</div></div>
+</div>
+<div class="task">
+<div class="dot red"></div>
+<div class="tb"><div class="tbt">众享淳盈60期 — 8月到期¥300,000</div>
+<div class="tbd">利息¥30,600+本金¥300,000。确认到账，安排港险缴款或大额存单。</div></div>
+</div>
+<div class="task">
+<div class="dot amber"></div>
+<div class="tb"><div class="tbt">永明港险 — 第2年保费$15,000（8月26日）</div>
+<div class="tbd">已安排。从固收回流中支付。确认保费到账+获取首年分红报告。</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>🟡 2026年 Q3-Q4</h3>
+<div class="task">
+<div class="dot amber"></div>
+<div class="tb"><div class="tbt">浩腾恒烨 — 11月到期¥300,000</div>
+<div class="tbd">季度利息¥7,350(9月)+ 最后一期利息¥7,350(11月)+ 本金¥300,000。</div></div>
+</div>
+<div class="task">
+<div class="dot amber"></div>
+<div class="tb"><div class="tbt">新华惠鑫宝 — 生存金¥36,000转入UA（11月16日）</div>
+<div class="tbd">自动转入万能账户。登录新华APP确认到账+查看最新UA余额。</div></div>
+</div>
+<div class="task">
+<div class="dot amber"></div>
+<div class="tb"><div class="tbt">新华惠鑫宝 — 贷款付息（11月19日）</div>
+<div class="tbd">每180天付息¥3,750。确认扣款+本金续贷。2028年固收到期后一次性还清。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">信美相互×2 — 确认保单周年日（12月23日）</div>
+<div class="tbd">登录信美APP查看最新现金价值。两份合计预估≈¥1,100,000。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">年终复核 — 所有保单现金价值更新</div>
+<div class="tbd">对比上一年数据，确认各保单现金价值增长是否符合预期。</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>🔵 2027年上半年</h3>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">平安钟爱一生 — 保单周年日（1月18日）</div>
+<div class="tbd">红利派发日。查看年度分红报告+累计红利余额。红利选择：累积生息。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">阳光财富年年 — 生存金¥1,700+红利（5月8日）</div>
+<div class="tbd">年度生存金派发+红利。确认到账或累积。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">阳光升终身寿 — 保单周年日（6月17日）</div>
+<div class="tbd">查看现金价值增长。2027年预估≈¥106,508。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">港险 — 年度分红实现率复核</div>
+<div class="tbd">永明+周大福年度报告发布后（通常6-8月），对比计划书计算分红实现率。</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>港险专项管理</h3>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">永明 — 设置第二投保人</div>
+<div class="tbd">当前投保人：陈莹。建议设置第二投保人（李春华），避免单点风险。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">周大福 — 确认受益人</div>
+<div class="tbd">当前受益人状态待确认。指定陈莹或子女为受益人。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">永明 — 第5年可行使价值锁定（2031年）</div>
+<div class="tbd">最高锁定50%终期红利，积存利率3.5%。届时评估是否锁定。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">永明 — 保单分拆选项</div>
+<div class="tbd">可无限次分拆。未来如需将部分保单单独给子女A或B，提前规划。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">永明 — 6种货币转换选项</div>
+<div class="tbd">当前美元。如需切换至人民币/港币/英镑等，保费缴付期内行使。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">周大福 — 第10年财富跃进选项（2036年）</div>
+<div class="tbd">可重新厘定保证现金价值+红利。届时评估是否行使。</div></div>
+</div>
+<div class="task">
+<div class="dot blue"></div>
+<div class="tb"><div class="tbt">年度 — 对比CRS门槛</div>
+<div class="tbd">当前港险$10万，远期$62万。CRS门槛$100万/机构。定期检查是否接近。</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>🟢 已完成（本年度）</h3>
+<div class="task">
+<div class="dot green"></div>
+<div class="tb"><div class="tbt">平安钟爱一生 — 投保人变更 ✅</div></div>
+</div>
+<div class="task">
+<div class="dot green"></div>
+<div class="tb"><div class="tbt">阳光升终身寿 — 投保人变更 ✅</div></div>
+</div>
+<div class="task">
+<div class="dot green"></div>
+<div class="tb"><div class="tbt">阳光财富年年 — 投保人+受益人变更 ✅</div></div>
+</div>
+<div class="task">
+<div class="dot green"></div>
+<div class="tb"><div class="tbt">信美相互×2 — 投保人变更+贷款还清 ✅</div></div>
+</div>
+<div class="task">
+<div class="dot green"></div>
+<div class="tb"><div class="tbt">国寿99鸿福 — 投保人+受益人变更 ✅</div></div>
+</div>
+<div class="task">
+<div class="dot green"></div>
+<div class="tb"><div class="tbt">众享淳盈37期 — ¥800,000到期退出 ✅</div></div>
+</div>
+</div>
+
+</body>
+</html>

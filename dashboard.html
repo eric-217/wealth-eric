@@ -39,7 +39,7 @@ if (!checkAuth()) {
 } else {
   document.getElementById('authed').style.display = 'block';
   document.getElementById('client-name').textContent = getClientName() + ' · 财务总览';
-  document.getElementById('report-frame').src = 'clients/' + getClientPath();
+  document.getElementById('report-frame').src = 'clients/' + getClientPath().replace('家庭财务总览_手机版.html', '菜单.html');
 }
 </script>
 </body>
