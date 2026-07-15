@@ -10,6 +10,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
 h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
 .card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:14px;color:#1a3a5c;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
 table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
 th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left}
 td{padding:5px 8px;border:1px solid #ddd;font-size:11.5px}
@@ -18,76 +19,83 @@ tr:nth-child(even){background:#fafafa}
 tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
 tr.done{color:#999;text-decoration:line-through}
 .tbl-wrap{overflow-x:auto;margin:4px -6px;padding:0 6px}
-.tbl-wrap table{min-width:500px}
+.tbl-wrap table{min-width:550px}
 .green{color:#16a34a;font-weight:600}
+.warn-box{background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:10px;margin:8px 0;font-size:12px;color:#92400e}
 </style>
 </head>
 <body>
-<a href="家庭财务总览_手机版.html" class="back">← 返回总览</a>
+<a href="菜单.html" class="back">← 返回菜单</a>
 
 <h2>固收产品 · 现金流明细</h2>
 
 <div class="card">
-<h3>2026年 Q3（7-9月）</h3>
+<h3>全部产品清单</h3>
 <div class="tbl-wrap"><table>
-<tr><th>产品</th><th>本金</th><th>利率</th><th>利息方式</th><th>7月利息</th><th>8月利息</th><th>9月利息</th><th>到期日</th></tr>
-<tr class="done"><td>众享淳盈37期</td><td class="r">¥800,000</td><td class="r">10.2%</td><td>年度(到期付)</td><td class="r green">¥81,600</td><td class="r">—</td><td class="r">—</td><td>✅7月已退出</td></tr>
-<tr><td>众享淳盈60期</td><td class="r">¥300,000</td><td class="r">10.2%</td><td>年度(到期付)</td><td class="r">—</td><td class="r green">¥30,600</td><td class="r">—</td><td>8月到期</td></tr>
-<tr><td>浩腾恒烨</td><td class="r">¥300,000</td><td class="r">9.8%</td><td>季度付息</td><td class="r">—</td><td class="r">—</td><td class="r green">¥7,350</td><td>11月到期</td></tr>
-<tr class="tt"><td colspan="4">Q3利息合计</td><td class="r">¥81,600</td><td class="r">¥30,600</td><td class="r">¥7,350</td><td>¥119,550</td></tr>
-<tr class="tt"><td colspan="4">Q3到期本金</td><td class="r">¥800,000</td><td class="r">¥300,000</td><td class="r">—</td><td>¥1,100,000</td></tr>
+<tr><th>产品编号</th><th>产品名称</th><th>本金</th><th>利率</th><th>到期日</th><th>付息</th><th>状态</th></tr>
+<tr class="done"><td>—</td><td>众享淳盈37期</td><td class="r">800,000</td><td class="r">10.2%</td><td>2026-07</td><td>年度</td><td>✅已退出</td></tr>
+<tr><td>pm1693188088725</td><td>众享淳盈60期</td><td class="r">300,000</td><td class="r">10.2%</td><td>2026-08</td><td>年度</td><td>即将到期</td></tr>
+<tr><td>zrd1698766354854</td><td>浩腾恒烨收益权转让计划</td><td class="r">300,000</td><td class="r">9.8%</td><td>2026-11</td><td>季度</td><td></td></tr>
+<tr><td>zrd1727699123007</td><td>悦享债权转让项目36694</td><td class="r">200,000</td><td class="r">9.4%</td><td>2027-07</td><td>季度</td><td></td></tr>
+<tr><td>pm1723125711277</td><td>众享淳盈105期</td><td class="r">300,000</td><td class="r">9.6%</td><td>2027-08</td><td>年度</td><td></td></tr>
+<tr><td>zrd1719453616017</td><td>悦享债权转让项目36606</td><td class="r">200,000</td><td class="r">9.0%</td><td>2027-10</td><td>季度</td><td></td></tr>
+<tr><td>pm1734358355467</td><td>众享淳盈137期</td><td class="r">900,000</td><td class="r">9.4%</td><td>2027-12</td><td>年度</td><td></td></tr>
+<tr><td>—</td><td>悦享债权转让项目36851</td><td class="r">100,000</td><td class="r">8.8%</td><td>2028-06</td><td>季度</td><td>⚠待确认</td></tr>
+<tr><td>pm1761186700895</td><td>众享淳盈295期</td><td class="r">1,000,000</td><td class="r">9.0%</td><td>2028-10</td><td>季度</td><td></td></tr>
+<tr><td>—</td><td>众享淳盈328期(陈)</td><td class="r">1,000,000</td><td class="r">9.0%</td><td>2028-11</td><td>季度</td><td>⚠待确认</td></tr>
+<tr><td>pm1771040061784</td><td>众享淳盈343期</td><td class="r">500,000</td><td class="r">8.4%</td><td>2029-03</td><td>季度</td><td></td></tr>
+<tr class="tt"><td colspan="2">剩余合计（含已退出）</td><td class="r">5,600,000</td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<div class="warn-box">⚠ 悦享债权36851(¥100,000)和众享淳盈328期(¥1,000,000)未在最新清单中，待确认是否仍持有。</div>
+</div>
+
+<div class="card">
+<h3>2026年 Q3（7-9月）流入明细</h3>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>本金</th><th>7月利息</th><th>8月利息</th><th>9月利息</th><th>到期日</th></tr>
+<tr class="done"><td>众享淳盈37期</td><td class="r">800,000</td><td class="r green">81,600</td><td class="r">—</td><td class="r">—</td><td>✅7月已退出</td></tr>
+<tr><td>众享淳盈60期</td><td class="r">300,000</td><td class="r">—</td><td class="r green">30,600</td><td class="r">—</td><td>8月到期</td></tr>
+<tr><td>浩腾恒烨收益权转让计划</td><td class="r">300,000</td><td class="r">—</td><td class="r">—</td><td class="r green">7,350</td><td>11月到期</td></tr>
+<tr class="tt"><td colspan="2">Q3利息合计</td><td class="r">81,600</td><td class="r">30,600</td><td class="r">7,350</td><td>119,550</td></tr>
+<tr class="tt"><td colspan="2">Q3到期本金</td><td class="r">800,000</td><td class="r">300,000</td><td class="r">—</td><td>1,100,000</td></tr>
 </table></div>
 </div>
 
 <div class="card">
-<h3>2026年 Q4（10-12月）</h3>
+<h3>2027年到期明细</h3>
 <div class="tbl-wrap"><table>
-<tr><th>产品</th><th>10月利息</th><th>11月利息</th><th>12月利息</th><th>到期日/备注</th></tr>
-<tr><td>众享淳盈60期</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td>已到期</td></tr>
-<tr><td>浩腾恒烨</td><td class="r">—</td><td class="r green">¥7,350</td><td class="r">—</td><td>11月到期¥300,000</td></tr>
-<tr class="tt"><td>Q4利息合计</td><td class="r">—</td><td class="r">¥7,350</td><td class="r">¥7,350</td><td>¥14,700</td></tr>
-<tr class="tt"><td>Q4到期本金</td><td class="r">—</td><td class="r">¥300,000</td><td class="r">—</td><td>¥300,000</td></tr>
-</table></div>
-<div style="font-size:11px;color:#888;margin-top:6px">浩腾恒烨12月季度利息¥7,350（最后一期付息后到期）</div>
-</div>
-
-<div class="card">
-<h3>2027年 逐月明细</h3>
-<div class="tbl-wrap"><table>
-<tr><th>月份</th><th>产品</th><th>本金</th><th>利率</th><th>利息到账</th><th>本金到期</th></tr>
-<tr><td>Q1每月</td><td>浩腾恒烨(已到期)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td>—</td></tr>
-<tr><td>Q1+Q2季度</td><td>悦享债权(9.4%)</td><td class="r">¥200,000</td><td class="r">9.4%</td><td class="r">¥4,700/季</td><td>—</td></tr>
-<tr><td>Q1+Q2季度</td><td>悦享债权(9.0%)</td><td class="r">¥200,000</td><td class="r">9.0%</td><td class="r">¥4,500/季</td><td>—</td></tr>
-<tr><td>7月</td><td>悦享债权(9.4%)</td><td class="r">¥200,000</td><td class="r">9.4%</td><td class="r green">¥4,700</td><td class="r green">¥200,000</td></tr>
-<tr><td>8月</td><td>众享淳盈105期</td><td class="r">¥300,000</td><td class="r">9.6%</td><td class="r green">¥28,800</td><td class="r green">¥300,000</td></tr>
-<tr><td>10月</td><td>悦享债权(9.0%)</td><td class="r">¥200,000</td><td class="r">9.0%</td><td class="r green">¥4,500</td><td class="r green">¥200,000</td></tr>
-<tr><td>12月</td><td>众享淳盈137期</td><td class="r">¥900,000</td><td class="r">9.4%</td><td class="r green">¥84,600</td><td class="r green">¥900,000</td></tr>
-<tr class="tt"><td colspan="3">2027全年</td><td></td><td class="r">≈¥150,000</td><td class="r">¥1,600,000</td></tr>
+<tr><th>到期月</th><th>产品</th><th>本金</th><th>利率</th><th>到期利息/利息</th><th>备注</th></tr>
+<tr><td>7月</td><td>悦享债权转让项目36694</td><td class="r">200,000</td><td class="r">9.4%</td><td class="r green">18,800</td><td>季度利息每季¥4,700</td></tr>
+<tr><td>8月</td><td>众享淳盈105期</td><td class="r">300,000</td><td class="r">9.6%</td><td class="r green">28,800</td><td>年度利息一次付</td></tr>
+<tr><td>10月</td><td>悦享债权转让项目36606</td><td class="r">200,000</td><td class="r">9.0%</td><td class="r green">18,000</td><td>季度利息每季¥4,500</td></tr>
+<tr><td>12月</td><td>众享淳盈137期</td><td class="r">900,000</td><td class="r">9.4%</td><td class="r green">84,600</td><td>年度利息一次付</td></tr>
+<tr class="tt"><td colspan="3">2027合计</td><td></td><td class="r">≈150,000</td><td>本金¥1,600,000</td></tr>
 </table></div>
 </div>
 
 <div class="card">
-<h3>2028-2029年</h3>
+<h3>2028-2029年到期明细</h3>
 <div class="tbl-wrap"><table>
-<tr><th>时间</th><th>产品</th><th>本金</th><th>利率</th><th>利息</th><th>本金到期</th></tr>
-<tr><td>2028-06</td><td>悦享债权36851</td><td class="r">¥100,000</td><td class="r">8.8%</td><td class="r">¥8,800</td><td class="r">¥100,000</td></tr>
-<tr><td>2028-10</td><td>众享淳盈293期</td><td class="r">¥1,000,000</td><td class="r">9.0%</td><td class="r">¥90,000</td><td class="r">¥1,000,000</td></tr>
-<tr><td>2028-11</td><td>众享淳盈328期</td><td class="r">¥1,000,000</td><td class="r">9.0%</td><td class="r">¥90,000</td><td class="r">¥1,000,000</td></tr>
-<tr><td>2029-03</td><td>产品A</td><td class="r">¥500,000</td><td class="r">8.4%</td><td class="r">¥42,000</td><td class="r">¥500,000</td></tr>
-<tr class="tt"><td colspan="3">合计</td><td></td><td class="r">¥230,800</td><td class="r">¥2,600,000</td></tr>
+<tr><th>到期月</th><th>产品</th><th>本金</th><th>利率</th><th>年利息</th></tr>
+<tr><td>2028-06</td><td>悦享债权转让项目36851</td><td class="r">100,000</td><td class="r">8.8%</td><td class="r">8,800</td></tr>
+<tr><td>2028-10</td><td>众享淳盈295期</td><td class="r">1,000,000</td><td class="r">9.0%</td><td class="r">90,000</td></tr>
+<tr><td>2028-11</td><td>众享淳盈328期(陈)</td><td class="r">1,000,000</td><td class="r">9.0%</td><td class="r">90,000</td></tr>
+<tr><td>2029-03</td><td>众享淳盈343期</td><td class="r">500,000</td><td class="r">8.4%</td><td class="r">42,000</td></tr>
+<tr class="tt"><td colspan="3">合计</td><td></td><td class="r">230,800</td></tr>
 </table></div>
 </div>
 
 <div class="card">
 <h3>全周期汇总</h3>
 <table>
-<tr><th>年份</th><th>利息收入</th><th>到期本金</th><th>剩余固收</th><th>月均利息</th></tr>
-<tr><td>2026(已含37期)</td><td class="r">≈¥523,000</td><td class="r">¥1,400,000</td><td class="r">¥4,200,000</td><td class="r">≈¥43,600</td></tr>
-<tr><td>2027</td><td class="r">≈¥381,000</td><td class="r">¥1,600,000</td><td class="r">¥2,600,000</td><td class="r">≈¥31,750</td></tr>
-<tr><td>2028</td><td class="r">≈¥226,000</td><td class="r">¥2,100,000</td><td class="r">¥500,000</td><td class="r">≈¥18,830</td></tr>
-<tr><td>2029</td><td class="r">≈¥11,000</td><td class="r">¥500,000</td><td class="r">¥0</td><td class="r">≈¥917</td></tr>
-<tr class="tt"><td>4年总计</td><td class="r">≈¥1,141,000</td><td class="r">¥5,600,000</td><td></td><td></td></tr>
+<tr><th>年份</th><th>利息收入</th><th>到期本金</th><th>月均利息</th></tr>
+<tr><td>2026</td><td class="r">≈523,000</td><td class="r">1,400,000</td><td class="r">≈43,600</td></tr>
+<tr><td>2027</td><td class="r">≈381,000</td><td class="r">1,600,000</td><td class="r">≈31,750</td></tr>
+<tr><td>2028</td><td class="r">≈226,000</td><td class="r">2,100,000</td><td class="r">≈18,830</td></tr>
+<tr><td>2029</td><td class="r">≈11,000</td><td class="r">500,000</td><td class="r">≈917</td></tr>
+<tr class="tt"><td>4年总计</td><td class="r">≈1,141,000</td><td class="r">5,600,000</td><td></td></tr>
 </table>
+<div class="warn-box">⚠ 悦享债权36851和众享淳盈328期待确认后更新到期计划。</div>
 </div>
 
 </body>
