@@ -3,11 +3,6 @@
 
 var CLIENTS = {
   // 手机号: { password: 'SHA256哈希', name: '显示名', path: '数据文件路径' }
-  '13800000000': {
-    name: '模板客户',
-    path: 'template/家庭财务总览_手机版.html',
-    hash: '91b4d142823f7d20c5f08df69122de43f35f057a988d9619f6d3138485c9a203'
-  },
   '15107572598': {
     name: '陈女士',
     path: 'chen/家庭财务总览_手机版.html',

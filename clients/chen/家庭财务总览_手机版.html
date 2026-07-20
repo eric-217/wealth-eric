@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>家庭财务 · 手机版</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px;-webkit-text-size-adjust:100%}
@@ -22,13 +23,21 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .c{padding:10px}
 .card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
 .card h2{font-size:17px;color:#1a3a5c;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8eaed}
-.card h3{font-size:15px;color:#334;margin:14px 0 8px}
+.card h3{font-size:15px;color:#334;margin:16px 0 10px}
+.card h3:first-of-type{margin-top:0}
+.date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
 .krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
-.kbox .kl{font-size:11px;color:#889;margin-bottom:2px}
+.krow.wide{grid-template-columns:1fr 1fr 1fr}
+.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center;cursor:default}
+.kbox .kl{font-size:11px;color:#889;margin-bottom:4px}
 .kbox .kv{font-size:20px;font-weight:700}
 .kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}.kbox .kv.b{color:#2563eb}.kbox .kv.a{color:#d97706}
-table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;-webkit-overflow-scrolling:touch}
+.kbox .sub{font-size:11px;color:#999;margin-top:2px}
+.chart-wrap{position:relative;width:100%;max-width:340px;margin:8px auto}
+.chart-wrap canvas{width:100%!important;height:auto!important}
+.chart-legend{font-size:11px;color:#666;line-height:1.6;margin-top:4px}
+.chart-legend span{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
 th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left;border:1px solid #1a3a5c}
 td{padding:7px 6px;border:1px solid #ddd;font-size:12px}
 td.tr{text-align:right}
@@ -38,40 +47,108 @@ tr.warn{background:#fef2f2}
 tr.done{color:#aaa;text-decoration:line-through}
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px -4px;padding:0 4px}
 .tbl-wrap table{min-width:500px}
-.nt{font-size:12px;color:#888;padding:6px 8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
 .bg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#f0fdf4;color:#16a34a}
 .ba{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#fefce8;color:#d97706}
+.br{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#fef2f2;color:#dc2626}
+.summary-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.summary-item{flex:1;min-width:80px;background:#f8fafc;border-radius:8px;padding:10px;text-align:center}
+.summary-item .sn{font-size:11px;color:#889}
+.summary-item .sv{font-size:18px;font-weight:700;margin-top:2px}
 footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </style>
 </head>
 <body>
 
-<div id="app">
+<div id="lock">
+<div class="lb"><h2>🔒 财务数据</h2><div class="st">请输入访问密码</div>
+<input type="password" id="pw" placeholder="输入密码...">
+<button onclick="checkPwd()">确认</button>
+<div class="err" id="err">密码错误</div></div>
+</div>
+
+<div id="app" style="display:none">
 <div class="menu" id="menu"></div>
 <div class="c"></div>
-<footer>更新：2026-07-15 · 密码保护</footer>
+<footer>更新：2026-07-20 · 密码保护</footer>
 </div>
 
 <script>
-
+var PW='tan2026';
 
 // Panels
 var panels={
 dashboard:`
-<div class="krow">
-<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1379万</div></div>
-<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥111万</div></div>
-<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1269万</div></div>
-<div class="kbox"><div class="kl">被动收入</div><div class="kv a">¥57.2万</div></div>
-<div class="kbox"><div class="kl">固收剩余</div><div class="kv a">¥480万</div></div>
-<div class="kbox"><div class="kl">保险CV</div><div class="kv b">¥324万</div></div>
-<div class="kbox"><div class="kl">银行存款</div><div class="kv g">⚠待更新</div></div>
-<div class="kbox"><div class="kl">投保人</div><div class="kv g">8/9 ✅</div></div>
+<div class="date-tag">📅 数据截止：2026年7月</div>
+
+<div class="krow wide">
+<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1299万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>
+<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1228万<div class="sub">净值率94.5%</div></div></div>
+<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥71万<div class="sub">负债率5.5%</div></div></div>
 </div>
-<h3>变更进度</h3>
-<table><tr><td>平安钟爱一生</td><td><span class="bg">✅</span></td><td>阳光升</td><td><span class="bg">✅</span></td></tr>
-<tr><td>阳光财富年年</td><td><span class="bg">✅</span></td><td>信美×2</td><td><span class="bg">✅</span></td></tr>
-<tr><td>国寿99鸿福</td><td><span class="bg">✅</span></td><td class="warn">新华惠鑫宝</td><td><span class="ba">⚠</span></td></tr></table>`,
+
+<div class="krow wide">
+<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥57.2万<div class="sub">固收利息+保险分红+生存金</div></div></div>
+<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥9.9万<div class="sub">日常¥7.5万+车贷¥2.4万</div></div></div>
+<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">578%<div class="sub">被动收入÷总支出=5.8倍</div></div></div>
+</div>
+
+<h3 style="margin-top:20px">📊 总资产分布</h3>
+<div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>
+
+<h3>📊 总负债分布（按机构）</h3>
+<div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>
+
+<h3>📊 年度被动收入分布</h3>
+<div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>
+
+<h3 style="margin-top:20px">💰 固收资产摘要</h3>
+<div class="summary-row">
+<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">10笔</div></div>
+<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥480万</div></div>
+<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">2笔</div></div>
+<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥60万</div></div>
+<div class="summary-item"><div class="sn">未来6个月利息收入</div><div class="sv">¥13.4万</div></div>
+</div>
+<a href="固收现金流明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看固收产品明细 →</a>
+
+<h3>🛡️ 保险分类分布</h3>
+<div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>
+<div class="summary-row">
+<div class="summary-item"><div class="sn">保单总数</div><div class="sv">8份</div></div>
+<div class="summary-item"><div class="sn">现金价值</div><div class="sv">¥324万</div></div>
+<div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥2,350万</div></div>
+<div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">186%</div></div>
+</div>
+<div class="tbl-wrap"><table style="font-size:13px">
+<tr><th>家庭成员</th><th>医疗险</th><th>重疾险</th><th>意外险</th><th>定寿险</th><th>养老储备</th><th>储蓄增值</th></tr>
+<tr><td>陈女士(43)</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#16a34a">✓</td></tr>
+<tr><td>李先生(45)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr>
+<tr><td>儿子(9)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td></tr>
+<tr><td>女儿(9)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td></tr>
+<tr><td>罗女士(69)</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr></table></div>
+<p class="nt" style="margin-top:6px">✓=已配置 ⚠=待确认(保障类保单条款未读取) ✗=未配置 | 罗女士可能有城乡居民医保</p>
+
+<h3 style="margin-top:16px">🛡️ 保障额度概览</h3>
+<div class="tbl-wrap"><table style="font-size:13px">
+<tr><th>家庭成员</th><th>重疾保障</th><th>医疗保障</th><th>意外保障</th><th>身故保障</th></tr>
+<tr><td>陈女士(43)</td><td style="text-align:center;color:#d97706">¥10万⚠</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td></tr>
+<tr><td>李先生(45)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>
+<tr><td>儿子(9)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>
+<tr><td>女儿(9)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>
+<tr><td>罗女士(69)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr></table></div>
+<p class="nt" style="margin-top:4px">⚠ 钟爱一生附加重疾¥10万已缴清，是否仍有效待确认。复星·华贵·安居保3份保障型条款待读取。</p>
+<a href="保险明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看保单逐份明细 →</a>
+
+<h3 style="margin-top:20px">📐 资产配置健康指标</h3>
+<div class="krow">
+<div class="kbox"><div class="kl">流动比率</div><div class="kv g">8.4x<div class="sub">流动资产¥113万/流动负债¥13.5万</div></div></div>
+<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">54个月<div class="sub">远超6-12月标准,资金利用效率待优化</div></div></div>
+<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">21%<div class="sub">最大单笔¥100万占固收总额21%</div></div></div>
+<div class="kbox"><div class="kl">保险占比</div><div class="kv b">24.9%<div class="sub">储蓄型8份·保障型3份待确认</div></div></div>
+</div>
+
+`,
 
 assets:`
 <h3>固收（10笔·¥480万）</h3>
@@ -79,17 +156,17 @@ assets:`
 <tr class="done"><td>众享淳盈37期</td><td class="tr">80万</td><td class="tr">10.2%</td><td>✅退出</td></tr>
 <tr><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>08月</td></tr>
 <tr><td>浩腾恒烨</td><td class="tr">30万</td><td class="tr">9.8%</td><td>11月</td></tr>
-<tr><td>悦享9.4%</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>
+<tr><td>悦享36694</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>
 <tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td>2027-08</td></tr>
-<tr><td>悦享9.0%</td><td class="tr">20万</td><td class="tr">9.0%</td><td>2027-10</td></tr>
+<tr><td>悦享36606</td><td class="tr">20万</td><td class="tr">9.0%</td><td>2027-10</td></tr>
 <tr><td>众享淳盈137期</td><td class="tr">90万</td><td class="tr">9.4%</td><td>2027-12</td></tr>
 <tr><td>悦享36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td>2028-06</td></tr>
-<tr><td>众享淳盈293期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-10</td></tr>
+<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-10</td></tr>
 <tr><td>众享淳盈328期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-11</td></tr>
-<tr><td>产品A</td><td class="tr">50万</td><td class="tr">8.4%</td><td>2029-03</td></tr></table></div><a href="固收现金流明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看固收现金流明细 →</a>
-<h3>保险（9份·¥324万）</h3>
-<div class="tbl-wrap"><table><tr><th>保单</th><th>CV</th><th>核心</th></tr>
-<tr><td>新华主险</td><td class="tr">137.5万</td><td>满期¥173万 <span class="ba">⚠</span></td></tr>
+<tr><td>众享淳盈343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td>2029-03</td></tr></table></div><a href="固收现金流明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看固收现金流明细 →</a>
+<h3>保险（8份·¥324万）</h3>
+<div class="tbl-wrap"><table><tr><th>保单</th><th>现金价值</th><th>核心</th></tr>
+<tr><td>新华主险</td><td class="tr">137.5万</td><td>满期¥173万 <span class="bg">✅</span></td></tr>
 <tr><td>新华UA</td><td class="tr">39.0万</td><td>保证2.5%</td></tr>
 <tr><td>信美·硕</td><td class="tr">53.6万</td><td>60岁月领¥14,520 <span class="bg">✅</span></td></tr>
 <tr><td>信美·岚</td><td class="tr">53.6万</td><td>60岁月领¥14,080 <span class="bg">✅</span></td></tr>
@@ -99,20 +176,24 @@ assets:`
 <tr><td>国寿99鸿福</td><td class="tr">3.9万</td><td>保额5%/年递增 <span class="bg">✅</span></td></tr></table></div>`,
 
 debt:`
-<table><tr><th>负债</th><th>本金</th><th>月供/息</th></tr>
-<tr><td>新华贷款</td><td class="tr">¥100万</td><td class="tr">¥3,750</td></tr>
-<tr><td>车贷</td><td class="tr">¥63,360</td><td class="tr">¥3,520</td></tr>
-<tr><td>网贷</td><td class="tr">¥46,000</td><td class="tr">待确认</td></tr>
-<tr class="tt"><td>合计</td><td class="tr">¥111万</td><td class="tr">¥7,270/月</td></tr></table>
-<a href="负债明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-bottom:8px">查看负债还款计划 →</a><p class="nt">信美贷款已还清 | 负债率 8.0%</p>`,
+<table><tr><th>负债</th><th>本金</th><th>机构</th><th>月供/息</th></tr>
+<tr><td>新华贷款</td><td class="tr">¥600,000</td><td>保险公司</td><td class="tr">¥2,125</td></tr>
+<tr><td>车贷</td><td class="tr">¥63,360</td><td>银行</td><td class="tr">¥3,520</td></tr>
+<tr><td>网贷</td><td class="tr">¥46,000</td><td>网贷平台</td><td class="tr">待确认</td></tr>
+<tr class="tt"><td>合计</td><td class="tr">¥709,360</td><td></td><td class="tr">¥5,645/月</td></tr></table>
+<a href="负债明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-bottom:8px">查看负债还款计划 →</a><p class="nt">信美贷款已还清 | 新华贷款已部分还款至¥60万 | 负债率 5.6%</p>`,
 
 income:`
+<div class="date-tag">📅 2026年度估算</div>
 <table><tr><th>来源</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>
 <tr><td>固收利息</td><td class="tr">¥523K</td><td class="tr">¥381K</td><td class="tr">¥226K</td><td class="tr">¥11K</td></tr>
 <tr><td>新华生存金</td><td class="tr">¥36K</td><td class="tr">¥36K</td><td class="tr">¥36K</td><td class="tr">¥36K</td></tr>
-<tr><td>新华UA</td><td class="tr">¥11K</td><td class="tr">¥11K</td><td class="tr">¥11K</td><td class="tr">¥11K</td></tr>
+<tr><td>新华UA增值</td><td class="tr">¥11K</td><td class="tr">¥11K</td><td class="tr">¥11K</td><td class="tr">¥11K</td></tr>
+<tr><td>保险CV增值</td><td class="tr">¥15K</td><td class="tr">¥16K</td><td class="tr">¥17K</td><td class="tr">¥18K</td></tr>
+<tr><td>保险分红</td><td class="tr">¥3K</td><td class="tr">¥3K</td><td class="tr">¥3K</td><td class="tr">¥3K</td></tr>
 <tr><td>国寿99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">¥5K</td><td class="tr">—</td></tr>
-<tr><td>财富年年</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td></tr></table>
+<tr><td>财富年年</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td><td class="tr">¥1.7K</td></tr>
+<tr class="tt"><td>被动收入</td><td class="tr">¥590K</td><td class="tr">¥449K</td><td class="tr">¥300K</td><td class="tr">¥81K</td></tr></table>
 <br>
 <table><tr><th>年份</th><th>到期本金</th></tr>
 <tr><td>2026</td><td class="tr">¥60万(另37期已退出)</td></tr>
@@ -121,6 +202,7 @@ income:`
 <tr><td>2029</td><td class="tr">¥50万</td></tr></table>`,
 
 expense:`
+<div class="date-tag">📅 近半年支出计划</div>
 <table><tr><th>项目</th><th>金额</th></tr>
 <tr><td>A 手机</td><td class="tr">¥15,000</td></tr>
 <tr><td>B 校服+餐费+夏令营</td><td class="tr">¥8,600</td></tr>
@@ -148,6 +230,7 @@ cashflow_asset:`
 <tr class="tt"><td>合计</td><td></td><td class="tr">127K</td><td>1,400K</td></tr></table>`,
 
 cashflow_monthly:`
+<div class="date-tag">📅 2026年7-12月 (千元)</div>
 <table><tr><th>月</th><th>利息进</th><th>固收到</th><th>支出</th><th>净</th></tr>
 <tr><td>7</td><td class="tr">+81.6</td><td class="tr">+800</td><td class="tr">-25.8</td><td class="tr" style="color:#16a34a">+855.8</td></tr>
 <tr><td>8</td><td class="tr">+30.6</td><td class="tr">+300</td><td class="tr">-25.8</td><td class="tr" style="color:#16a34a">+304.8</td></tr>
@@ -159,6 +242,7 @@ cashflow_monthly:`
 <p class="nt">单位: K = 千元</p>`,
 
 insurance_cf:`
+<div class="date-tag">📅 2026-2028年预估</div>
 <p style="font-size:12px;color:#888;margin-bottom:8px">实际现金流入（到银行卡）</p>
 <table><tr><th>保单</th><th>2026</th><th>2027</th><th>2028</th></tr>
 <tr><td>国寿99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">¥5,000</td></tr>
@@ -170,6 +254,7 @@ insurance_cf:`
 <tr><td>信美×2</td><td class="tr">1,072K</td><td class="tr">1,440K</td><td class="tr">1,920K</td></tr></table></div>`,
 
 forecast10:`
+<div class="date-tag">📅 基于2026年7月数据预测</div>
 <div class="tbl-wrap"><table><tr><th>年</th><th>固收</th><th>保险CV</th><th>港险</th><th>净资产</th><th>事件</th></tr>
 <tr><td>2026</td><td class="tr">480万</td><td class="tr">324万</td><td class="tr">$184K</td><td class="tr">1063万</td><td>37期退出</td></tr>
 <tr><td>2028</td><td class="tr">160万</td><td class="tr">348万</td><td class="tr">$400K</td><td class="tr">1185万</td><td>还贷</td></tr>
@@ -177,6 +262,7 @@ forecast10:`
 <tr style="font-weight:700"><td>2036</td><td class="tr">0</td><td class="tr">482万</td><td class="tr">$590K</td><td class="tr">1903万</td><td>新华满期</td></tr></table></div>`,
 
 freedom:`
+<div class="date-tag">📅 基于2026年7月数据</div>
 <div class="krow">
 <div class="kbox"><div class="kl">2026可提取</div><div class="kv g">¥57.2万</div></div>
 <div class="kbox"><div class="kl">2026自由度</div><div class="kv g">577%</div></div>
@@ -184,12 +270,12 @@ freedom:`
 <div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div>
 </div>
 <table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>
-<tr><td>2026</td><td class="tr">¥571.7K</td><td class="tr">¥99K</td><td style="color:#16a34a">577%</td></tr>
-<tr><td>2027</td><td class="tr">¥429.7K</td><td class="tr">¥90K</td><td>477%</td></tr>
-<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">¥59.7K</td><td class="tr">¥90K</td><td style="color:#dc2626">66%⚠</td></tr>
+<tr><td>2026</td><td class="tr">¥590K</td><td class="tr">¥99K</td><td style="color:#16a34a">596%</td></tr>
+<tr><td>2027</td><td class="tr">¥449K</td><td class="tr">¥90K</td><td>499%</td></tr>
+<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">¥81K</td><td class="tr">¥90K</td><td style="color:#dc2626">90%⚠</td></tr>
 <tr><td>2036</td><td class="tr">¥94K</td><td class="tr">¥90K</td><td>104%</td></tr></table>`};
 
-// Build menu & panels
+// Init
 var keys=['dashboard','assets','debt','income','expense','expense_plan','cashflow_asset','cashflow_monthly','insurance_cf','forecast10','freedom'];
 var labels={dashboard:'总览',assets:'资产',debt:'负债',income:'收入',expense:'支出',expense_plan:'计划',cashflow_asset:'固收流',cashflow_monthly:'月现金',insurance_cf:'保单流',forecast10:'10年',freedom:'自由'};
 var menu=document.getElementById('menu');
@@ -213,6 +299,74 @@ document.getElementById(id).style.display='block';
 var btns=document.querySelectorAll('.menu button');
 btns.forEach(function(b){if(b.textContent===labels[id])b.classList.add('active')});
 }
+
+// Password
+function checkPwd(){
+var v=document.getElementById('pw').value;
+if(v===PW){document.getElementById('lock').classList.add('hidden');document.getElementById('app').style.display='block';initCharts();}
+else{document.getElementById('err').style.display='block';setTimeout(function(){document.getElementById('err').style.display='none'},2000);}
+}
+
+// Charts - only init when dashboard is visible
+var chartsInitialized=false;
+function initCharts(){
+if(chartsInitialized||!document.getElementById('chartAssets'))return;
+chartsInitialized=true;
+
+// 1. 总资产 → 环形图（不含零值分类）
+new Chart(document.getElementById('chartAssets'),{
+type:'doughnut',
+data:{labels:['固收理财','保险现金价值','房产','港险','私募股权','银行存款'],
+datasets:[{data:[480,324,270,72,100,53],
+backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},
+options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}
+});
+
+// 2. 总负债 → 极地图（3类机构，面积对比直观）
+new Chart(document.getElementById('chartDebt'),{
+type:'polarArea',
+data:{labels:['保险公司(新华)','银行(车贷)','网贷平台'],
+datasets:[{data:[600,63,46],
+backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],
+borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
+options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}
+});
+
+// 3. 被动收入 → 横向柱状图（不含零值）
+new Chart(document.getElementById('chartIncome'),{
+type:'bar',
+data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],
+datasets:[{data:[523,36,11,15,3,1.7],
+backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],
+borderRadius:4}]},
+options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
+scales:{x:{title:{display:true,text:'千元/年',font:{size:10}},ticks:{font:{size:10}}},
+y:{ticks:{font:{size:10}}}}}
+});
+
+// 4. 保险分类 → 饼图（6类份数分布，经典圆形）
+new Chart(document.getElementById('chartInsType'),{
+type:'pie',
+data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],
+datasets:[{data:[3,2,2,1],
+backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#eab308','#dc2626']}]},
+options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}
+});
+}
+
+// If already logged in (session), init charts
+if(sessionStorage.getItem('fa')==='1'){
+document.getElementById('lock').classList.add('hidden');
+document.getElementById('app').style.display='block';
+setTimeout(initCharts,300);
+}
+
+// Also re-init charts when switching to dashboard
+var origShow=showMobile;
+showMobile=function(id){
+origShow(id);
+if(id==='dashboard')setTimeout(initCharts,100);
+};
 </script>
 </body>
 </html>
