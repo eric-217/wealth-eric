@@ -74,6 +74,7 @@ var mainMenu=[
       {id:'cf_expense_plan',label:'近1年支出计划'}
     ]},
   {id:'protection',label:'保险保障',hasSub:false},
+  {id:'policies',label:'保单管理',hasSub:false},
   {id:'future',label:'未来展望',hasSub:false},
   {id:'advice',label:'配置建议',hasSub:false},
   {id:'todo',label:'待办事项',hasSub:false}
@@ -258,8 +259,79 @@ panels.protection='<h3>保障配置状态</h3><div class="tbl-wrap"><table style
 +'<tr><td>罗女士(69)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr></table></div>'
 +'<p class="nt">⚠ 钟爱一生附加重疾¥10万已缴清，是否仍有效待确认。复星·华贵·安居保3份保障型条款待读取。</p>';
 
+// --- 保单管理 ---
+panels.policies='<div class="date-tag">📅 数据截止：2026年7月</div>'
+
+// 缴费提醒
++'<h3>💰 交费提醒</h3><table><tr><th>保单</th><th>交费日</th><th>金额</th><th>状态</th></tr>'
++'<tr class="warn"><td>永明星河尊享2（港险）</td><td>2026-08-26</td><td class="tr">$15,012.82</td><td>🔴 第2年待缴</td></tr>'
++'<tr><td>平安钟爱一生</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>新华惠鑫宝二代</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>信美挚信一生×2</td><td>趸交</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>阳光升/财富年年</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>国寿99鸿福</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>周大福匠心传承2（港险）</td><td>预缴完成</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr></table>'
+
+// 变更状态
++'<h3>📝 投保人/受益人变更</h3><table><tr><th>保单</th><th>原投保人</th><th>现投保人</th><th>受益人</th><th>状态</th></tr>'
++'<tr><td>平安钟爱一生</td><td>谭女士</td><td>陈莹</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>阳光升终身寿</td><td>谭女士</td><td>陈莹</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>阳光财富年年</td><td>谭女士</td><td>陈莹</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>信美×2（硕/岚）</td><td>谭女士</td><td>陈莹</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>国寿99鸿福</td><td>谭女士</td><td>陈莹</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>新华惠鑫宝二代</td><td>谭女士</td><td>陈莹</td><td>指定</td><td><span class="bg">✅</span></td></tr></table>'
+
+// 红利/生存金日期
++'<h3>📅 红利/生存金/到期日</h3><table><tr><th>保单</th><th>类型</th><th>金额</th><th>下次日期</th><th>频次</th></tr>'
++'<tr><td>新华惠鑫宝</td><td>生存金</td><td class="tr">¥36,000</td><td>每年11月16日</td><td>年/至2036年</td></tr>'
++'<tr><td>新华万能账户</td><td>增值</td><td class="tr">≈¥11,000</td><td>月结</td><td>保证2.5%</td></tr>'
++'<tr><td>国寿99鸿福</td><td>生存金</td><td class="tr">¥5,000</td><td>2028-08-28</td><td>每3年</td></tr>'
++'<tr><td>财富年年</td><td>生存金</td><td class="tr">¥1,700</td><td>每年定期</td><td>年</td></tr>'
++'<tr><td>钟爱一生</td><td>分红</td><td class="tr">≈¥3,000</td><td>年底</td><td>年</td></tr>'
++'<tr><td>信美×2</td><td>养老金</td><td class="tr">¥2.86万/月</td><td>2077-12-23起</td><td>月/终身</td></tr>'
++'<tr><td>钟爱一生</td><td>养老金</td><td class="tr">¥10,000+/年</td><td>60岁起</td><td>年/终身</td></tr>'
++'<tr><td>新华惠鑫宝</td><td>满期金</td><td class="tr">≈¥173万</td><td>2036年11月</td><td>一次性</td></tr></table>'
+
+// 当前现金价值
++'<h3>💎 保单现金价值（当前）</h3><div class="tbl-wrap"><table><tr><th>保单</th><th>类型</th><th>现金价值</th><th>增长率</th><th>关键节点</th></tr>'
++'<tr><td>新华惠鑫宝主险</td><td>满期返还</td><td class="tr">¥1,374,900</td><td>—</td><td>2036满期¥173万</td></tr>'
++'<tr><td>新华万能账户</td><td>灵活账户</td><td class="tr">¥390,283</td><td>2.5%保证</td><td>持续增</td></tr>'
++'<tr><td>信美（儿子）</td><td>养老收入</td><td class="tr">¥535,820</td><td>≈5%</td><td>2077起月领¥14,520</td></tr>'
++'<tr><td>信美（女儿）</td><td>养老收入</td><td class="tr">¥535,820</td><td>≈5%</td><td>2077起月领¥14,080</td></tr>'
++'<tr><td>钟爱一生</td><td>养老年金</td><td class="tr">¥178,000</td><td>含分红</td><td>60岁起领</td></tr>'
++'<tr><td>阳光升</td><td>终身增值</td><td class="tr">¥103,000</td><td>3.45%复利</td><td>终身增</td></tr>'
++'<tr><td>财富年年</td><td>满期返还</td><td class="tr">¥63,000</td><td>含分红</td><td>2054满期</td></tr>'
++'<tr><td>国寿99鸿福</td><td>终身增值</td><td class="tr">¥39,175</td><td>保额年增5%</td><td>终身</td></tr>'
++'<tr class="tt"><td>合计（国内8份）</td><td></td><td class="tr">¥3,219,998</td><td></td><td></td></tr></table></div>'
+
+// 港险现金价值
++'<h3>🇭🇰 港险退保总价值（计划书演示）</h3><div class="tbl-wrap"><table><tr><th>年度</th><th>永明(总$3万)</th><th>周大福(总$7万)</th><th>合计</th></tr>'
++'<tr><td>第5年</td><td class="tr">$28,904</td><td class="tr">$66,077</td><td class="tr">$94,981</td></tr>'
++'<tr><td>第10年</td><td class="tr">$38,402</td><td class="tr">$83,826</td><td class="tr">$122,228</td></tr>'
++'<tr><td>第20年</td><td class="tr">$72,045</td><td class="tr">$147,877</td><td class="tr">$219,922</td></tr>'
++'<tr><td>第30年</td><td class="tr">$145,890</td><td class="tr">$288,511</td><td class="tr">$434,401</td></tr></table></div>'
+
+// 保单条款注意事项
++'<h3>⚠️ 保单条款注意事项</h3><table><tr><th>保单</th><th>注意事项</th></tr>'
++'<tr><td>信美挚信一生×2</td><td>60岁前无生存金发放; 保证领取25年(60-85岁); 身故赔付=max(¥50万,CV)</td></tr>'
++'<tr><td>钟爱一生</td><td>附加重疾(9201)¥10万已缴清⚠️是否仍有效待确认; 豁免重疾B已失效(无保费可豁免)</td></tr>'
++'<tr><td>新华惠鑫宝</td><td>保单贷款¥60万(4.25%日计息); 生存金自动转入万能账户; 万能账户保证2.5%</td></tr>'
++'<tr><td>永明星河尊享2</td><td>归原红利公布即保证✅; 意外护理$30万免费至65岁; 5年后可价值锁定50%</td></tr>'
++'<tr><td>周大福匠心传承2</td><td>复归红利现金价值非保证⚠️(与永明不同); 第10年可选财富跃进; 保费豁免2年免费</td></tr>'
++'<tr><td>国寿99鸿福</td><td>生存金¥5,000/3年(固定,不随保额增长); 保额5%/年仅影响身故赔付</td></tr>'
++'<tr><td>乐行无忧</td><td>保障类条款待读取⚠️; 意外保障细节待确认</td></tr></table>'
+
+// 保障全面性分析
++'<h3>🔍 保障全面性分析</h3><table><tr><th>维度</th><th>状态</th><th>说明</th></tr>'
++'<tr><td>投保人变更</td><td style="color:#16a34a">✅ 100%完成</td><td>9份保单投保人全部变更为陈莹</td></tr>'
++'<tr><td>受益人指定</td><td style="color:#16a34a">✅ 全部指定</td><td>无\\\"法定\\\"状态保单</td></tr>'
++'<tr><td>储蓄型覆盖</td><td style="color:#16a34a">✅ 充足</td><td>8份储蓄型保单, ¥324万现金价值</td></tr>'
++'<tr><td>保障型覆盖</td><td style="color:#dc2626">⚠ 不足</td><td>3份保障型条款待读取; 李先生/子女/罗女士全缺</td></tr>'
++'<tr><td>港险分红规则</td><td style="color:#16a34a">✅ 已确认</td><td>永明归原红利保证 vs 周大福非保证</td></tr>'
++'<tr><td>CRS申报</td><td style="color:#d97706">🟡 远期关注</td><td>当前$10万, 约20年后达$100万门槛</td></tr></table>'
++'<a href="保单管理.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看详细保单管理 →</a>';
+
 // --- 未来展望（暂不动）---
-panels.future='<div class="tbl-wrap"><table><tr><th>年</th><th>固收</th><th>保险CV</th><th>港险</th><th>净资产</th><th>事件</th></tr>'
 +'<tr><td>2026</td><td class="tr">480万</td><td class="tr">324万</td><td class="tr">$184K</td><td class="tr">1063万</td><td>37期退出</td></tr>'
 +'<tr><td>2028</td><td class="tr">160万</td><td class="tr">348万</td><td class="tr">$400K</td><td class="tr">1185万</td><td>还贷</td></tr>'
 +'<tr class="warn"><td>2029</td><td class="tr">0</td><td class="tr">358万</td><td class="tr">$420K</td><td class="tr">1236万</td><td>固收清零</td></tr>'
