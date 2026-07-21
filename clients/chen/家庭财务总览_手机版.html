@@ -451,6 +451,8 @@ function initCharts(){
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
 }
 
-// 启动：默认显示总览
-switchMain('overview');
+// 启动：读取URL参数，否则默认总览
+var params=new URLSearchParams(window.location.search);
+var startSection=params.get('section')||'overview';
+switchMain(startSection);
 </script></body></html>

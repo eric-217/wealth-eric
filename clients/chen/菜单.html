@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>菜单</title>
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>菜单</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#1a3a5c;color:#fff;min-height:100vh;padding:24px 16px}
@@ -15,26 +11,21 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .menu a:hover{background:rgba(255,255,255,0.2)}
 .menu a .icon{font-size:24px;width:36px;text-align:center}
 .menu a .arrow{margin-left:auto;opacity:0.5;font-size:18px}
-</style>
-</head>
-<body>
-<div class="header">
-<h1 id="cname">财务总览</h1>
-<div class="sub">选择要查看的内容</div>
-</div>
-
+.back{text-align:center;margin-top:24px}
+.back a{color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none}
+</style></head><body>
+<div class="header"><h1 id="cname">财富管理规划</h1><div class="sub">选择要查看的内容</div></div>
 <div class="menu">
-<a href="家庭财务总览_手机版.html"><span class="icon">📊</span>总览数据<span class="arrow">›</span></a>
-<a href="固收现金流明细.html"><span class="icon">💰</span>固收现金流<span class="arrow">›</span></a>
-<a href="保险明细.html"><span class="icon">🛡️</span>保险明细<span class="arrow">›</span></a>
-<a href="保单管理.html"><span class="icon">📋</span>保单管理<span class="arrow">›</span></a>
-<a href="负债明细.html"><span class="icon">💳</span>负债明细<span class="arrow">›</span></a>
-<a href="配置建议.html"><span class="icon">🎯</span>配置建议<span class="arrow">›</span></a>
-<a href="待办事项.html"><span class="icon">✅</span>待办事项<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=overview"><span class="icon">📊</span>总览<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=assets"><span class="icon">🏦</span>资产明细<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=debt"><span class="icon">💳</span>负债明细<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=cashflow"><span class="icon">💵</span>现金流<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=protection"><span class="icon">🛡️</span>保险保障<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=policies"><span class="icon">📋</span>保单管理<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=future"><span class="icon">🔮</span>未来展望<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=advice"><span class="icon">🎯</span>配置建议<span class="arrow">›</span></a>
+<a href="家庭财务总览_手机版.html?section=todo"><span class="icon">✅</span>待办事项<span class="arrow">›</span></a>
 </div>
-
 <script>
 try{var p=parent.document;var n=p.getElementById('client-name');if(n)document.getElementById('cname').textContent=n.textContent}catch(e){}
-</script>
-</body>
-</html>
+</script></body></html>

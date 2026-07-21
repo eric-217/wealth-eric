@@ -39,7 +39,8 @@ if (!checkAuth()) {
 } else {
   document.getElementById('authed').style.display = 'block';
   document.getElementById('client-name').textContent = getClientName() + ' · 财务总览';
-  document.getElementById('report-frame').src = 'clients/' + getClientPath();
+  var clientDir = getClientPath().split('/')[0];
+  document.getElementById('report-frame').src = 'clients/' + clientDir + '/菜单.html';
 }
 </script>
 </body>
