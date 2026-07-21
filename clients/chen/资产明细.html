@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>资产明细</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px}
+.backbar{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}
+.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
+.submenu{position:sticky;top:36px;background:#e8edf2;z-index:99;padding:6px;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #d0d9e3}
+.submenu button{padding:5px 11px;border:1px solid #c0c9d3;border-radius:4px;font-size:11px;color:#555;background:#fff;margin:2px}
+.submenu button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.c{padding:10px}.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);display:none}
+.card.active{display:block}.card h3{font-size:15px;color:#334;margin:10px 0}
+.date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left}
+td{padding:7px 6px;border:1px solid #ddd;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#fafafa}
+tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}tr.done{color:#aaa;text-decoration:line-through}
+.tbl-wrap{overflow-x:auto;margin:6px -4px;padding:0 4px}.tbl-wrap table{min-width:500px}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+.bg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#f0fdf4;color:#16a34a}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style></head><body>
+<div class="backbar"><a href="菜单.html">← 返回菜单</a> 资产明细</div>
+<div class="submenu" id="submenu"></div>
+<div class="c">
+<div class="card active" id="card_fixincome">
+<h3>固收资产（10笔·¥480万）</h3><div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>
+<tr class="done"><td>众享淳盈37期</td><td class="tr">80万</td><td class="tr">10.2%</td><td>✅退出</td></tr>
+<tr><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>2026-08</td></tr>
+<tr><td>浩腾恒烨</td><td class="tr">30万</td><td class="tr">9.8%</td><td>2026-11</td></tr>
+<tr><td>悦享36694</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>
+<tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td>2027-08</td></tr>
+<tr><td>悦享36606</td><td class="tr">20万</td><td class="tr">9.0%</td><td>2027-10</td></tr>
+<tr><td>众享淳盈137期</td><td class="tr">90万</td><td class="tr">9.4%</td><td>2027-12</td></tr>
+<tr><td>悦享36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td>2028-06</td></tr>
+<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-10</td></tr>
+<tr><td>众享淳盈328期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-11</td></tr>
+<tr><td>众享淳盈343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td>2029-03</td></tr></table></div>
+</div>
+<div class="card" id="card_fundstock"><h3>基金/股票</h3><p class="nt">暂无持仓数据。后续如有基金、股票配置将在此展示。</p></div>
+<div class="card" id="card_insurance">
+<h3>国内保险（8份·¥324万）</h3><div class="tbl-wrap"><table><tr><th>保单</th><th>现金价值</th><th>类型</th><th>核心</th></tr>
+<tr><td>新华惠鑫宝主险</td><td class="tr">137.5万</td><td>满期返还</td><td>满期¥173万 <span class="bg">✅</span></td></tr>
+<tr><td>新华万能账户</td><td class="tr">39.0万</td><td>灵活账户</td><td>保证2.5%</td></tr>
+<tr><td>信美·硕/岚×2</td><td class="tr">107.2万</td><td>养老收入</td><td>60岁月领¥2.86万</td></tr>
+<tr><td>钟爱一生</td><td class="tr">17.8万</td><td>养老收入</td><td>60岁起领 <span class="bg">✅</span></td></tr>
+<tr><td>阳光升</td><td class="tr">10.3万</td><td>终身增值</td><td>3.45%复利</td></tr>
+<tr><td>财富年年</td><td class="tr">6.3万</td><td>满期返还</td><td>¥1,700/年</td></tr>
+<tr><td>国寿99鸿福</td><td class="tr">3.9万</td><td>终身增值</td><td>保额年增5%</td></tr></table></div>
+<h3>港险（2份·$100,000）</h3><div class="tbl-wrap"><table><tr><th>保单</th><th>保费</th><th>状态</th></tr>
+<tr><td>永明星河尊享2</td><td class="tr">$30,000</td><td>2年缴, 第2年08-26待缴</td></tr>
+<tr><td>周大福匠心传承2</td><td class="tr">$70,000</td><td>预缴完成 <span class="bg">✅</span></td></tr></table></div>
+</div>
+<div class="card" id="card_pe">
+<h3>私募股权（10只·¥285万）</h3><div class="tbl-wrap"><table><tr><th>基金</th><th>投入</th><th>DPI/净值</th><th>状态</th></tr>
+<tr><td>云和二期</td><td class="tr">100万</td><td class="tr">回款59.5万</td><td>清算中</td></tr>
+<tr><td>鼎盈+知泉</td><td class="tr">130万</td><td class="tr">回款8.3万</td><td>运行中</td></tr>
+<tr><td>高成基金</td><td class="tr">20万</td><td class="tr">回款2.2万</td><td>延长期</td></tr>
+<tr><td>健康5号等7只</td><td class="tr">135万</td><td class="tr">净值0.96-0.99</td><td>正常</td></tr></table></div>
+<p class="nt">✅ 100%数据覆盖 | 已回款¥70万 | 净值合计¥131.8万 | 截止2025.12.31</p>
+</div>
+<div class="card" id="card_property"><h3>固定资产</h3><table><tr><th>房产</th><th>面积</th><th>估值</th></tr>
+<tr><td>佛山住宅A</td><td>120㎡</td><td class="tr">≈¥150万</td></tr>
+<tr><td>佛山住宅B</td><td>140㎡</td><td class="tr">≈¥120万</td></tr>
+<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥270万</td></tr></table></div>
+<div class="card" id="card_bank"><h3>银行存款</h3><div class="date-tag">⚠ 待更新</div><table><tr><th>账户</th><th>金额</th></tr>
+<tr><td>灵活宝</td><td class="tr">⚠待更新</td></tr>
+<tr><td>其他存款</td><td class="tr">⚠待更新</td></tr></table></div>
+<div class="card" id="card_other"><h3>其他在投资产</h3><p class="nt">暂无。后续如有贵金属、外汇、信托等资产将在此展示。</p></div>
+</div>
+<footer>更新：2026-07-21</footer>
+<script>
+var subs=[
+  {id:'fixincome',label:'固收资产'},{id:'fundstock',label:'基金股票'},
+  {id:'insurance',label:'保险资产'},{id:'pe',label:'私募基金'},
+  {id:'property',label:'固定资产'},{id:'bank',label:'银行存款'},{id:'other',label:'其他在投资产'}
+];
+var sm=document.getElementById('submenu');
+subs.forEach(function(s){
+  var b=document.createElement('button');b.textContent=s.label;b.id='sbtn_'+s.id;
+  b.onclick=function(){switchSub(s.id);};
+  sm.appendChild(b);
+});
+function switchSub(id){
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});
+  var card=document.getElementById('card_'+id);if(card)card.classList.add('active');
+  document.querySelectorAll('#submenu button').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('sbtn_'+id).classList.add('active');
+}
+switchSub('fixincome');
+</script></body></html>
