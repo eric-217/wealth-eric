@@ -11,6 +11,8 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .submenu{position:sticky;top:40px;background:#e8edf2;z-index:99;padding:6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;display:none;border-bottom:1px solid #d0d9e3}
 .submenu button{padding:5px 11px;border:1px solid #c0c9d3;border-radius:4px;font-size:11px;color:#555;background:#fff;margin:2px}
 .submenu button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.backbar{display:none;position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}
+.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
 .c{padding:10px}
 .card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);display:none}
 .card.active{display:block}
@@ -43,6 +45,7 @@ tr.warn{background:#fef2f2}.bg{display:inline-block;padding:1px 5px;border-radiu
 footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </style></head><body>
 <div class="menu" id="menu"></div>
+<div class="backbar" id="backbar"><a href="菜单.html">← 返回菜单</a> <span id="backtitle"></span></div>
 <div class="submenu" id="submenu"></div>
 <div class="c" id="container"></div>
 <footer>更新：2026-07-21</footer>
@@ -451,8 +454,15 @@ function initCharts(){
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
 }
 
-// 启动：读取URL参数，否则默认总览
+// 启动：读取URL参数
 var params=new URLSearchParams(window.location.search);
-var startSection=params.get('section')||'overview';
-switchMain(startSection);
+var startSection=params.get('section');
+if(startSection){
+  // 菜单驱动模式：隐藏主菜单，显示返回条
+  document.getElementById('menu').style.display='none';
+  var m=mainMenu.find(function(x){return x.id===startSection;});
+  document.getElementById('backbar').style.display='block';
+  document.getElementById('backtitle').textContent=m?m.label:startSection;
+}
+switchMain(startSection||'overview');
 </script></body></html>
