@@ -38,7 +38,7 @@ if (!checkAuth()) {
   document.getElementById('no-auth').style.display = 'flex';
 } else {
   document.getElementById('authed').style.display = 'block';
-  document.getElementById('client-name').textContent = getClientName() + ' · 财务总览';
+  document.getElementById('client-name').textContent = getClientName() + ' · 财富管理';
   var clientDir = getClientPath().split('/')[0];
   document.getElementById('report-frame').src = 'clients/' + clientDir + '/菜单.html';
 }

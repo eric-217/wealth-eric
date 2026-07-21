@@ -1,52 +1,32 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>我的财富管理规划</title>
-<link rel="stylesheet" href="assets/style.css">
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>财富管理规划</title>
 <style>
-.hero-icon{font-size:56px;margin-bottom:16px}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0;text-align:left}
-.feature{padding:12px 16px;background:#f8fafc;border-radius:10px;font-size:13px}
-.feature .ficon{font-size:20px;margin-bottom:4px}
-.feature .ftitle{font-weight:600;color:var(--pri);margin-bottom:2px}
-.feature .fdesc{color:var(--muted);font-size:11px}
-</style>
-</head>
-<body>
-<div class="page">
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#1a3a5c 0%,#0f2440 100%);color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
+.card{background:rgba(255,255,255,0.97);border-radius:20px;padding:40px 28px 32px;width:100%;max-width:400px;box-shadow:0 8px 40px rgba(0,0,0,0.2);text-align:center;color:#222}
+.hero{font-size:56px;margin-bottom:8px}
+h1{font-size:22px;color:#1a3a5c;margin-bottom:4px;font-weight:700}
+.sub{font-size:13px;color:#889;margin-bottom:24px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 24px}
+.feature{padding:14px 12px;background:#f6f8fb;border-radius:10px;text-align:left}
+.feature .ficon{font-size:18px;margin-bottom:2px}
+.feature .ftitle{font-size:13px;font-weight:600;color:#1a3a5c}
+.feature .fdesc{font-size:11px;color:#999;margin-top:1px}
+.btn{display:block;width:100%;padding:15px;background:#1a3a5c;color:#fff;border:none;border-radius:12px;font-size:17px;font-weight:600;cursor:pointer;letter-spacing:2px}
+.btn:hover{background:#264b7a}
+.footer{text-align:center;font-size:11px;color:rgba(255,255,255,0.35);margin-top:16px}
+</style></head><body>
 <div class="card">
-<div class="hero-icon">📊</div>
-<h1>我的财富管理规划</h1>
+<div class="hero">📊</div>
+<h1>财富管理规划</h1>
 <div class="sub">资产跟踪 · 现金流管理 · 财富自由评估</div>
-
 <div class="features">
-<div class="feature">
-<div class="ficon">🏠</div>
-<div class="ftitle">资产总览</div>
-<div class="fdesc">固收·保险·房产·港险</div>
+<div class="feature"><div class="ficon">🏠</div><div class="ftitle">资产总览</div><div class="fdesc">固收·保险·私募·房产·港险</div></div>
+<div class="feature"><div class="ficon">💵</div><div class="ftitle">现金流管理</div><div class="fdesc">月度流入流出 · 被动收入</div></div>
+<div class="feature"><div class="ficon">📈</div><div class="ftitle">财富自由评估</div><div class="fdesc">被动收入÷支出 = 自由度</div></div>
+<div class="feature"><div class="ficon">🎯</div><div class="ftitle">资产配置建议</div><div class="fdesc">近1年·3年·5年方案</div></div>
 </div>
-<div class="feature">
-<div class="ficon">💵</div>
-<div class="ftitle">现金流管理</div>
-<div class="fdesc">月度流入流出跟踪</div>
-</div>
-<div class="feature">
-<div class="ficon">📈</div>
-<div class="ftitle">财富自由评估</div>
-<div class="fdesc">被动收入·支出·自由度</div>
-</div>
-<div class="feature">
-<div class="ficon">📅</div>
-<div class="ftitle">10年预测</div>
-<div class="fdesc">资产增值·港险·大额支出</div>
-</div>
-</div>
-
 <button class="btn" onclick="location.href='login.html'">登 录</button>
 </div>
-</div>
-<footer>© 2026 财富管理规划 · 机密文件</footer>
-</body>
-</html>
+<div class="footer">船长财富管理 · 2026</div>
+</body></html>
