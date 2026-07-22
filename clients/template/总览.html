@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>总览</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px}
+.backbar{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}
+.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
+.c{padding:10px}.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:15px;color:#334;margin:16px 0 10px}.card h3:first-of-type{margin-top:0}
+.date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.krow.wide{grid-template-columns:1fr 1fr 1fr}
+.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
+.kbox .kl{font-size:11px;color:#889;margin-bottom:4px}.kbox .kv{font-size:20px;font-weight:700}
+.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}.kbox .kv.b{color:#2563eb}.kbox .kv.a{color:#d97706}
+.kbox .sub{font-size:11px;color:#999;margin-top:2px}
+.chart-wrap{position:relative;width:100%;max-width:340px;margin:8px auto}.chart-wrap canvas{width:100%!important;height:auto!important}
+.summary-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.summary-item{flex:1;min-width:80px;background:#f8fafc;border-radius:8px;padding:10px;text-align:center}
+.summary-item .sn{font-size:11px;color:#889}.summary-item .sv{font-size:18px;font-weight:700;margin-top:2px}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style></head><body>
+<div class="backbar"><a href="菜单.html">← 返回菜单</a> 总览 · 演示数据</div>
+<div class="c"><div class="card">
+<div class="date-tag">📅 数据截止：2026年7月 · 演示版</div>
+<div class="krow wide">
+<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈890万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>
+<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈845万<div class="sub">净值率94.9%</div></div></div>
+<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥45万<div class="sub">负债率5.1%</div></div></div>
+</div>
+<div class="krow wide">
+<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥35万<div class="sub">固收利息+保险分红+生存金</div></div></div>
+<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥6万<div class="sub">日常+还贷</div></div></div>
+<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">583%<div class="sub">被动收入÷总支出</div></div></div>
+</div>
+<h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>
+<h3>📊 总负债分布</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>
+<h3>📊 年度被动收入分布</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>
+<h3 style="margin-top:20px">💰 固收资产摘要</h3><div class="summary-row">
+<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">6笔</div></div>
+<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥290万</div></div>
+<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">1笔</div></div>
+<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥36万</div></div>
+<div class="summary-item"><div class="sn">未来6个月利息</div><div class="sv">¥8万</div></div>
+</div>
+<h3 style="margin-top:20px">🏢 私募股权投资摘要</h3><div class="summary-row">
+<div class="summary-item"><div class="sn">持有基金</div><div class="sv">6只</div></div>
+<div class="summary-item"><div class="sn">总投入</div><div class="sv">¥170万</div></div>
+<div class="summary-item"><div class="sn">已回款</div><div class="sv">¥42万</div></div>
+<div class="summary-item"><div class="sn">净值总额</div><div class="sv">¥79万</div></div>
+<div class="summary-item"><div class="sn">数据覆盖</div><div class="sv" style="color:#d97706">67%</div></div>
+</div>
+<h3>🛡️ 保险分类分布</h3><div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>
+<div class="summary-row">
+<div class="summary-item"><div class="sn">保单总数</div><div class="sv">5份</div></div>
+<div class="summary-item"><div class="sn">现金价值</div><div class="sv">¥195万</div></div>
+<div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥1,400万</div></div>
+<div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">157%</div></div>
+</div>
+<h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">
+<div class="kbox"><div class="kl">流动比率</div><div class="kv g">5.2x<div class="sub">流动资产/流动负债</div></div></div>
+<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">32个月<div class="sub">参考基准6-12月</div></div></div>
+<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">21%<div class="sub">最大单笔占固收总额</div></div></div>
+<div class="kbox"><div class="kl">保险占比</div><div class="kv b">21.9%<div class="sub">储蓄型5份</div></div></div>
+</div>
+</div></div>
+<footer>更新：2026-07-22 · 演示版</footer>
+<script>
+new Chart(document.getElementById('chartAssets'),{type:'doughnut',data:{labels:['固收理财','保险现金价值','私募股权','房产','港险','银行存款'],datasets:[{data:[290,195,170,160,45,30],backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
+new Chart(document.getElementById('chartDebt'),{type:'polarArea',data:{labels:['保险公司','银行','网贷平台'],datasets:[{data:[360,38,28],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
+new Chart(document.getElementById('chartIncome'),{type:'bar',data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','生存金'],datasets:[{data:[314,22,7,9,2,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'千元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+new Chart(document.getElementById('chartInsType'),{type:'pie',data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[2,1,1,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
+</script></body></html>

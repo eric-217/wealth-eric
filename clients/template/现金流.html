@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>现金流</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px}
+.backbar{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
+.submenu{position:sticky;top:36px;background:#e8edf2;z-index:99;padding:6px;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #d0d9e3}
+.submenu button{padding:5px 11px;border:1px solid #c0c9d3;border-radius:4px;font-size:11px;color:#555;background:#fff;margin:2px}.submenu button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.c{padding:10px}.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);display:none}.card.active{display:block}.card h3{font-size:15px;color:#334;margin:10px 0}
+.date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
+.kbox .kl{font-size:11px;color:#889}.kbox .kv{font-size:20px;font-weight:700}.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left}td{padding:7px 6px;border:1px solid #ddd;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#fafafa}tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}tr.done{color:#aaa;text-decoration:line-through}tr.warn{background:#fef2f2}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style></head><body>
+<div class="backbar"><a href="菜单.html">← 返回菜单</a> 现金流 · 演示数据</div>
+<div class="submenu" id="submenu"></div><div class="c">
+<div class="card active" id="card_fixincome"><h3>固收现金流（未来12个月）</h3><table><tr><th>月</th><th>利息收入</th><th>到期本金</th><th>净现金流</th></tr>
+<tr class="done"><td>7月</td><td class="tr">48.9千</td><td>已退</td><td class="tr" style="color:#16a34a">+488.9</td></tr><tr><td>8月</td><td class="tr">18.3千</td><td>180千</td><td class="tr" style="color:#16a34a">+198.3</td></tr>
+<tr><td>11月</td><td class="tr">7.1千</td><td>180千</td><td class="tr" style="color:#16a34a">+187.1</td></tr><tr class="tt"><td>半年</td><td class="tr">82千</td><td>360千</td><td class="tr" style="color:#16a34a">+442</td></tr></table><p class="nt">单位：千元 | 演示数据</p></div>
+<div class="card" id="card_insurance"><h3>保险现金流</h3><table><tr><th>来源</th><th>2026</th><th>2027</th></tr><tr><td>生存金</td><td class="tr">¥23,100</td><td class="tr">¥23,100</td></tr><tr><td>分红</td><td class="tr">≈¥1,800</td><td class="tr">≈¥1,800</td></tr></table></div>
+<div class="card" id="card_active"><h3>主动收入明细</h3><table><tr><th>来源</th><th>年金额</th></tr><tr><td>工资收入</td><td class="tr">待补充</td></tr><tr><td>其他收入</td><td class="tr">待补充</td></tr></table></div>
+<div class="card" id="card_passive_cash"><h3>被动收入·现金</h3><table><tr><th>来源</th><th>2026年</th></tr><tr><td>固收利息</td><td class="tr">¥314,000</td></tr><tr><td>保险生存金</td><td class="tr">¥23,100</td></tr><tr><td>保险分红</td><td class="tr">≈¥1,800</td></tr><tr class="tt"><td>合计</td><td class="tr">≈¥338,900</td></tr></table></div>
+<div class="card" id="card_passive_book"><h3>被动收入·账面</h3><table><tr><th>来源</th><th>2026年</th></tr><tr><td>保险CV增值</td><td class="tr">≈¥9,000</td></tr><tr><td>万能账户增值</td><td class="tr">≈¥7,000</td></tr><tr class="tt"><td>合计</td><td class="tr">≈¥16,000</td></tr></table></div>
+<div class="card" id="card_expense"><h3>支出明细</h3><table><tr><th>项目</th><th>金额</th></tr><tr><td>日常支出</td><td class="tr">¥30,000</td></tr><tr><td>车贷</td><td class="tr">¥12,672</td></tr><tr class="tt"><td>合计</td><td class="tr">¥42,672</td></tr></table></div>
+<div class="card" id="card_freedom"><h3>财务自由度</h3><div class="krow"><div class="kbox"><div class="kl">2026自由度</div><div class="kv g">583%</div></div><div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div></div>
+<div class="card" id="card_expense_plan"><h3>支出计划</h3><table><tr><th>项目</th><th>预算</th></tr><tr><td>住房装修</td><td class="tr">¥12万</td></tr><tr><td>子女教育</td><td class="tr">¥72万</td></tr></table></div>
+</div><footer>更新：2026-07-22 · 演示版</footer>
+<script>
+var subs=[{id:'fixincome',label:'固收现金流'},{id:'insurance',label:'保险流'},{id:'active',label:'主动收入'},{id:'passive_cash',label:'被动·现金'},{id:'passive_book',label:'被动·账面'},{id:'expense',label:'支出明细'},{id:'freedom',label:'财务自由度'},{id:'expense_plan',label:'支出计划'}];
+var sm=document.getElementById('submenu');subs.forEach(function(s){var b=document.createElement('button');b.textContent=s.label;b.onclick=function(){switchSub(s.id);};sm.appendChild(b);});
+function switchSub(id){document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});var card=document.getElementById('card_'+id);if(card)card.classList.add('active');document.querySelectorAll('#submenu button').forEach(function(b){b.classList.remove('active');});document.getElementById('sbtn_'+id).classList.add('active');}
+switchSub('fixincome');
+</script></body></html>
