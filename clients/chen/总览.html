@@ -79,13 +79,13 @@ new Chart(document.getElementById('chartAssets'),{type:'doughnut',
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartDebt'),{type:'polarArea',
   data:{labels:['保险公司(新华)','银行(车贷)','网贷平台'],
-  datasets:[{data:[600,63,46],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
+  datasets:[{data:[60,6.3,5.0],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartIncome'),{type:'bar',
   data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],
-  datasets:[{data:[523,36,11,15,3,1.7],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
+  datasets:[{data:[52.3,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
   options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
-  scales:{x:{title:{display:true,text:'千元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+  scales:{x:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 new Chart(document.getElementById('chartInsType'),{type:'pie',
   data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[3,2,2,1],
   backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},

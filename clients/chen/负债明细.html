@@ -12,74 +12,108 @@ h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
 .card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
 .card h3{font-size:14px;color:#1a3a5c;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
 table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
-th{background:#1a3a5c;color:#fff;padding:6px;font-size:10.5px;text-align:left}
-td{padding:5px 6px;border:1px solid #ddd;font-size:11px}
+th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:10.5px;text-align:left}
+td{padding:5px 8px;border:1px solid #ddd;font-size:11px}
 td.r{text-align:right}
 tr:nth-child(even){background:#fafafa}
 tr.tt{font-weight:700;background:#f0f4f8}
 tr.d{color:#999;text-decoration:line-through}
 .g{color:#16a34a}.r{color:#dc2626}
+.phase{background:#fffbe6;border-left:3px solid #f59e0b;padding:6px 10px;margin:4px 0;font-size:11px;border-radius:4px}
+.phase .amt{font-weight:700;color:#d97706}
+.note{font-size:11px;color:#888;margin-top:6px}
 </style>
 </head>
 <body>
-<a href="菜单.html" class="back">← 返回菜单</a>
+<a href="菜单.html" class="back">&larr; 返回菜单</a>
 
 <h2>负债明细</h2>
 
 <div class="card">
-<h3>新华惠鑫宝 保单贷款 <span style="font-size:12px;color:#d97706">进行中</span></h3>
+<h3>新华惠鑫宝 保单贷款 <span style="font-size:12px;color:#d97706">还款计划中</span></h3>
 <table>
-<tr><td>贷款本金</td><td class="r">¥600,000</td></tr>
-<tr><td>年利率</td><td class="r">4.25%</td></tr>
-<tr><td>月利息</td><td class="r">¥3,750</td></tr>
-<tr><td>下次到期日</td><td class="r">日计息, 年IRR 4.25%</td></tr>
-<tr><td>还息方式</td><td>每180天还一次利息，本金到期续贷</td></tr>
-<tr><td>年利息支出</td><td class="r">¥45,000</td></tr>
-<tr><td>还款计划</td><td>2028年固收到期后一次性还清本金</td></tr>
+<tr><td>年利率</td><td class="r">4.25%（日计息）</td></tr>
+<tr><td>计息方式</td><td>按日计息，每180天还一次利息</td></tr>
+<tr><td>到期日</td><td class="r">2026年11月19日</td></tr>
 </table>
+
+<div style="margin-top:10px"><strong>分期还款计划</strong></div>
+
+<div class="phase">
+<strong>第一阶段：当前 ~ 8月还款前</strong><br>
+本金：<span class="amt">600,000元</span> &nbsp;|&nbsp; 
+月利息：约2,125元（600,000 &times; 4.25% &divide; 12）<br>
+期间利息：约2,125元（按30天估算，日计息精确到天）
+</div>
+
+<div class="phase">
+<strong>第二阶段：8月还30万 → 剩余本金30万</strong><br>
+8月还款：<span class="amt">300,000元</span>（本金）<br>
+剩余本金：<span class="amt">300,000元</span> &nbsp;|&nbsp; 
+月利息：约1,063元（300,000 &times; 4.25% &divide; 12）<br>
+期间利息：约3,188元（8月~11月，约90天）
+</div>
+
+<div class="phase">
+<strong>第三阶段：11月全部还清</strong><br>
+11月还款：<span class="amt">300,000元 + 当期利息</span><br>
+还清后：<span class="amt" style="color:#16a34a">贷款余额 = 0元</span>
+</div>
+
+<table style="margin-top:10px">
+<tr><th>还款节点</th><th>还款金额（元）</th><th>累计利息（元）</th></tr>
+<tr><td>2026年8月（还本金30万）</td><td class="r">300,000</td><td class="r">约2,125</td></tr>
+<tr><td>2026年11月（还清）</td><td class="r">约303,188</td><td class="r">约5,313</td></tr>
+<tr class="tt"><td>合计</td><td class="r">约603,188</td><td class="r">约5,313</td></tr>
+</table>
+<div class="note">利息为估算值。实际按日计息（本金&times;4.25%&times;实际天数&divide;365），精确到天。具体金额以保司账单为准。</div>
 </div>
 
 <div class="card">
 <h3>车贷</h3>
 <table>
-<tr><td>剩余本金</td><td class="r">¥63,360</td></tr>
-<tr><td>月供</td><td class="r">¥3,520</td></tr>
+<tr><td>剩余本金</td><td class="r">63,360元</td></tr>
+<tr><td>月供</td><td class="r">3,520元</td></tr>
 <tr><td>剩余期数</td><td class="r">18期</td></tr>
 <tr><td>预计还清</td><td>2027年12月</td></tr>
 </table>
 <div style="margin-top:8px"><strong>偿还计划</strong></div>
 <table>
-<tr><th>阶段</th><th>期数</th><th>金额</th></tr>
-<tr><td>2026年7-12月</td><td class="r">6期</td><td class="r">¥21,120</td></tr>
-<tr><td>2027年1-12月</td><td class="r">12期</td><td class="r">¥42,240</td></tr>
-<tr class="tt"><td>合计</td><td class="r">18期</td><td class="r">¥63,360</td></tr>
+<tr><th>阶段</th><th>期数</th><th>金额（元）</th></tr>
+<tr><td>2026年7-12月</td><td class="r">6期</td><td class="r">21,120</td></tr>
+<tr><td>2027年1-12月</td><td class="r">12期</td><td class="r">42,240</td></tr>
+<tr class="tt"><td>合计</td><td class="r">18期</td><td class="r">63,360</td></tr>
 </table>
 </div>
 
 <div class="card">
 <h3>网贷</h3>
 <table>
-<tr><td>本金</td><td class="r">¥46,000</td></tr>
-<tr><td>利率</td><td class="r">待确认</td></tr>
-<tr><td>还款计划</td><td>待确认</td></tr>
+<tr><th>平台</th><th>本金（元）</th><th>利率</th><th>状态</th></tr>
+<tr><td>借呗</td><td class="r">43,500</td><td>待确认</td><td>待确认还款计划</td></tr>
+<tr><td>百度</td><td class="r">6,200</td><td>待确认</td><td>待确认还款计划</td></tr>
+<tr class="tt"><td>合计</td><td class="r">49,700</td><td></td><td></td></tr>
 </table>
 </div>
 
 <div class="card">
-<h3>已还清 <span class="g">✅</span></h3>
+<h3>已还清 <span class="g">&#10004;</span></h3>
 <table>
-<tr class="d"><td>信美相互×2 保单贷款</td><td class="r">¥725,675</td><td>2026年7月还清</td></tr>
+<tr class="d"><td>信美相互&times;2 保单贷款</td><td class="r">725,675元</td><td>2026年7月还清</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h3>还贷支出汇总</h3>
+<h3>还贷支出汇总（2026年内）</h3>
 <table>
-<tr><th>项目</th><th>月支出</th><th>年支出</th></tr>
-<tr><td>新华贷款利息</td><td class="r">¥3,750</td><td class="r">¥45,000</td></tr>
-<tr><td>车贷月供</td><td class="r">¥3,520</td><td class="r">¥42,240</td></tr>
-<tr class="tt"><td>合计</td><td class="r r">¥7,270</td><td class="r r">¥87,240</td></tr>
+<tr><th>项目</th><th>月支出（元）</th><th>年支出（元）</th></tr>
+<tr><td>新华贷款利息（1-7月）</td><td class="r">约2,125</td><td class="r">约14,875</td></tr>
+<tr><td>新华贷款本金（8月+11月）</td><td class="r">—</td><td class="r">600,000</td></tr>
+<tr><td>车贷月供</td><td class="r">3,520</td><td class="r">42,240</td></tr>
+<tr class="tt"><td>利息类合计</td><td class="r">约5,645</td><td class="r">约57,115</td></tr>
+<tr class="tt"><td>含本金合计</td><td class="r">—</td><td class="r">约657,115</td></tr>
 </table>
+<div class="note">新华贷款11月还清后，月利息支出归零；车贷月供持续至2027年12月。</div>
 </div>
 
 </body>

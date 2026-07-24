@@ -1,31 +1,202 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>现金流</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px}
-.backbar{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>现金流</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px}
+.backbar{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}
+.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
 .submenu{position:sticky;top:36px;background:#e8edf2;z-index:99;padding:6px;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #d0d9e3}
-.submenu button{padding:5px 11px;border:1px solid #c0c9d3;border-radius:4px;font-size:11px;color:#555;background:#fff;margin:2px}.submenu button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
-.c{padding:10px}.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);display:none}.card.active{display:block}.card h3{font-size:15px;color:#334;margin:10px 0}
+.submenu button{padding:5px 11px;border:1px solid #c0c9d3;border-radius:4px;font-size:11px;color:#555;background:#fff;margin:2px}
+.submenu button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.c{padding:10px}.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);display:none}
+.card.active{display:block}.card h3{font-size:15px;color:#334;margin:10px 0}
 .date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
-.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
-.kbox .kl{font-size:11px;color:#889}.kbox .kv{font-size:20px;font-weight:700}.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}
-table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left}td{padding:7px 6px;border:1px solid #ddd;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#fafafa}tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}tr.done{color:#aaa;text-decoration:line-through}tr.warn{background:#fef2f2}
-.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
+.kbox .kl{font-size:11px;color:#889;margin-bottom:4px}.kbox .kv{font-size:20px;font-weight:700}
+.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left}
+td{padding:7px 6px;border:1px solid #ddd;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#fafafa}
+tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}tr.warn{background:#fef2f2}tr.done{color:#aaa;text-decoration:line-through}
+.tbl-wrap{overflow-x:auto;margin:6px -4px;padding:0 4px}.tbl-wrap table{min-width:500px}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+.ins-subnav{overflow-x:auto;white-space:nowrap;margin:0 0 12px 0;padding-bottom:4px;border-bottom:1px solid #e0e5ea}
+.ins-subnav button{padding:4px 9px;border:1px solid #c0c9d3;border-radius:3px;font-size:10px;color:#555;background:#fff;margin:1px 2px}
+.ins-subnav button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.ins-sec{display:none}.ins-sec.active{display:block}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </style></head><body>
-<div class="backbar"><a href="菜单.html">← 返回菜单</a> 现金流 · 演示数据</div>
-<div class="submenu" id="submenu"></div><div class="c">
-<div class="card active" id="card_fixincome"><h3>固收现金流（未来12个月）</h3><table><tr><th>月</th><th>利息收入</th><th>到期本金</th><th>净现金流</th></tr>
-<tr class="done"><td>7月</td><td class="tr">48.9千</td><td>已退</td><td class="tr" style="color:#16a34a">+488.9</td></tr><tr><td>8月</td><td class="tr">18.3千</td><td>180千</td><td class="tr" style="color:#16a34a">+198.3</td></tr>
-<tr><td>11月</td><td class="tr">7.1千</td><td>180千</td><td class="tr" style="color:#16a34a">+187.1</td></tr><tr class="tt"><td>半年</td><td class="tr">82千</td><td>360千</td><td class="tr" style="color:#16a34a">+442</td></tr></table><p class="nt">单位：千元 | 演示数据</p></div>
-<div class="card" id="card_insurance"><h3>保险现金流</h3><table><tr><th>来源</th><th>2026</th><th>2027</th></tr><tr><td>生存金</td><td class="tr">¥23,100</td><td class="tr">¥23,100</td></tr><tr><td>分红</td><td class="tr">≈¥1,800</td><td class="tr">≈¥1,800</td></tr></table></div>
-<div class="card" id="card_active"><h3>主动收入明细</h3><table><tr><th>来源</th><th>年金额</th></tr><tr><td>工资收入</td><td class="tr">待补充</td></tr><tr><td>其他收入</td><td class="tr">待补充</td></tr></table></div>
-<div class="card" id="card_passive_cash"><h3>被动收入·现金</h3><table><tr><th>来源</th><th>2026年</th></tr><tr><td>固收利息</td><td class="tr">¥314,000</td></tr><tr><td>保险生存金</td><td class="tr">¥23,100</td></tr><tr><td>保险分红</td><td class="tr">≈¥1,800</td></tr><tr class="tt"><td>合计</td><td class="tr">≈¥338,900</td></tr></table></div>
-<div class="card" id="card_passive_book"><h3>被动收入·账面</h3><table><tr><th>来源</th><th>2026年</th></tr><tr><td>保险CV增值</td><td class="tr">≈¥9,000</td></tr><tr><td>万能账户增值</td><td class="tr">≈¥7,000</td></tr><tr class="tt"><td>合计</td><td class="tr">≈¥16,000</td></tr></table></div>
-<div class="card" id="card_expense"><h3>支出明细</h3><table><tr><th>项目</th><th>金额</th></tr><tr><td>日常支出</td><td class="tr">¥30,000</td></tr><tr><td>车贷</td><td class="tr">¥12,672</td></tr><tr class="tt"><td>合计</td><td class="tr">¥42,672</td></tr></table></div>
-<div class="card" id="card_freedom"><h3>财务自由度</h3><div class="krow"><div class="kbox"><div class="kl">2026自由度</div><div class="kv g">583%</div></div><div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div></div>
-<div class="card" id="card_expense_plan"><h3>支出计划</h3><table><tr><th>项目</th><th>预算</th></tr><tr><td>住房装修</td><td class="tr">¥12万</td></tr><tr><td>子女教育</td><td class="tr">¥72万</td></tr></table></div>
-</div><footer>更新：2026-07-22 · 演示版</footer>
+<div class="backbar"><a href="菜单.html">&larr; 返回菜单</a> 现金流 <span style="font-size:11px;color:rgba(255,255,255,0.5)">演示版</span></div>
+<div class="submenu" id="submenu"></div>
+<div class="c">
+<div class="card active" id="card_fixincome"><h3>固收现金流（未来3个月）</h3><div class="date-tag">演示数据 | 单位：元 | <span style="color:#d32f2f;font-weight:700">红色粗体</span>=含本金返还</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>07月</th><th>08月</th><th>09月</th></tr>
+<tr><td>固收产品A（季度付息）</td><td class="tr">12万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">2,700</td><td class="tr">—</td><td class="tr">—</td></tr>
+<tr><td>固收产品B（年度付息到期）</td><td class="tr">18万</td><td class="tr">10.2%</td><td class="tr">—</td><td class="tr" style="color:#d32f2f;font-weight:700">198,360</td><td class="tr">—</td></tr>
+<tr><td>固收产品C（季度付息）</td><td class="tr">18万</td><td class="tr">9.8%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">4,410</td><td class="tr">—</td></tr>
+<tr><td>固收产品E（季度付息）</td><td class="tr">60万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">13,500</td><td class="tr">—</td><td class="tr">—</td></tr>
+<tr><td>固收产品F（季度付息）</td><td class="tr">30万</td><td class="tr">8.4%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">6,300</td></tr>
+<tr class="tt"><td>3个月合计</td><td class="tr">138万</td><td class="tr">—</td><td class="tr">16,200</td><td class="tr" style="color:#d32f2f;font-weight:700">202,770</td><td class="tr">6,300</td></tr></table></div>
+<p class="nt">演示数据（×0.6脱敏） | 红色粗体=含本金返还 | 未来3个月内无利息收入的产品已隐藏 | 格式：产品×月份矩阵</p></div>
+<div class="card" id="card_insurance"><h3>保险流</h3>
+<div class="ins-subnav" id="ins_subnav"></div>
+
+<div class="ins-sec active" id="ins_1"><h4>未来5年生存金（2026-2030）</h4>
+<p class="date-tag">现金实际到账 | 单位：元 | 演示×0.6</p>
+<div class="tbl-wrap"><table><tr><th>保单</th><th>被保人</th><th>领取方式</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th></tr>
+<tr><td>惠鑫宝年金保险</td><td>客户A</td><td>年领</td><td class="tr">21,600</td><td class="tr">21,600</td><td class="tr">21,600</td><td class="tr">21,600</td><td class="tr">21,600</td></tr>
+<tr><td>财富年年两全保险</td><td>客户A</td><td>年领</td><td class="tr">1,020</td><td class="tr">1,020</td><td class="tr">1,020</td><td class="tr">1,020</td><td class="tr">1,020</td></tr>
+<tr><td>99鸿福终身保险</td><td>客户A</td><td>3年/次</td><td class="tr">—</td><td class="tr">—</td><td class="tr">3,000</td><td class="tr">—</td><td class="tr">—</td></tr>
+<tr><td>钟爱一生年金保险</td><td>客户A</td><td>年领</td><td class="tr" colspan="5"><span class="nt" style="display:inline-block;padding:2px 8px">尚未开始领取（预计2038年起）</span></td></tr>
+<tr class="tt"><td colspan="3">年度合计</td><td class="tr">22,620</td><td class="tr">22,620</td><td class="tr">25,620</td><td class="tr">22,620</td><td class="tr">22,620</td></tr></table></div></div>
+
+<div class="ins-sec" id="ins_2"><h4>各保单现金价值（2026-2030）</h4>
+<p class="date-tag">账面价值，含预估增长 | 单位：元 | 演示×0.6</p>
+<div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2027估</th><th>2028估</th><th>2029估</th><th>2030估</th><th>年增长率</th></tr>
+<tr><td>惠鑫宝主险</td><td class="tr">825,000</td><td class="tr">841,000</td><td class="tr">858,000</td><td class="tr">875,000</td><td class="tr">893,000</td><td>2.0%</td></tr>
+<tr><td>信美相互·子女A</td><td class="tr">322,000</td><td class="tr">338,000</td><td class="tr">355,000</td><td class="tr">372,000</td><td class="tr">391,000</td><td>5.0%</td></tr>
+<tr><td>信美相互·子女B</td><td class="tr">322,000</td><td class="tr">338,000</td><td class="tr">355,000</td><td class="tr">372,000</td><td class="tr">391,000</td><td>5.0%</td></tr>
+<tr><td>万能账户</td><td class="tr">234,000</td><td class="tr">241,000</td><td class="tr">247,000</td><td class="tr">254,000</td><td class="tr">261,000</td><td>2.75%</td></tr>
+<tr><td>钟爱一生</td><td class="tr">107,000</td><td class="tr">110,000</td><td class="tr">113,000</td><td class="tr">117,000</td><td class="tr">120,000</td><td>3.0%</td></tr>
+<tr><td>阳光升终身寿</td><td class="tr">62,000</td><td class="tr">64,000</td><td class="tr">66,000</td><td class="tr">68,000</td><td class="tr">71,000</td><td>3.45%</td></tr>
+<tr><td>财富年年</td><td class="tr">38,000</td><td class="tr">38,000</td><td class="tr">39,000</td><td class="tr">39,000</td><td class="tr">40,000</td><td>1.2%</td></tr>
+<tr><td>99鸿福</td><td class="tr">23,000</td><td class="tr">25,000</td><td class="tr">23,000*</td><td class="tr">24,000</td><td class="tr">25,000</td><td>~5%</td></tr>
+<tr><td>乐行无忧</td><td class="tr">11,000</td><td class="tr">11,000</td><td class="tr">11,000</td><td class="tr">12,000</td><td class="tr">12,000</td><td>1.0%</td></tr>
+<tr class="tt"><td>合计</td><td class="tr" style="font-size:14px">1,944,000</td><td class="tr">2,006,000</td><td class="tr">2,067,000</td><td class="tr">2,133,000</td><td class="tr">2,204,000</td><td>—</td></tr></table></div>
+<p class="nt">*99鸿福2028年领取生存金后现金价值下调 | 演示数据（×0.6），实际以保单年度报告为准</p></div>
+
+<div class="ins-sec" id="ins_3"><h4>万能账户</h4>
+<p class="date-tag">独立账户，可部分领取 | 单位：元 | 演示×0.6</p>
+<div class="krow">
+<div class="kbox"><div class="kl">万能账户现值</div><div class="kv g">234,000</div></div>
+<div class="kbox"><div class="kl">保证利率</div><div class="kv">2.50%</div></div>
+<div class="kbox"><div class="kl">年增值</div><div class="kv g">+6,600</div></div>
+<div class="kbox"><div class="kl">5年后预估</div><div class="kv">275,000</div></div></div>
+<table><tr><th>项目</th><th>详情</th></tr>
+<tr><td>产品名称</td><td>附加随意领白金版年金保险（万能型）</td></tr>
+<tr><td>所属主险</td><td>惠鑫宝二代年金保险</td></tr>
+<tr><td>资金来源</td><td>主险生存金自动转入</td></tr>
+<tr><td>保证利率</td><td>2.50%（写进合同）</td></tr>
+<tr><td>当前结算利率</td><td>约2.75%</td></tr></table>
+<p class="nt">演示数据 | 仅1份保单含万能账户</p></div>
+
+<div class="ins-sec" id="ins_4"><h4>未来5年可领取金额</h4>
+<p class="date-tag">可实际到账的保险现金 | 单位：元 | 演示×0.6</p>
+<div class="tbl-wrap"><table><tr><th>来源</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th></tr>
+<tr><td>生存金</td><td class="tr">22,620</td><td class="tr">22,620</td><td class="tr">25,620</td><td class="tr">22,620</td><td class="tr">22,620</td></tr>
+<tr><td>万能账户可部分领取</td><td class="tr">234,000</td><td class="tr">241,000</td><td class="tr">247,000</td><td class="tr">254,000</td><td class="tr">261,000</td></tr>
+<tr><td>红利累积可提取</td><td class="tr">30,000</td><td class="tr">31,000</td><td class="tr">32,000</td><td class="tr">33,000</td><td class="tr">35,000</td></tr>
+<tr class="tt"><td>合计（不损本金）</td><td class="tr">286,620</td><td class="tr">294,620</td><td class="tr">304,620</td><td class="tr">309,620</td><td class="tr">318,620</td></tr>
+<tr class="warn"><td>退保可得（损本金）</td><td class="tr">1,944,000</td><td class="tr">2,006,000</td><td class="tr">2,067,000</td><td class="tr">2,133,000</td><td class="tr">2,204,000</td></tr></table></div>
+<p class="nt">演示数据 | "不损本金"指生存金、红利、万能账户等被动增值部分的提取，不影响保单继续增值</p></div>
+
+<div class="ins-sec" id="ins_5"><h4>红利分红</h4>
+<p class="date-tag">美式分红（年度现金红利） | 单位：元 | 演示×0.6</p>
+<table><tr><th>保单</th><th>累计红利</th><th>红利利息</th><th>合计</th><th>2026年新增</th><th>备注</th></tr>
+<tr><td>钟爱一生</td><td class="tr">21,922</td><td class="tr">6,519</td><td class="tr">28,441</td><td class="tr">715</td><td>累积生息</td></tr>
+<tr><td>财富年年</td><td class="tr" colspan="3">待确认</td><td class="tr">待确认</td><td>每年派发</td></tr></table>
+<p class="nt">演示数据 | 仅2份分红型保单（美式）</p></div>
+
+<div class="ins-sec" id="ins_6"><h4>复归红利（归原红利）</h4>
+<p class="date-tag">英式分红特有 | 公布即保证面值</p>
+<div class="tbl-wrap"><table><tr><th>保单类型</th><th>是否有复归红利</th><th>说明</th></tr>
+<tr><td>国内保单（全部）</td><td style="text-align:center;color:#888">无数据</td><td>国内产品均为美式分红或非分红型，无复归红利机制</td></tr>
+<tr><td>港险·永明</td><td style="text-align:center;color:#16a34a">有</td><td>归原红利公布即保证面值，5年后可价值锁定（最高50%，积存利率3.5%）</td></tr>
+<tr><td>港险·周大福</td><td style="text-align:center;color:#f0a020">有</td><td>复归红利面值保证，但现金价值非保证，无锁定功能</td></tr></table></div>
+<p class="nt">复归红利为英式分红特有 | 港险具体数值以保司每年公布为准</p></div>
+
+<div class="ins-sec" id="ins_7"><h4>终期红利</h4>
+<p class="date-tag">退保/理赔/满期时一次性给付的额外红利</p>
+<div class="tbl-wrap"><table><tr><th>保单类型</th><th>是否有终期红利</th><th>说明</th></tr>
+<tr><td>国内保单（全部）</td><td style="text-align:center;color:#888">无数据</td><td>国内产品无终期红利机制</td></tr>
+<tr><td>港险·永明</td><td style="text-align:center;color:#16a34a">有</td><td>终期红利面值非保证，退保时按折现率折算现金价值</td></tr>
+<tr><td>港险·周大福</td><td style="text-align:center;color:#16a34a">有</td><td>终期红利面值非保证</td></tr></table></div>
+<p class="nt">终期红利为港险特有机制 | 具体数值以保司每年红利通知书为准</p></div>
+
+<div class="ins-sec" id="ins_8"><h4>身故保障金</h4>
+<p class="date-tag">各保单当前身故赔付金额 | 单位：元 | 演示×0.6</p>
+<div class="tbl-wrap"><table><tr><th>保单</th><th>被保人</th><th>身故保障金</th><th>计算方式</th></tr>
+<tr><td>惠鑫宝</td><td>客户A</td><td class="tr">1,039,000+UA</td><td>max(900,000已交保费, 现金价值) + 万能账户全额</td></tr>
+<tr><td>信美相互·子女A</td><td>子女A</td><td class="tr">322,000</td><td>max(300,000已交保费, 现金价值)，60岁后保证期剩余养老金</td></tr>
+<tr><td>信美相互·子女B</td><td>子女B</td><td class="tr">322,000</td><td>max(300,000已交保费, 现金价值)，60岁后保证期剩余养老金</td></tr>
+<tr><td>钟爱一生</td><td>客户A</td><td class="tr">475,000*</td><td>保证不低于151,200 | *含保证+红利</td></tr>
+<tr><td>99鸿福</td><td>客户A</td><td class="tr">112,000</td><td>按身故时保额给付（原始30,000×5%复利28年）</td></tr>
+<tr><td>阳光升终身寿</td><td>客户A</td><td class="tr">84,000</td><td>max(累计保费×系数, 保额复利, 现金价值)</td></tr>
+<tr><td>财富年年</td><td>客户A</td><td class="tr">60,000</td><td>疾病身故：已交保费-已领祝寿金 | 意外：最高600,000</td></tr>
+<tr><td>乐行无忧</td><td>客户B</td><td class="tr">16,000~1,800,000</td><td>疾病16,000 | 一般意外180,000 | 公共交通900,000 | 航空/驾车1,800,000</td></tr>
+<tr style="background:#f0f4f8"><td>定期寿险</td><td>客户B</td><td class="tr">待补充</td><td>定期寿险，保额待确认</td></tr></table></div>
+<p class="nt">演示数据 | 身故金给付顺序按保单约定，建议确认受益人安排</p></div>
+
+<div class="ins-sec" id="ins_9"><h4>满期金 / 祝寿金</h4>
+<p class="date-tag">保单到期或特定年龄一次性给付 | 单位：元 | 演示×0.6</p>
+<table><tr><th>保单</th><th>类型</th><th>金额</th><th>给付时间</th><th>说明</th></tr>
+<tr><td>惠鑫宝</td><td>满期金</td><td class="tr">1,039,000</td><td>2036年</td><td>基本保额，满期一次性给付 | +万能账户+剩余可领</td></tr>
+<tr><td>财富年年</td><td>祝寿金</td><td class="tr">12,000×5次=60,000</td><td>60/65/70/75/80岁</td><td>每次12,000元，共5次=60,000元，80岁保单终止</td></tr>
+<tr><td>乐行无忧</td><td>满期生存金</td><td class="tr">16,236</td><td>2045年</td><td>已交保费×1.1</td></tr>
+<tr><td>钟爱一生</td><td>祝寿金</td><td class="tr">60,000</td><td>88岁</td><td>生存至88周岁一次性给付60,000元</td></tr>
+<tr><td>信美相互×2</td><td>无满期金</td><td class="tr" colspan="3">终身年金，85岁后可退保取现金价值，无传统满期金</td></tr>
+<tr><td>其余保单</td><td>无满期金</td><td class="tr" colspan="3">终身寿险/医疗/定寿/家财险，无满期金设计</td></tr></table></div>
+
+</div>
+<div class="card" id="card_active"><h3>主动收入明细</h3><table><tr><th>来源</th><th>年金额</th></tr><tr><td>港险佣金</td><td class="tr">待补充</td></tr><tr><td>内容产品收入</td><td class="tr">待补充</td></tr><tr><td>工资收入</td><td class="tr">待补充</td></tr></table><p class="nt">演示数据</p></div>
+<div class="card" id="card_passive_cash"><h3>被动收入 · 现金</h3><table><tr><th>来源</th><th>2026年</th></tr><tr><td>固收利息</td><td class="tr">314,000元</td></tr><tr><td>新华生存金</td><td class="tr">21,600元</td></tr><tr><td>财富年年生存金</td><td class="tr">1,020元</td></tr><tr><td>保险分红</td><td class="tr">≈1,800元</td></tr><tr class="tt"><td>合计</td><td class="tr">≈338,420元</td></tr></table></div>
+<div class="card" id="card_passive_book"><h3>被动收入 · 账面</h3><table><tr><th>来源</th><th>2026年</th></tr><tr><td>保险CV增值</td><td class="tr">≈9,000元</td></tr><tr><td>万能账户增值</td><td class="tr">≈6,600元</td></tr><tr><td>私募净值增值</td><td class="tr">待评估</td></tr><tr><td>港险红利增值</td><td class="tr">待确认</td></tr><tr class="tt"><td>合计</td><td class="tr">≈15,600元+</td></tr></table></div>
+<div class="card" id="card_expense"><h3>支出明细（演示）</h3><table><tr><th>类别</th><th>项目</th><th>金额</th></tr><tr><td>A 生活</td><td>日常开销</td><td class="tr">20,000元</td></tr><tr><td>B 交通</td><td>车贷</td><td class="tr">12,672元</td></tr><tr><td>C 教育</td><td>子女教育</td><td class="tr">10,000元</td></tr><tr class="tt"><td colspan="2">合计</td><td class="tr">42,672元</td></tr></table></div>
+<div class="card" id="card_freedom"><h3>财务自由度</h3><div class="krow">
+<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">343,000</div></div>
+<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">583%</div></div>
+<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">36,000</div></div>
+<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div>
+<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>
+<tr><td>2026</td><td class="tr">354,000</td><td class="tr">59,000</td><td style="color:#16a34a">600%</td></tr>
+<tr><td>2027</td><td class="tr">269,000</td><td class="tr">54,000</td><td>498%</td></tr>
+<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">49,000</td><td class="tr">54,000</td><td style="color:#dc2626">91%</td></tr>
+<tr><td>2036</td><td class="tr">56,000</td><td class="tr">54,000</td><td>104%</td></tr></table></div>
+<div class="card" id="card_expense_plan"><h3>近1年支出计划</h3><table><tr><th>项目</th><th>预算</th><th>时间</th></tr>
+<tr><td>住房装修</td><td class="tr">120,000</td><td>2029</td></tr>
+<tr><td>置业</td><td class="tr">270,000-360,000</td><td>2029</td></tr>
+<tr><td>房车</td><td class="tr">180,000-300,000</td><td>2029-30</td></tr>
+<tr><td>教育婚嫁</td><td class="tr">720,000-1,080,000</td><td>32-47</td></tr></table></div>
+</div>
+<footer>更新：2026-07-24 · 演示版（×0.6脱敏）</footer>
 <script>
-var subs=[{id:'fixincome',label:'固收现金流'},{id:'insurance',label:'保险流'},{id:'active',label:'主动收入'},{id:'passive_cash',label:'被动·现金'},{id:'passive_book',label:'被动·账面'},{id:'expense',label:'支出明细'},{id:'freedom',label:'财务自由度'},{id:'expense_plan',label:'支出计划'}];
-var sm=document.getElementById('submenu');subs.forEach(function(s){var b=document.createElement('button');b.textContent=s.label;b.onclick=function(){switchSub(s.id);};sm.appendChild(b);});
-function switchSub(id){document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});var card=document.getElementById('card_'+id);if(card)card.classList.add('active');document.querySelectorAll('#submenu button').forEach(function(b){b.classList.remove('active');});document.getElementById('sbtn_'+id).classList.add('active');}
+var subs=[
+  {id:'fixincome',label:'固收现金流'},{id:'insurance',label:'保险流'},
+  {id:'active',label:'主动收入'},{id:'passive_cash',label:'被动·现金'},
+  {id:'passive_book',label:'被动·账面'},{id:'expense',label:'支出明细'},
+  {id:'freedom',label:'财务自由度'},{id:'expense_plan',label:'支出计划'}
+];
+var sm=document.getElementById('submenu');
+subs.forEach(function(s){
+  var b=document.createElement('button');b.textContent=s.label;b.id='sbtn_'+s.id;
+  b.onclick=function(){switchSub(s.id);};
+  sm.appendChild(b);
+});
+
+var insSubs=[
+  {id:'1',label:'未来5年生存金'},{id:'2',label:'现金价值'},
+  {id:'3',label:'万能账户'},{id:'4',label:'未来5年可领取'},
+  {id:'5',label:'红利分红'},{id:'6',label:'复归红利'},
+  {id:'7',label:'终期红利'},{id:'8',label:'身故保障金'},
+  {id:'9',label:'满期金'}
+];
+var ism=document.getElementById('ins_subnav');
+insSubs.forEach(function(s){
+  var b=document.createElement('button');b.textContent=s.label;b.id='insbtn_'+s.id;
+  b.onclick=function(){switchIns(s.id);};
+  ism.appendChild(b);
+});
+
+function switchIns(id){
+  document.querySelectorAll('.ins-sec').forEach(function(s){s.classList.remove('active');});
+  var sec=document.getElementById('ins_'+id);if(sec)sec.classList.add('active');
+  document.querySelectorAll('.ins-subnav button').forEach(function(b){b.classList.remove('active');});
+  var btn=document.getElementById('insbtn_'+id);if(btn)btn.classList.add('active');
+}
+
+function switchSub(id){
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});
+  var card=document.getElementById('card_'+id);if(card)card.classList.add('active');
+  document.querySelectorAll('#submenu button').forEach(function(b){b.classList.remove('active');});
+  var sbtn=document.getElementById('sbtn_'+id);if(sbtn)sbtn.classList.add('active');
+  if(id==='insurance'){switchIns('1');}
+}
 switchSub('fixincome');
 </script></body></html>
