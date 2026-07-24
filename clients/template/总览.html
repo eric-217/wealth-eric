@@ -49,13 +49,15 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="summary-item"><div class="sn">净值总额</div><div class="sv">¥79万</div></div>
 <div class="summary-item"><div class="sn">数据覆盖</div><div class="sv" style="color:#d97706">67%</div></div>
 </div>
-<h3>🛡️ 保险分类分布</h3><div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>
+<h3>🛡️ 储蓄类保险类别分布</h3><div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>
 <div class="summary-row">
-<div class="summary-item"><div class="sn">保单总数</div><div class="sv">5份</div></div>
+<div class="summary-item"><div class="sn">储蓄类保单</div><div class="sv">5份</div></div>
 <div class="summary-item"><div class="sn">现金价值</div><div class="sv">¥195万</div></div>
 <div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥1,400万</div></div>
 <div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">157%</div></div>
 </div>
+<h3>🛡️ 保障类保险分布（家庭总保额）</h3><div class="chart-wrap"><canvas id="chartProtType" height="180"></canvas></div>
+<p class="nt" style="margin-top:4px">演示数据 · 实际保额请根据保单填写</p>
 <h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">
 <div class="kbox"><div class="kl">流动比率</div><div class="kv g">5.2x<div class="sub">流动资产/流动负债</div></div></div>
 <div class="kbox"><div class="kl">应急备用金</div><div class="kv a">32个月<div class="sub">参考基准6-12月</div></div></div>
@@ -69,4 +71,9 @@ new Chart(document.getElementById('chartAssets'),{type:'doughnut',data:{labels:[
 new Chart(document.getElementById('chartDebt'),{type:'polarArea',data:{labels:['保险公司','银行','网贷平台'],datasets:[{data:[360,38,28],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartIncome'),{type:'bar',data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','生存金'],datasets:[{data:[314,22,7,9,2,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'千元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 new Chart(document.getElementById('chartInsType'),{type:'pie',data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[2,1,1,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
+new Chart(document.getElementById('chartProtType'),{type:'bar',
+  data:{labels:['重疾保障','医疗保障','意外保障','身故保障'],
+  datasets:[{data:[10,5,5,10],backgroundColor:['#d97706','#6b7280','#6b7280','#6b7280'],borderRadius:4,label:'家庭总保额(万元)'}]},
+  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
+  scales:{x:{title:{display:true,text:'万元',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 </script></body></html>

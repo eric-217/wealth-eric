@@ -54,13 +54,15 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="summary-item"><div class="sn">净值总额</div><div class="sv">¥131.8万</div></div>
 <div class="summary-item"><div class="sn">数据覆盖</div><div class="sv" style="color:#16a34a">100%</div></div>
 </div>
-<h3>🛡️ 保险分类分布</h3><div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>
+<h3>🛡️ 储蓄类保险类别分布</h3><div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>
 <div class="summary-row">
-<div class="summary-item"><div class="sn">保单总数</div><div class="sv">8份</div></div>
+<div class="summary-item"><div class="sn">储蓄类保单</div><div class="sv">8份</div></div>
 <div class="summary-item"><div class="sn">现金价值</div><div class="sv">¥324万</div></div>
 <div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥2,350万</div></div>
 <div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">186%</div></div>
 </div>
+<h3>🛡️ 保障类保险分布（家庭总保额）</h3><div class="chart-wrap"><canvas id="chartProtType" height="180"></canvas></div>
+<p class="nt" style="margin-top:4px">⚠ 复星联合·华贵大麦·安居保3份保障型条款待读取，当前仅有钟爱一生附加重疾¥10万（待确认是否仍有效）</p>
 <h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">
 <div class="kbox"><div class="kl">流动比率</div><div class="kv g">8.4x<div class="sub">流动资产¥113万/流动负债¥13.5万</div></div></div>
 <div class="kbox"><div class="kl">应急备用金</div><div class="kv a">54个月<div class="sub">参考基准6-12月,资金利用效率待优化</div></div></div>
@@ -88,4 +90,10 @@ new Chart(document.getElementById('chartInsType'),{type:'pie',
   data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[3,2,2,1],
   backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
+new Chart(document.getElementById('chartProtType'),{type:'bar',
+  data:{labels:['重疾保障','医疗保障','意外保障','身故保障'],
+  datasets:[{data:[10,0,0,0],backgroundColor:['#d97706','#6b7280','#6b7280','#6b7280'],borderRadius:4,
+  label:'家庭总保额(万元)'}]},
+  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
+  scales:{x:{title:{display:true,text:'万元',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 </script></body></html>
