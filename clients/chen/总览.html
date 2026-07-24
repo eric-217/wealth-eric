@@ -33,9 +33,9 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="kbox"><div class="kl">总负债</div><div class="kv r">¥71万<div class="sub">负债率4.8%</div></div></div>
 </div>
 <div class="krow wide">
-<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥50.8万<div class="sub">固收利息+保险分红+生存金</div></div></div>
+<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥49.7万<div class="sub">固收利息+保险分红+生存金</div></div></div>
 <div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥9.9万<div class="sub">日常¥7.5万+车贷¥2.4万</div></div></div>
-<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">513%<div class="sub">被动收入÷总支出=5.1倍</div></div></div>
+<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">502%<div class="sub">被动收入÷总支出=5.0倍</div></div></div>
 </div>
 <h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>
 <h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>
@@ -83,7 +83,7 @@ new Chart(document.getElementById('chartDebt'),{type:'polarArea',
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartIncome'),{type:'bar',
   data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],
-  datasets:[{data:[44.1,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
+  datasets:[{data:[43.05,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
   options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
   scales:{x:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 new Chart(document.getElementById('chartInsType'),{type:'pie',

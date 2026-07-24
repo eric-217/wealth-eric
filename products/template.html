@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>产品名称 — 产品一页通</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
+.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
+.header{text-align:center;padding:20px 0 10px}
+.header h1{font-size:20px;color:#1a3a5c}
+.header .sub{font-size:13px;color:#888;margin-top:4px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:14px;color:#1a3a5c;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
+th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left}
+td{padding:5px 8px;border:1px solid #ddd;font-size:11.5px}
+td.r{text-align:right}
+tr:nth-child(even){background:#fafafa}
+.highlight{background:#fef3c7;border-radius:6px;padding:12px;margin:8px 0;font-size:12px}
+.highlight strong{color:#92400e}
+.note{font-size:11px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 产品目录</a>
+
+<div class="header">
+  <h1>[产品全称]</h1>
+  <div class="sub">[保司名称] · [产品类型标签]</div>
+</div>
+
+<!-- 基本信息 -->
+<div class="card">
+<h3>基本信息</h3>
+<table>
+<tr><th>项目</th><th>详情</th></tr>
+<tr><td>产品名称</td><td>[产品全称]</td></tr>
+<tr><td>保险公司</td><td>[保司名称]</td></tr>
+<tr><td>产品类型</td><td>[储蓄型/保障型/综合型] · [港险/国内保险]</td></tr>
+<tr><td>币种</td><td>[人民币/港币/美元]</td></tr>
+<tr><td>缴费方式</td><td>[趸交/年缴/预缴]</td></tr>
+</table>
+</div>
+
+<!-- 核心亮点 -->
+<div class="card">
+<h3>核心亮点</h3>
+<div class="highlight">
+  <strong>一句话总结：</strong>[用一句话说清这个产品的最大卖点]
+</div>
+<table>
+<tr><td>亮点1</td><td>[亮点描述]</td></tr>
+<tr><td>亮点2</td><td>[亮点描述]</td></tr>
+<tr><td>亮点3</td><td>[亮点描述]</td></tr>
+<tr><td>亮点4</td><td>[亮点描述]</td></tr>
+</table>
+</div>
+
+<!-- 收益演示（储蓄类）或保障内容（保障类） -->
+<div class="card">
+<h3>[收益演示 / 保障内容]</h3>
+<table>
+<tr><th>年份</th><th>累计保费</th><th>保证现金价值</th><th>预期总价值</th><th>预期IRR</th></tr>
+<tr><td>第1年</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">—</td></tr>
+<tr><td>第5年</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[%]</td></tr>
+<tr><td>第10年</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[%]</td></tr>
+<tr><td>第20年</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[金额]</td><td class="r">[%]</td></tr>
+</table>
+<div class="note">以上为演示数据，实际收益以保单条款和保险公司公告为准。预期收益包含非保证部分。</div>
+</div>
+
+<!-- 适用人群 -->
+<div class="card">
+<h3>适用人群</h3>
+<table>
+<tr><td>✅ 适合</td><td>[列举适合的客户画像]</td></tr>
+<tr><td>❌ 不适合</td><td>[列举不适合的情况]</td></tr>
+</table>
+</div>
+
+<!-- 注意事项 -->
+<div class="card">
+<h3>注意事项</h3>
+<table>
+<tr><td>流动性</td><td>[提前退保损失/锁定期/贷款比例等]</td></tr>
+<tr><td>税务</td><td>[CRS申报/个人所得税/资本利得税等]</td></tr>
+<tr><td>汇率风险</td><td>[如涉及外币]</td></tr>
+<tr><td>其他</td><td>[其他重要提示]</td></tr>
+</table>
+</div>
+
+<footer>生成日期：[日期] · 仅供内部参考 · 不构成销售建议</footer>
+
+</body>
+</html>

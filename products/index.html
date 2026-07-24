@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>产品目录</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
+h2{font-size:18px;color:#1a3a5c;margin-bottom:12px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:15px;color:#1a3a5c;margin-bottom:6px}
+.product-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.pcard{display:block;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:16px 14px;text-decoration:none;transition:all .2s}
+.pcard:hover{background:#eff6ff;border-color:#93c5fd}
+.pcard .ptitle{font-size:15px;font-weight:600;color:#1a3a5c}
+.pcard .pmeta{font-size:11px;color:#888;margin-top:4px}
+.pcard .pdesc{font-size:12px;color:#555;margin-top:6px;line-height:1.5}
+.pcard .ptags{margin-top:6px}
+.ptag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;font-weight:600}
+.ptag.hk{background:#dbeafe;color:#1e40af}
+.ptag.cn{background:#fef3c7;color:#92400e}
+.ptag.savings{background:#dcfce7;color:#166534}
+.ptag.protection{background:#fce7f3;color:#9d174d}
+.empty{text-align:center;padding:40px 20px;color:#aaa;font-size:13px}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style>
+</head>
+<body>
+
+<h2>产品目录</h2>
+
+<div class="card">
+<h3>全部产品</h3>
+<div class="product-grid" id="productList">
+<div class="empty">暂无产品资料。客户经理将在"产品一页通生成"对话中创建产品资料，确认后推送到此处。</div>
+</div>
+</div>
+
+<footer>船长财富管理 · 产品库</footer>
+
+</body>
+</html>

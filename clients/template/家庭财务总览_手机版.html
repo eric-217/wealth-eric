@@ -1,0 +1,559 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>家庭财务 · 手机版（模板）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px;-webkit-text-size-adjust:100%}
+.menu{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:4px 6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.menu button{padding:8px 14px;border:none;border-radius:5px;font-size:13px;font-weight:600;color:#8899aa;background:transparent;margin:2px;display:inline-block}
+.menu button.active{color:#fff;background:rgba(255,255,255,0.18)}
+.submenu{position:sticky;top:40px;background:#e8edf2;z-index:99;padding:6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;display:none;border-bottom:1px solid #d0d9e3}
+.submenu button{padding:5px 11px;border:1px solid #c0c9d3;border-radius:4px;font-size:11px;color:#555;background:#fff;margin:2px}
+.submenu button.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.backbar{display:none;position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}
+.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
+.c{padding:10px}
+.card{background:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05);display:none}
+.card.active{display:block}
+.card h2{font-size:17px;color:#1a3a5c;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8eaed}
+.card h3{font-size:15px;color:#334;margin:16px 0 10px}
+.card h3:first-of-type{margin-top:0}
+.date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.krow.wide{grid-template-columns:1fr 1fr 1fr}
+.kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
+.kbox .kl{font-size:11px;color:#889;margin-bottom:4px}
+.kbox .kv{font-size:20px;font-weight:700}
+.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}.kbox .kv.b{color:#2563eb}.kbox .kv.a{color:#d97706}
+.kbox .sub{font-size:11px;color:#999;margin-top:2px}
+.chart-wrap{position:relative;width:100%;max-width:340px;margin:8px auto}
+.chart-wrap canvas{width:100%!important;height:auto!important}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left;border:1px solid #1a3a5c}
+td{padding:7px 6px;border:1px solid #ddd;font-size:12px}
+td.tr{text-align:right}
+tr:nth-child(even){background:#fafafa}
+tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
+tr.warn{background:#fef2f2}.bg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#f0fdf4;color:#16a34a}
+.ba{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#fefce8;color:#d97706}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px -4px;padding:0 4px}.tbl-wrap table{min-width:500px}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+.summary-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.summary-item{flex:1;min-width:80px;background:#f8fafc;border-radius:8px;padding:10px;text-align:center}
+.summary-item .sn{font-size:11px;color:#889}.summary-item .sv{font-size:18px;font-weight:700;margin-top:2px}
+.insbtn{padding:4px 8px;border:1px solid #c0c9d3;border-radius:3px;font-size:10px;color:#555;background:#fff;margin:1px 2px}
+.insbtn.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.inssec{display:none}.inssec.active{display:block}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style></head><body>
+<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 14px;margin:10px 12px;font-size:12px;color:#dc2626;text-align:center;font-weight:600">
+⚠ 本文件为脱敏模板，所有金额已按60%比例缩放，产品名称已替换为通用名称。新客户使用前请替换为实际数据。
+</div>
+<div class="menu" id="menu"></div>
+<div class="backbar" id="backbar"><a href="菜单.html">← 返回菜单</a> <span id="backtitle"></span></div>
+<div class="submenu" id="submenu"></div>
+<div class="c" id="container"></div>
+<footer>更新：2026-07-24（模板脱敏版）</footer>
+
+<script>
+// ===== 主菜单 =====
+var mainMenu=[
+  {id:'overview',label:'总览',hasSub:false},
+  {id:'assets',label:'资产明细',hasSub:true,
+    sub:[
+      {id:'assets_fixincome',label:'固收资产'},
+      {id:'assets_fundstock',label:'基金股票'},
+      {id:'assets_insurance',label:'保险资产'},
+      {id:'assets_pe',label:'私募基金'},
+      {id:'assets_property',label:'固定资产'},
+      {id:'assets_bank',label:'银行存款'},
+      {id:'assets_other',label:'其他在投资产'}
+    ]},
+  {id:'debt',label:'负债明细',hasSub:false},
+  {id:'trend',label:'趋势跟踪',hasSub:false},
+  {id:'cashflow',label:'现金流',hasSub:true,
+    sub:[
+      {id:'cf_fixincome',label:'固收现金流'},
+      {id:'cf_insurance',label:'保险流'},
+      {id:'cf_active',label:'主动收入明细'},
+      {id:'cf_passive_cash',label:'被动收入·现金'},
+      {id:'cf_passive_book',label:'被动收入·账面'},
+      {id:'cf_expense',label:'支出明细'},
+      {id:'cf_freedom',label:'财务自由度'},
+      {id:'cf_expense_plan',label:'近1年支出计划'}
+    ]},
+  {id:'protection',label:'保险保障',hasSub:false},
+  {id:'policies',label:'保单管理',hasSub:false},
+  {id:'future',label:'未来展望',hasSub:false},
+  {id:'advice',label:'配置建议',hasSub:false},
+  {id:'todo',label:'待办事项',hasSub:false}
+];
+
+// ===== 内容面板 =====
+var panels={};
+var defaultSub={'assets':'assets_fixincome','cashflow':'cf_fixincome'};
+
+// --- 总览 ---
+panels.overview='<div class="date-tag">📅 数据截止：2026年7月</div><div class="krow wide">'
++'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1484万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
++'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1413万<div class="sub">净值率95.2%</div></div></div>'
++'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥26万<div class="sub">负债率4.8%</div></div></div>'
++'</div><div class="krow wide">'
++'<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥17.9万<div class="sub">固收利息+保险分红+生存金</div></div></div>'
++'<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥3.5万<div class="sub">日常¥2.7万+车贷¥0.8万</div></div></div>'
++'<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">502%<div class="sub">被动收入÷总支出=5.0倍</div></div></div>'
++'</div><h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>'
++'<h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>'
++'<h3>📊 年度被动收入分布</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>'
++'<h3 style="margin-top:20px">💰 固收资产摘要</h3><div class="summary-row">'
++'<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">10笔</div></div>'
++'<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥173万</div></div>'
++'<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">2笔</div></div>'
++'<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥22万</div></div>'
++'<div class="summary-item"><div class="sn">未来6个月利息收入</div><div class="sv">¥4.8万</div></div>'
++'</div><h3 style="margin-top:20px">🏢 私募股权投资摘要</h3><div class="summary-row">'
++'<div class="summary-item"><div class="sn">持有基金</div><div class="sv">10只</div></div>'
++'<div class="summary-item"><div class="sn">总投入</div><div class="sv">¥103万</div></div>'
++'<div class="summary-item"><div class="sn">已回款</div><div class="sv">¥25万</div></div>'
++'<div class="summary-item"><div class="sn">净值总额</div><div class="sv">¥47.5万</div></div>'
++'<div class="summary-item"><div class="sn">数据覆盖</div><div class="sv" style="color:#16a34a">100%</div></div>'
++'</div><h3>🛡️ 保险分类分布</h3><div class="chart-wrap"><canvas id="chartInsType" height="180"></canvas></div>'
++'<div class="summary-row">'
++'<div class="summary-item"><div class="sn">保单总数</div><div class="sv">8份</div></div>'
++'<div class="summary-item"><div class="sn">现金价值</div><div class="sv">¥116万</div></div>'
++'<div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥846万</div></div>'
++'<div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">186%</div></div>'
++'</div><h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">'
++'<div class="kbox"><div class="kl">流动比率</div><div class="kv g">8.4x<div class="sub">流动资产¥41万/流动负债¥4.9万</div></div></div>'
++'<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">54个月<div class="sub">参考基准6-12月,资金利用效率待优化</div></div></div>'
++'<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">21%<div class="sub">最大单笔¥36万占固收总额21%</div></div></div>'
++'<div class="kbox"><div class="kl">保险占比</div><div class="kv b">21.8%<div class="sub">储蓄型8份·私募指¥103万按投入成本计</div></div></div>';
+
+// --- 资产明细子页面 ---
+panels.assets_fixincome='<h3>固收（10笔·¥173万）</h3><div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>'
++'<tr class="done"><td>固收A37期</td><td class="tr">80万</td><td class="tr">10.2%</td><td>✅退出</td></tr>'
++'<tr><td>固收A60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>2026-08</td></tr>'
++'<tr><td>固收C</td><td class="tr">30万</td><td class="tr">9.8%</td><td>2026-11</td></tr>'
++'<tr><td>固收B36694</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>'
++'<tr><td>固收A105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td>2027-08</td></tr>'
++'<tr><td>固收B36606</td><td class="tr">20万</td><td class="tr">9.0%</td><td>2027-10</td></tr>'
++'<tr><td>固收A137期</td><td class="tr">90万</td><td class="tr">9.4%</td><td>2027-12</td></tr>'
++'<tr><td>固收B36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td>2028-06</td></tr>'
++'<tr><td>固收A295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-10</td></tr>'
++'<tr><td>固收A328期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-11</td></tr>'
++'<tr><td>固收A343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td>2029-03</td></tr></table></div>'
++'<a href="固收现金流明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看固收现金流明细 →</a>';
+
+panels.assets_fundstock='<div class="date-tag">📅 数据截止：2026年7月</div><p class="nt">暂无基金/股票持仓数据。后续如有配置将在此展示：产品名称、持有份额、当前市值、浮动盈亏等。</p>';
+
+panels.assets_insurance='<h3>保险（8份·¥116万现金价值）</h3><div class="tbl-wrap"><table><tr><th>保单</th><th>现金价值</th><th>类型</th><th>核心</th></tr>'
++'<tr><td>产品A主险</td><td class="tr">137.5万</td><td>满期返还型</td><td>满期¥62万 <span class="bg">✅</span></td></tr>'
++'<tr><td>产品A万能账户</td><td class="tr">39.0万</td><td>灵活账户型</td><td>保证2.5%</td></tr>'
++'<tr><td>产品B·硕/岚×2</td><td class="tr">107.2万</td><td>养老收入型</td><td>60岁月领¥1.0万</td></tr>'
++'<tr><td>产品D</td><td class="tr">17.8万</td><td>养老收入型</td><td>60岁起领 <span class="bg">✅</span></td></tr>'
++'<tr><td>产品E</td><td class="tr">10.3万</td><td>终身增值型</td><td>3.45%复利</td></tr>'
++'<tr><td>产品F</td><td class="tr">6.3万</td><td>满期返还型</td><td>¥1020/年</td></tr>'
++'<tr><td>产品H</td><td class="tr">3.9万</td><td>终身增值型</td><td>保额年增5%</td></tr></table></div>'
++'<h3>港险（2份·$60000）</h3><div class="tbl-wrap"><table><tr><th>保单</th><th>保费</th><th>状态</th><th>核心</th></tr>'
++'<tr><td>港险A星河尊享2</td><td class="tr">$18000</td><td>2年缴</td><td>第2年2026-08-26待缴</td></tr>'
++'<tr><td>港险B匠心传承2</td><td class="tr">$42000</td><td>预缴完成</td><td>已承保 <span class="bg">✅</span></td></tr></table></div>'
++'<a href="保险明细.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看保单逐份明细 →</a>';
+
+panels.assets_pe='<h3>私募股权（10只·投入¥103万）</h3><div class="tbl-wrap"><table><tr><th>基金</th><th>投入</th><th>DPI/净值</th><th>状态</th></tr>'
++'<tr><td>PE基金A</td><td class="tr">100万</td><td class="tr">回款59.5万</td><td>清算中</td></tr>'
++'<tr><td>PE基金B+PE基金B2</td><td class="tr">130万</td><td class="tr">回款8.3万</td><td>运行中</td></tr>'
++'<tr><td>PE基金C</td><td class="tr">20万</td><td class="tr">回款2.2万</td><td>延长期</td></tr>'
++'<tr><td>PE基金D</td><td class="tr">40万</td><td class="tr">净值0.99</td><td>正常</td></tr>'
++'<tr><td>PE基金E等6只</td><td class="tr">95万</td><td class="tr">净值0.96-0.99</td><td>正常</td></tr></table></div>'
++'<p class="nt">✅ 100%数据覆盖 | 已回款¥25万 | 7只净值合计¥47.5万 | 数据截止2025.12.31</p>';
+
+panels.assets_property='<div class="date-tag">📅 数据截止：2026年7月</div><table><tr><th>房产</th><th>面积</th><th>估值</th></tr>'
++'<tr><td>[城市]住宅A</td><td>120㎡</td><td class="tr">≈¥54万</td></tr>'
++'<tr><td>[城市]住宅B</td><td>140㎡</td><td class="tr">≈¥43万</td></tr>'
++'<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥97万</td></tr></table>';
+panels.assets_bank='<div class="date-tag">📅 ⚠ 存款数据待更新</div><table><tr><th>账户</th><th>金额</th><th>备注</th></tr>'
++'<tr><td>灵活宝</td><td class="tr">⚠待更新</td><td>货币基金·核心备用金</td></tr>'
++'<tr><td>其他存款</td><td class="tr">⚠待更新</td><td>含理赔¥124254.4入账</td></tr></table>';
+panels.assets_other='<div class="date-tag">📅 数据截止：2026年7月</div><p class="nt">暂无其他在投资产。后续如有贵金属、外汇、信托等资产将在此展示。</p>';
+
+// --- 负债明细 ---
+panels.debt='<table><tr><th>负债</th><th>本金</th><th>机构</th><th>月供/息</th><th>利率</th></tr>'
++'<tr><td>产品A贷款</td><td class="tr">¥360000</td><td>保险公司</td><td class="tr">¥1275</td><td>4.25%日计息</td></tr>'
++'<tr><td>车贷</td><td class="tr">¥38016</td><td>银行</td><td class="tr">¥2112</td><td>约18期未还</td></tr>'
++'<tr><td>网贷</td><td class="tr">¥27600</td><td>网贷平台</td><td class="tr">待确认</td><td>待确认</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">¥425616</td><td></td><td class="tr">¥3387/月</td><td></td></tr></table>'
++'<p class="nt">保司B贷款已还清 ✅ | 保司A贷款已部分还款至¥22万 | 总负债率4.8%</p>';
+
+// --- 趋势跟踪（跳转到详细页面）---
+panels.trend='<div class="date-tag">📅 基线：2026年7月</div><div class="krow">'
++'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1484→1070万<div class="sub">2026→2028（固收退出）</div></div></div>'
++'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1413→1580万<div class="sub">扣除固收重复计算后</div></div></div>'
++'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→2万<div class="sub">2026年集中消化</div></div></div>'
++'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">50.8万→8万<div class="sub">2026→2029断崖下降</div></div></div>'
++'</div><div class="krow wide">'
++'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">374%</div></div>'
++'<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">88%⚠</div></div>'
++'<div class="kbox"><div class="kl">2030+自由度</div><div class="kv r">77%🔴</div></div>'
++'</div>'
++'<a href="趋势跟踪.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看完整趋势分析 →</a>';
+
+// --- 现金流子页面 ---
+panels.cf_fixincome='<div class="date-tag">📅 2026年07月—09月 | 单位：元 | <span style="color:#d32f2f;font-weight:700">红色粗体</span>=含本金返还</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>07月</th><th>08月</th><th>09月</th></tr>'
++'<tr><td>固收B转让项目 9.0%</td><td class="tr">20万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">4,500</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>固收B转让项目 9.4%</td><td class="tr">20万</td><td class="tr">9.4%</td><td class="tr" style="color:#1d9e75">4,700</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>固收A60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td class="tr">—</td><td class="tr" style="color:#d32f2f;font-weight:700">330,600</td><td class="tr">—</td></tr>'
++'<tr><td>固收A105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">28,800</td><td class="tr">—</td></tr>'
++'<tr><td>固收A295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">22,500</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>固收A328期 子女B名下</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,500</td><td class="tr">—</td></tr>'
++'<tr><td>固收A343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">10,500</td></tr>'
++'<tr><td>固收B转让项目36851 子女B名下</td><td class="tr">10万</td><td class="tr">8.8%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">2,200</td></tr>'
++'<tr><td>固收C收益权转让计划</td><td class="tr">30万</td><td class="tr">9.8%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">7,350</td><td class="tr">—</td></tr>'
++'<tr class="tt"><td>3个月合计</td><td class="tr">390万</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">31,700</td><td class="tr" style="color:#d32f2f;font-weight:700">389,250</td><td class="tr" style="color:#1d9e75">12,700</td></tr></table></div>'
++'<p class="nt">已到期退出：固收A37期（2026-07-14到期，已到账881,600元，不在此表显示）| 红色粗体=含本金返还（众享60期08月到期还本）</p>';
+
+panels.cf_insurance='<div style="overflow-x:auto;white-space:nowrap;margin:0 0 12px;padding-bottom:4px;border-bottom:1px solid #e0e5ea">'
++'<button class="insbtn active" onclick="switchIns(1)">生存金</button>'
++'<button class="insbtn" onclick="switchIns(2)">现金价值</button>'
++'<button class="insbtn" onclick="switchIns(3)">万能账户</button>'
++'<button class="insbtn" onclick="switchIns(4)">保费</button>'
++'<button class="insbtn" onclick="switchIns(5)">红利</button>'
++'<button class="insbtn" onclick="switchIns(6)">复归红利</button>'
++'<button class="insbtn" onclick="switchIns(7)">终期红利</button>'
++'<button class="insbtn" onclick="switchIns(8)">身故金</button>'
++'<button class="insbtn" onclick="switchIns(9)">满期金</button>'
++'</div>'
++'<div id="inssec1" class="inssec active">'
++'<p class="date-tag">现金实际到账 | 单位：元</p><div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>'
++'<tr><td>产品A</td><td class="tr">36,000</td><td class="tr">36,000</td><td class="tr">36,000</td><td class="tr">36,000</td></tr>'
++'<tr><td>产品F</td><td class="tr">1,700</td><td class="tr">1,700</td><td class="tr">1,700</td><td class="tr">1,700</td></tr>'
++'<tr><td>99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">5,000</td><td class="tr">—</td></tr>'
++'<tr><td>保司D产品D</td><td class="tr" colspan="4">尚未开始（预计55岁/2038年起）</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">37,700</td><td class="tr">37,700</td><td class="tr">42,700</td><td class="tr">37,700</td></tr></table></div></div>'
++'<div id="inssec2" class="inssec">'
++'<p class="date-tag">账面价值 | 单位：元</p><div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2030</th><th>2036</th></tr>'
++'<tr><td>产品A主险</td><td class="tr">1,375,000</td><td class="tr">—</td><td class="tr">1,732,000</td></tr>'
++'<tr><td>产品AUA</td><td class="tr">390,000</td><td class="tr">540,000</td><td class="tr">680,000</td></tr>'
++'<tr><td>产品B×2</td><td class="tr">1,072,000</td><td class="tr">1,440,000</td><td class="tr">1,920,000</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">2,837,000</td><td class="tr">1,980,000</td><td class="tr">4,332,000</td></tr></table></div></div>'
++'<div id="inssec3" class="inssec">'
++'<p class="date-tag">产品A万能账户 | 保证利率2.5%</p>'
++'<div class="krow"><div class="kbox"><div class="kl">当前余额</div><div class="kv">390,000</div></div>'
++'<div class="kbox"><div class="kl">年增值</div><div class="kv g">≈11,000</div></div></div></div>'
++'<div id="inssec4" class="inssec">'
++'<p class="date-tag">当年实际保费支出 | 单位：元</p><table><tr><th>保单</th><th>2026</th><th>说明</th></tr>'
++'<tr><td>产品I</td><td class="tr">2,460</td><td>年缴至2044年</td></tr>'
++'<tr><td>产品J定寿</td><td class="tr">待确认</td><td>年缴</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">≥2,460</td><td>不含已缴清保单</td></tr></table></div>'
++'<div id="inssec5" class="inssec">'
++'<p class="date-tag">美式分红·年度现金红利 | 单位：元</p><table><tr><th>保单</th><th>累计红利</th><th>红利利息</th><th>合计</th><th>2026新增</th></tr>'
++'<tr><td>保司D产品D</td><td class="tr">36,536</td><td class="tr">10,865</td><td class="tr">47,401</td><td class="tr">1,192</td></tr>'
++'<tr><td>产品F</td><td class="tr" colspan="3">待确认</td><td class="tr">待确认</td></tr></table></div>'
++'<div id="inssec6" class="inssec">'
++'<p class="date-tag">港险归原红利·公布即保证面值</p><table><tr><th>保单</th><th>有/无</th><th>说明</th></tr>'
++'<tr><td>国内保单</td><td style="color:#888">无</td><td>无复归红利机制</td></tr>'
++'<tr><td>港险A港险</td><td style="color:#16a34a">有</td><td>5年后可锁定50%，积存3.5%</td></tr>'
++'<tr><td>港险B港险</td><td style="color:#f0a020">有</td><td>面值保证·CV非保证·无锁定</td></tr></table></div>'
++'<div id="inssec7" class="inssec">'
++'<p class="date-tag">退保/理赔/满期时一次性给付</p><table><tr><th>保单</th><th>有/无</th><th>说明</th></tr>'
++'<tr><td>国内保单</td><td style="color:#888">无</td><td>无终期红利机制</td></tr>'
++'<tr><td>港险A港险</td><td style="color:#16a34a">有</td><td>面值非保证·退保按折现率折算</td></tr>'
++'<tr><td>港险B港险</td><td style="color:#16a34a">有</td><td>第10年可选财富跃进重定保证值</td></tr></table></div>'
++'<div id="inssec8" class="inssec">'
++'<p class="date-tag">当前身故赔付金额 | 单位：元</p><div class="tbl-wrap"><table><tr><th>保单</th><th>被保人</th><th>身故保障金</th></tr>'
++'<tr><td>产品A</td><td>[客户]</td><td class="tr">1,732,000+UA</td></tr>'
++'<tr><td>保司B·子女A</td><td>子女A</td><td class="tr">536,000</td></tr>'
++'<tr><td>保司B·子女B</td><td>子女B</td><td class="tr">536,000</td></tr>'
++'<tr><td>保司D产品D</td><td>[客户]</td><td class="tr">791,000*</td></tr>'
++'<tr><td>产品H</td><td>[客户]</td><td class="tr">187,000</td></tr>'
++'<tr><td>产品E终身寿</td><td>[客户]</td><td class="tr">140,000</td></tr>'
++'<tr><td>产品F</td><td>[客户]</td><td class="tr">100,000</td></tr>'
++'<tr><td>产品I</td><td>[用户]</td><td class="tr">2.7~300万</td></tr>'
++'<tr style="background:#f0f4f8"><td>产品J定寿</td><td>[用户]</td><td class="tr">待补充</td></tr></table></div></div>'
++'<div id="inssec9" class="inssec">'
++'<p class="date-tag">到期/特定年龄一次性给付 | 单位：元</p><table><tr><th>保单</th><th>类型</th><th>金额</th><th>时间</th></tr>'
++'<tr><td>产品A</td><td>满期金</td><td class="tr">1,732,000</td><td>2036-11-16</td></tr>'
++'<tr><td>产品F</td><td>祝寿金</td><td class="tr">2万×5=10万</td><td>60/65/70/75/80岁</td></tr>'
++'<tr><td>产品I</td><td>满期生存</td><td class="tr">27,060</td><td>2045-06-12</td></tr>'
++'<tr><td>保司D产品D</td><td>祝寿金</td><td class="tr">100,000</td><td>88岁</td></tr></table></div>'
++'<p class="nt"><a href="现金流.html" style="color:#1a3a5c">查看完整的现金流明细 →</a></p>';
+
+panels.cf_active='<div class="date-tag">📅 2026年度预估</div><table><tr><th>来源</th><th>年金额</th><th>备注</th></tr>'
++'<tr><td>港险佣金</td><td class="tr">待补充</td><td>20-30%佣金率</td></tr>'
++'<tr><td>内容产品收入</td><td class="tr">待补充</td><td>出书+创作</td></tr>'
++'<tr><td>工资收入</td><td class="tr">待补充</td><td>—</td></tr></table><p class="nt">主动收入数据待补充。请联系提供各项明细。</p>';
+
+panels.cf_passive_cash='<div class="date-tag">📅 实际到账现金收入</div><table><tr><th>来源</th><th>2026年</th><th>备注</th></tr>'
++'<tr><td>固收利息</td><td class="tr">¥258300</td><td>10笔固收产品利息</td></tr>'
++'<tr><td>保司A生存金</td><td class="tr">¥21600</td><td>每年11月16日转入</td></tr>'
++'<tr><td>产品F生存金</td><td class="tr">¥1020</td><td>每年定期</td></tr>'
++'<tr><td>保险分红</td><td class="tr">≈¥1800</td><td>产品D+产品F</td></tr>'
++'<tr><td>银行存款利息</td><td class="tr">—</td><td>灵活宝收益待计算</td></tr>'
++'<tr class="tt"><td>现金被动收入</td><td class="tr">≈¥282720</td><td></td></tr></table>';
+
+panels.cf_passive_book='<div class="date-tag">📅 账面增长（非现金）</div><table><tr><th>来源</th><th>2026年</th><th>备注</th></tr>'
++'<tr><td>保险现金价值增值</td><td class="tr">≈¥9000</td><td>8份储蓄型保单</td></tr>'
++'<tr><td>万能账户增值</td><td class="tr">≈¥6600</td><td>产品AUA保证2.5%</td></tr>'
++'<tr><td>私募净值增值</td><td class="tr">待评估</td><td>7只净值基金</td></tr>'
++'<tr><td>港险红利增值</td><td class="tr">待确认</td><td>港险A+港险B</td></tr>'
++'<tr class="tt"><td>账面被动收入</td><td class="tr">≈¥15600+</td><td></td></tr></table>';
+
+panels.cf_expense='<div class="date-tag">📅 近半年支出计划</div><table><tr><th>类别</th><th>项目</th><th>金额</th></tr>'
++'<tr><td>A 生活</td><td>手机</td><td class="tr">¥4200</td></tr>'
++'<tr><td>B 教育</td><td>校服+餐费+夏令营</td><td class="tr">¥5160</td></tr>'
++'<tr><td>B 教育</td><td>托管+班费+文具</td><td class="tr">¥5700</td></tr>'
++'<tr><td>C 交通</td><td>车贷×6（每月¥2112）</td><td class="tr">¥12672</td></tr>'
++'<tr><td>D 家庭</td><td>骨灰下葬+回老家等</td><td class="tr">¥1800</td></tr>'
++'<tr><td>E 旅游</td><td>秋游+秋假</td><td class="tr">¥2100</td></tr>'
++'<tr class="tt"><td colspan="2">合计</td><td class="tr">¥31632</td></tr></table>';
+
+panels.cf_freedom='<div class="date-tag">📅 基于2026年7月数据</div><div class="krow">'
++'<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">¥18.3万</div></div>'
++'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">502%</div></div>'
++'<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">¥2.2万</div></div>'
++'<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div>'
++'<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>'
++'<tr><td>2026</td><td class="tr">49.7万</td><td class="tr">9.9万</td><td style="color:#16a34a">502%</td></tr>'
++'<tr><td>2027</td><td class="tr">44.9万</td><td class="tr">9.0万</td><td>499%</td></tr>'
++'<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">8.1万</td><td class="tr">9.0万</td><td style="color:#dc2626">90%⚠</td></tr>'
++'<tr><td>2036</td><td class="tr">9.4万</td><td class="tr">9.0万</td><td>104%</td></tr></table>';
+
+panels.cf_expense_plan='<table><tr><th>项目</th><th>预算</th><th>时间</th></tr>'
++'<tr><td>住房装修</td><td class="tr">¥7万</td><td>2029</td></tr>'
++'<tr><td>郴州置业</td><td class="tr">¥27-60万</td><td>2029</td></tr>'
++'<tr><td>房车</td><td class="tr">¥18-50万</td><td>2029-2030</td></tr>'
++'<tr><td>教育婚嫁</td><td class="tr">¥72-180万</td><td>2032-2047</td></tr></table>'
++'<h3>车贷偿还</h3><table><tr><td>2026下</td><td class="tr">6期·¥12672</td><td>2027</td><td class="tr">12期·¥25344</td></tr></table>';
+
+// --- 保险保障 ---
+panels.protection='<h3>保障配置状态</h3><div class="tbl-wrap"><table style="font-size:13px">'
++'<tr><th>家庭成员</th><th>医疗险</th><th>重疾险</th><th>意外险</th><th>定寿险</th><th>养老储备</th><th>储蓄增值</th></tr>'
++'<tr><td>[客户](43)</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#16a34a">✓</td></tr>'
++'<tr><td>[用户](45)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
++'<tr><td>子女A(9)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
++'<tr><td>子女B(9)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
++'<tr><td>[母亲](69)</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr></table></div>'
++'<p class="nt">✓=已配置 ⚠=待确认(保障类保单条款未读取) ✗=未配置 | [母亲]可能有城乡居民医保</p>'
++'<h3>保障额度概览</h3><div class="tbl-wrap"><table style="font-size:13px">'
++'<tr><th>家庭成员</th><th>重疾保障</th><th>医疗保障</th><th>意外保障</th><th>身故保障</th></tr>'
++'<tr><td>[客户](43)</td><td style="text-align:center;color:#d97706">¥4万⚠</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td></tr>'
++'<tr><td>[用户](45)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
++'<tr><td>子女A(9)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
++'<tr><td>子女B(9)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
++'<tr><td>[母亲](69)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr></table></div>'
++'<p class="nt">⚠ 产品D附加重疾¥4万已缴清，是否仍有效待确认。保司E·华贵·安居保3份保障型条款待读取。</p>';
+
+// --- 保单管理 ---
+panels.policies='<div class="date-tag">📅 数据截止：2026年7月</div>'
+
+// 缴费提醒
++'<h3>💰 交费提醒</h3><table><tr><th>保单</th><th>交费日</th><th>金额</th><th>状态</th></tr>'
++'<tr class="warn"><td>港险A星河尊享2（港险）</td><td>2026-08-26</td><td class="tr">$9007.7</td><td>🔴 第2年待缴</td></tr>'
++'<tr><td>保司D产品D</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品A二代</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>保司B产品B×2</td><td>趸交</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品E/产品F</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品H</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>港险B匠心传承2（港险）</td><td>预缴完成</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr></table>'
+
+// 变更状态
++'<h3>📝 投保人/受益人变更</h3><table><tr><th>保单</th><th>原投保人</th><th>现投保人</th><th>受益人</th><th>状态</th></tr>'
++'<tr><td>保司D产品D</td><td>[原投保人]</td><td>[客户]</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品E终身寿</td><td>[原投保人]</td><td>[客户]</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品F</td><td>[原投保人]</td><td>[客户]</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品B×2（硕/岚）</td><td>[原投保人]</td><td>[客户]</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品H</td><td>[原投保人]</td><td>[客户]</td><td>指定</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>产品A二代</td><td>[原投保人]</td><td>[客户]</td><td>指定</td><td><span class="bg">✅</span></td></tr></table>'
+
+// 红利/生存金日期
++'<h3>📅 红利/生存金/到期日</h3><table><tr><th>保单</th><th>类型</th><th>金额</th><th>下次日期</th><th>频次</th></tr>'
++'<tr><td>产品A</td><td>生存金</td><td class="tr">¥21600</td><td>每年11月16日</td><td>年/至2036年</td></tr>'
++'<tr><td>产品A万能账户</td><td>增值</td><td class="tr">≈¥6600</td><td>月结</td><td>保证2.5%</td></tr>'
++'<tr><td>产品H</td><td>生存金</td><td class="tr">¥3000</td><td>2028-08-28</td><td>每3年</td></tr>'
++'<tr><td>产品F</td><td>生存金</td><td class="tr">¥1020</td><td>每年定期</td><td>年</td></tr>'
++'<tr><td>产品D</td><td>分红</td><td class="tr">≈¥1800</td><td>年底</td><td>年</td></tr>'
++'<tr><td>产品B×2</td><td>养老金</td><td class="tr">¥1.0万/月</td><td>2077-12-23起</td><td>月/终身</td></tr>'
++'<tr><td>产品D</td><td>养老金</td><td class="tr">¥6000+/年</td><td>60岁起</td><td>年/终身</td></tr>'
++'<tr><td>产品A</td><td>满期金</td><td class="tr">≈¥62万</td><td>2036年11月</td><td>一次性</td></tr></table>'
+
+// 当前现金价值
++'<h3>💎 保单现金价值（当前）</h3><div class="tbl-wrap"><table><tr><th>保单</th><th>类型</th><th>现金价值</th><th>增长率</th><th>关键节点</th></tr>'
++'<tr><td>产品A主险</td><td>满期返还</td><td class="tr">¥824940</td><td>—</td><td>2036满期¥62万</td></tr>'
++'<tr><td>产品A万能账户</td><td>灵活账户</td><td class="tr">¥234170</td><td>2.5%保证</td><td>持续增</td></tr>'
++'<tr><td>产品B（子女A）</td><td>养老收入</td><td class="tr">¥321492</td><td>≈5%</td><td>2077起月领¥8712</td></tr>'
++'<tr><td>产品B（子女B）</td><td>养老收入</td><td class="tr">¥321492</td><td>≈5%</td><td>2077起月领¥8448</td></tr>'
++'<tr><td>产品D</td><td>养老年金</td><td class="tr">¥106800</td><td>含分红</td><td>60岁起领</td></tr>'
++'<tr><td>产品E</td><td>终身增值</td><td class="tr">¥61800</td><td>3.45%复利</td><td>终身增</td></tr>'
++'<tr><td>产品F</td><td>满期返还</td><td class="tr">¥37800</td><td>含分红</td><td>2054满期</td></tr>'
++'<tr><td>产品H</td><td>终身增值</td><td class="tr">¥23505</td><td>保额年增5%</td><td>终身</td></tr>'
++'<tr class="tt"><td>合计（国内8份）</td><td></td><td class="tr">¥1931999</td><td></td><td></td></tr></table></div>'
+
+// 港险现金价值
++'<h3>🇭🇰 港险退保总价值（计划书演示）</h3><div class="tbl-wrap"><table><tr><th>年度</th><th>港险A(总$2万)</th><th>港险B(总$4万)</th><th>合计</th></tr>'
++'<tr><td>第5年</td><td class="tr">$17342</td><td class="tr">$39646</td><td class="tr">$56989</td></tr>'
++'<tr><td>第10年</td><td class="tr">$23041</td><td class="tr">$50296</td><td class="tr">$73337</td></tr>'
++'<tr><td>第20年</td><td class="tr">$43227</td><td class="tr">$88726</td><td class="tr">$131953</td></tr>'
++'<tr><td>第30年</td><td class="tr">$87534</td><td class="tr">$173107</td><td class="tr">$260641</td></tr></table></div>'
+
+// 保单条款注意事项
++'<h3>⚠️ 保单条款注意事项</h3><table><tr><th>保单</th><th>注意事项</th></tr>'
++'<tr><td>保司B产品B×2</td><td>60岁前无生存金发放; 保证领取25年(60-85岁); 身故赔付=max(¥18万,CV)</td></tr>'
++'<tr><td>产品D</td><td>附加重疾(9201)¥4万已缴清⚠️是否仍有效待确认; 豁免重疾B已失效(无保费可豁免)</td></tr>'
++'<tr><td>产品A</td><td>保单贷款¥22万(4.25%日计息); 生存金自动转入万能账户; 万能账户保证2.5%</td></tr>'
++'<tr><td>港险A星河尊享2</td><td>归原红利公布即保证✅; 意外护理$18万免费至65岁; 5年后可价值锁定50%</td></tr>'
++'<tr><td>港险B匠心传承2</td><td>复归红利现金价值非保证⚠️(与港险A不同); 第10年可选财富跃进; 保费豁免2年免费</td></tr>'
++'<tr><td>产品H</td><td>生存金¥3000/3年(固定,不随保额增长); 保额5%/年仅影响身故赔付</td></tr>'
++'<tr><td>产品I</td><td>保障类条款待读取⚠️; 意外保障细节待确认</td></tr></table>'
+
+// 保障全面性分析
++'<h3>🔍 保障全面性分析</h3><table><tr><th>维度</th><th>状态</th><th>说明</th></tr>'
++'<tr><td>投保人变更</td><td style="color:#16a34a">✅ 100%完成</td><td>9份保单投保人全部变更为[客户]</td></tr>'
++'<tr><td>受益人指定</td><td style="color:#16a34a">✅ 全部指定</td><td>无\\\"法定\\\"状态保单</td></tr>'
++'<tr><td>储蓄型覆盖</td><td style="color:#16a34a">✅ 充足</td><td>8份储蓄型保单, ¥116万现金价值</td></tr>'
++'<tr><td>保障型覆盖</td><td style="color:#dc2626">⚠ 不足</td><td>3份保障型条款待读取; [用户]/子女/[母亲]全缺</td></tr>'
++'<tr><td>港险分红规则</td><td style="color:#16a34a">✅ 已确认</td><td>港险A归原红利保证 vs 港险B非保证</td></tr>'
++'<tr><td>CRS申报</td><td style="color:#d97706">🟡 远期关注</td><td>当前$6万, 约20年后达$60万门槛</td></tr></table>'
++'<a href="保单管理.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看详细保单管理 →</a>';
+
+// --- 未来展望（暂不动）---
++'<tr><td>2026</td><td class="tr">480万</td><td class="tr">324万</td><td class="tr">$110K</td><td class="tr">1063万</td><td>37期退出</td></tr>'
++'<tr><td>2028</td><td class="tr">160万</td><td class="tr">348万</td><td class="tr">$240K</td><td class="tr">1185万</td><td>还贷</td></tr>'
++'<tr class="warn"><td>2029</td><td class="tr">0</td><td class="tr">358万</td><td class="tr">$252K</td><td class="tr">1236万</td><td>固收清零</td></tr>'
++'<tr style="font-weight:700"><td>2036</td><td class="tr">0</td><td class="tr">482万</td><td class="tr">$354K</td><td class="tr">1903万</td><td>保司A满期</td></tr></table></div>';
+
+// --- 配置建议（暂不动）---
+panels.advice='<div class="date-tag">📅 基于2026年7月数据</div>'
++'<h3>近1年配置建议</h3><p class="nt">固收到期¥22万→用于保司A贷款还息+日常周转+港险A港险缴费</p>'
++'<h3>近3年配置建议</h3><p class="nt">2027年固收¥58万到期→分批转入港险+预留大额支出预备金</p>'
++'<h3>近5年配置建议</h3><p class="nt">固收全部退出→港险建仓完成→大额支出有序执行→被动收入结构调整</p>'
++'<h3>保险配置缺口</h3><p class="nt">[用户]保障全缺 | [客户]保障待确认 | 子女医疗+意外待配置 | [母亲]医疗待确认</p>'
++'<a href="配置建议.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看详细配置建议 →</a>';
+
+// --- 待办事项（暂不动）---
+panels.todo='<h3>保单操作</h3><table>'
++'<tr><td>1</td><td>产品A—确认投保人变更</td><td><span class="bg">✅</span></td></tr>'
++'<tr><td>2</td><td>确认港险A港险第2年保费已缴</td><td>8月26日前</td></tr>'
++'<tr><td>3</td><td>确认港险B港险保单状态</td><td><span class="bg">✅</span></td></tr></table>'
++'<h3>资金与账务</h3><table>'
++'<tr><td>4</td><td>确认固收A60期(¥11万)到期到账</td><td>8月</td></tr>'
++'<tr><td>5</td><td>确认固收CQ3利息到账</td><td>9月</td></tr>'
++'<tr><td>6</td><td>车贷月供¥2112正常扣款</td><td>每月</td></tr></table>'
++'<h3>报告与沟通</h3><table>'
++'<tr><td>7</td><td>保单分红报告转发</td><td>年底</td></tr>'
++'<tr><td>8</td><td>港险年度报告转发</td><td>6-8月</td></tr></table>'
++'<a href="待办事项.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看完整待办事项 →</a>';
+
+// ===== 构建菜单 =====
+var menu=document.getElementById('menu'), submenu=document.getElementById('submenu'), container=document.getElementById('container');
+
+mainMenu.forEach(function(m){
+  var btn=document.createElement('button');
+  btn.textContent=m.label; btn.id='btn_'+m.id;
+  btn.onclick=function(){ switchMain(m.id); };
+  menu.appendChild(btn);
+});
+
+// 创建所有卡片
+var allIds=[];
+mainMenu.forEach(function(m){
+  allIds.push(m.id);
+  if(m.hasSub && m.sub){ m.sub.forEach(function(s){ allIds.push(s.id); }); }
+});
+
+allIds.forEach(function(id){
+  var card=document.createElement('div');
+  card.className='card'; card.id='card_'+id;
+  card.innerHTML=panels[id]||'';
+  container.appendChild(card);
+});
+
+var currentMain=null, currentSub=null;
+
+function switchMain(mainId){
+  currentMain=mainId;
+
+  // 更新主菜单
+  document.querySelectorAll('#menu button').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('btn_'+mainId).classList.add('active');
+
+  // 子菜单
+  submenu.innerHTML='';
+  var m=mainMenu.find(function(x){return x.id===mainId;});
+  if(m&&m.hasSub&&m.sub){
+    submenu.style.display='block';
+    m.sub.forEach(function(s){
+      var sb=document.createElement('button');
+      sb.textContent=s.label; sb.id='sbtn_'+s.id;
+      sb.onclick=function(){ switchSub(s.id); };
+      submenu.appendChild(sb);
+    });
+    switchSub(defaultSub[mainId]||m.sub[0].id);
+  }else{
+    submenu.style.display='none';
+    switchSub(mainId);
+  }
+}
+
+function switchSub(id){
+  currentSub=id;
+  // 隐藏所有卡片
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});
+  // 显示当前
+  var card=document.getElementById('card_'+id);
+  if(card){card.classList.add('active');}
+
+  // 更新子菜单
+  document.querySelectorAll('#submenu button').forEach(function(b){b.classList.remove('active');});
+  var sb=document.getElementById('sbtn_'+id);
+  if(sb)sb.classList.add('active');
+
+  // 如果当前显示overview，初始化图表
+  if(id==='overview') setTimeout(initCharts,100);
+}
+
+// 保险子模块切换
+function switchIns(n){
+  document.querySelectorAll('.insbtn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.inssec').forEach(function(s){s.classList.remove('active');});
+  var btns=document.querySelectorAll('.insbtn');
+  if(btns[n-1]) btns[n-1].classList.add('active');
+  var sec=document.getElementById('inssec'+n);
+  if(sec) sec.classList.add('active');
+}
+
+// ===== 图表 =====
+var chartsDone=false;
+function initCharts(){
+  if(chartsDone||!document.getElementById('chartAssets'))return; chartsDone=true;
+  new Chart(document.getElementById('chartAssets'),{type:'doughnut',
+    data:{labels:['固收理财','保险现金价值','私募股权','房产','港险','银行存款'],
+    datasets:[{data:[288,194,171,162,43,32],
+    backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
+  new Chart(document.getElementById('chartDebt'),{type:'polarArea',
+    data:{labels:['保险公司(保司A)','银行(车贷)','网贷平台'],
+    datasets:[{data:[360,38,28],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
+  new Chart(document.getElementById('chartIncome'),{type:'bar',
+    data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','产品F生存金'],
+    datasets:[{data:[25.8,2.2,0.7,0.9,0.2,0.1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
+    scales:{x:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+  new Chart(document.getElementById('chartInsType'),{type:'pie',
+    data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[3,2,2,1],
+    backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
+}
+
+// 启动：读取URL参数
+var params=new URLSearchParams(window.location.search);
+var startSection=params.get('section');
+if(startSection){
+  // 菜单驱动模式：隐藏主菜单，显示返回条
+  document.getElementById('menu').style.display='none';
+  var m=mainMenu.find(function(x){return x.id===startSection;});
+  document.getElementById('backbar').style.display='block';
+  document.getElementById('backtitle').textContent=m?m.label:startSection;
+}
+switchMain(startSection||'overview');
+</script></body></html>
