@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>保险明细 · 演示版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
+.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
+h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:14px;color:#1a3a5c;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
+th{background:#1a3a5c;color:#fff;padding:6px;font-size:10.5px;text-align:left}
+td{padding:5px 6px;border:1px solid #ddd;font-size:11px}
+td.r{text-align:right}
+tr:nth-child(even){background:#fafafa}
+.g{color:#16a34a}.a{color:#d97706}.info{font-size:11px;color:#888;margin-top:4px}
+.demo-tag{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;margin-left:8px}
+</style>
+</head>
+<body>
+<a href="菜单.html" class="back">← 返回菜单</a>
+
+<h2>保单明细 <span class="demo-tag">演示数据</span></h2>
+
+<!-- 产品A: 年金+万能 -->
+<div class="card">
+<h3>产品A · 年金 + 万能账户 <span class="a">⚠待变更</span></h3>
+<table>
+<tr><td style="width:30%">被保人</td><td>X女士</td></tr>
+<tr><td>生效日</td><td>2016-11-16</td></tr>
+<tr><td>保费</td><td class="r">¥90万（10年缴，已缴清）</td></tr>
+<tr><td>基本保额</td><td class="r">—</td></tr>
+<tr><td>主险现金价值(2026)</td><td class="r">¥825,000</td></tr>
+<tr><td>万能账户(2026)</td><td class="r">¥234,000</td></tr>
+<tr><td>年生存金</td><td class="r">¥21,600 → 自动转入万能账户</td></tr>
+<tr><td>生存金发放日</td><td>每年11月16日</td></tr>
+<tr><td>满期日</td><td>2036-11-16（满期金 + 万能账户一次性给付）</td></tr>
+<tr><td>万能账户利率</td><td class="r">保证2.5%，当前约2.75%</td></tr>
+<tr><td>保单贷款</td><td class="r">¥600,000（4.50%，月息¥2,250）</td></tr>
+<tr><td>投保人</td><td class="r a">Y女士 → 待变更为X女士</td></tr>
+<tr><td>受益人</td><td class="r a">待变更</td></tr>
+</table>
+</div>
+
+<!-- 产品B: 养老×2 -->
+<div class="card">
+<h3>产品B · 养老保险 ×2 <span class="g">✅</span></h3>
+<table><tr><td>被保人</td><td>儿子</td></tr>
+<tr><td>保费</td><td class="r">¥300,000 趸交</td></tr>
+<tr><td>基本保额</td><td class="r">¥100,000</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥321,000</td></tr>
+<tr><td>养老金起领</td><td>60岁</td></tr>
+<tr><td>月领金额</td><td class="r">¥8,700</td></tr>
+<tr><td>保证领取期</td><td>60-85岁（25年）</td></tr>
+<tr><td>保证最低总领取</td><td class="r g">¥2,475,000</td></tr>
+</table>
+<div class="info" style="margin:10px 0">——</div>
+<table><tr><td>被保人</td><td>女儿</td></tr>
+<tr><td>保费</td><td class="r">¥300,000 趸交</td></tr>
+<tr><td>基本保额</td><td class="r">¥96,000</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥321,000</td></tr>
+<tr><td>养老金起领</td><td>60岁</td></tr>
+<tr><td>月领金额</td><td class="r">¥8,450</td></tr>
+<tr><td>保证最低总领取</td><td class="r g">¥2,400,000</td></tr>
+</table>
+<div class="info">合计投入¥60万 → 保证最低领回约¥487.5万（8.1倍）。60岁前无生存金发放。</div>
+</div>
+
+<!-- 产品C: 养老年金分红 -->
+<div class="card">
+<h3>产品C · 养老年金（分红型） <span class="g">✅</span></h3>
+<table>
+<tr><td>被保人</td><td>X女士</td></tr>
+<tr><td>生效日</td><td>2006-01-18</td></tr>
+<tr><td>保费</td><td class="r">¥9,200/年 × 10年（已缴清）</td></tr>
+<tr><td>基本保额</td><td class="r">¥60,000</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥77,000（保证） + ¥30,000（累计红利）</td></tr>
+<tr><td>附加养老重疾</td><td class="r">¥60,000（保险至对应日，已缴清）</td></tr>
+<tr><td>养老金起领</td><td>60岁，月领¥540起，每3年递增</td></tr>
+<tr><td>保证领取</td><td>20年</td></tr>
+<tr><td>祝寿金</td><td class="r">88岁 ¥60,000</td></tr>
+<tr><td class="a">退保截止日</td><td>59岁之前，之后不可退保</td></tr>
+</table>
+</div>
+
+<!-- 产品D: 终身寿 -->
+<div class="card">
+<h3>产品D · 终身寿险 <span class="g">✅</span></h3>
+<table>
+<tr><td>被保人</td><td>X女士</td></tr>
+<tr><td>生效日</td><td>2020-06-17</td></tr>
+<tr><td>保费</td><td class="r">¥12,000/年 × 5年（已缴清）</td></tr>
+<tr><td>基本保额</td><td class="r">¥54,000</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥62,000</td></tr>
+<tr><td>退保价值增长</td><td>3.45%终身复利，2028年¥66,000，2036年¥90,000+</td></tr>
+</table>
+</div>
+
+<!-- 产品E: 两全分红 -->
+<div class="card">
+<h3>产品E · 两全保险（分红型） <span class="g">✅</span></h3>
+<table>
+<tr><td>被保人</td><td>X女士</td></tr>
+<tr><td>生效日</td><td>2010-05-08</td></tr>
+<tr><td>保费</td><td class="r">¥6,000/年 × 10年（已缴清）</td></tr>
+<tr><td>基本保额</td><td class="r">¥10,200</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥38,000</td></tr>
+<tr><td>年生存金</td><td class="r">¥1,020</td></tr>
+<tr><td>祝寿金(5次)</td><td class="r">60/65/70/75/80岁 各¥12,000</td></tr>
+<tr><td>满期终止</td><td>80岁</td></tr>
+<tr><td>意外身故保障</td><td class="r">¥60,000</td></tr>
+</table>
+</div>
+
+<!-- 产品F: 终身寿(旧版) -->
+<div class="card">
+<h3>产品F · 终身保险（旧版） <span class="g">✅</span></h3>
+<table>
+<tr><td>被保人</td><td>X女士</td></tr>
+<tr><td>生效日</td><td>1998-08-28</td></tr>
+<tr><td>保费</td><td class="r">¥2,850/年 × 10年（已缴清）</td></tr>
+<tr><td>原始保额</td><td class="r">¥30,000 → 年增5% → 当前≈¥112,000</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥23,500</td></tr>
+<tr><td>生存金</td><td class="r">每3年¥3,000（按原始保额10%，固定）</td></tr>
+<tr><td>下次生存金</td><td class="r">2028-08-28 · ¥3,000</td></tr>
+<tr><td>身故赔付</td><td class="r">按当前保额≈¥112,000</td></tr>
+</table>
+</div>
+
+<!-- 产品G: 两全+意外 -->
+<div class="card">
+<h3>产品G · 两全保险（含意外） <span class="g">✅</span></h3>
+<table>
+<tr><td>被保人</td><td>X先生</td></tr>
+<tr><td>生效日</td><td>2015-06-13</td></tr>
+<tr><td>保费</td><td class="r">¥1,480/年 × 10年（已缴清）</td></tr>
+<tr><td>现金价值(2026)</td><td class="r">¥11,200</td></tr>
+<tr><td>满期日</td><td>2045-06-12（1.1倍保费=¥16,280）</td></tr>
+<tr><td>公共交通意外</td><td class="r">¥90万（70岁前）</td></tr>
+<tr><td>驾车意外</td><td class="r">¥180万（70岁前）</td></tr>
+<tr><td>航空意外</td><td class="r">¥180万（70岁前）</td></tr>
+</table>
+</div>
+
+</body>
+</html>

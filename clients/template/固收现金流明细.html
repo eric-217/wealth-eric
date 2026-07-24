@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>固收现金流明细 · 演示版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:14px;padding:12px}
+.back{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
+h2{font-size:17px;color:#1a3a5c;margin-bottom:10px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:14px;color:#1a3a5c;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
+th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left}
+td{padding:5px 8px;border:1px solid #ddd;font-size:11.5px}
+td.r{text-align:right}
+tr:nth-child(even){background:#fafafa}
+tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
+tr.done{color:#999;text-decoration:line-through}
+.tbl-wrap{overflow-x:auto;margin:4px -6px;padding:0 6px}
+.tbl-wrap table{min-width:550px}
+.green{color:#16a34a;font-weight:600}
+.warn-box{background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:10px;margin:8px 0;font-size:12px;color:#92400e}
+.demo-tag{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:11px;margin-left:8px}
+</style>
+</head>
+<body>
+<a href="菜单.html" class="back">← 返回菜单</a>
+
+<h2>固收产品 · 现金流明细 <span class="demo-tag">演示数据</span></h2>
+
+<div class="card">
+<h3>全部产品清单</h3>
+<div class="tbl-wrap"><table>
+<tr><th>产品名称</th><th>本金</th><th>利率</th><th>到期日</th><th>付息</th><th>状态</th></tr>
+<tr class="done"><td>产品A-37期</td><td class="r">480,000</td><td class="r">10.2%</td><td>2026-07</td><td>年度</td><td>✅已退出</td></tr>
+<tr><td>产品A-60期</td><td class="r">180,000</td><td class="r">10.2%</td><td>2026-08</td><td>年度</td><td>即将到期</td></tr>
+<tr><td>产品B-收益权</td><td class="r">180,000</td><td class="r">9.8%</td><td>2026-11</td><td>季度</td><td></td></tr>
+<tr><td>产品C-36694</td><td class="r">120,000</td><td class="r">9.4%</td><td>2027-07</td><td>季度</td><td></td></tr>
+<tr><td>产品A-105期</td><td class="r">180,000</td><td class="r">9.6%</td><td>2027-08</td><td>年度</td><td></td></tr>
+<tr><td>产品C-36606</td><td class="r">120,000</td><td class="r">9.0%</td><td>2027-10</td><td>季度</td><td></td></tr>
+<tr><td>产品A-137期</td><td class="r">540,000</td><td class="r">9.4%</td><td>2027-12</td><td>年度</td><td></td></tr>
+<tr><td>产品C-36851</td><td class="r">60,000</td><td class="r">8.8%</td><td>2028-06</td><td>季度</td><td></td></tr>
+<tr><td>产品A-295期</td><td class="r">600,000</td><td class="r">9.0%</td><td>2028-10</td><td>季度</td><td></td></tr>
+<tr><td>产品A-328期</td><td class="r">600,000</td><td class="r">9.0%</td><td>2028-11</td><td>季度</td><td></td></tr>
+<tr><td>产品A-343期</td><td class="r">300,000</td><td class="r">8.4%</td><td>2029-03</td><td>季度</td><td></td></tr>
+<tr class="tt"><td colspan="2">剩余合计（含已退出）</td><td class="r">3,360,000</td><td></td><td></td><td></td></tr>
+</table></div>
+</div>
+
+<div class="card">
+<h3>2026年 Q3（7-9月）流入明细</h3>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>本金</th><th>7月利息</th><th>8月利息</th><th>9月利息</th><th>到期日</th></tr>
+<tr class="done"><td>产品A-37期</td><td class="r">480,000</td><td class="r green">48,960</td><td class="r">—</td><td class="r">—</td><td>✅7月已退出</td></tr>
+<tr><td>产品A-60期</td><td class="r">180,000</td><td class="r">—</td><td class="r green">18,360</td><td class="r">—</td><td>8月到期</td></tr>
+<tr><td>产品B-收益权</td><td class="r">180,000</td><td class="r">—</td><td class="r">—</td><td class="r green">4,410</td><td>11月到期</td></tr>
+<tr class="tt"><td colspan="2">Q3利息合计</td><td class="r">48,960</td><td class="r">18,360</td><td class="r">4,410</td><td>71,730</td></tr>
+<tr class="tt"><td colspan="2">Q3到期本金</td><td class="r">480,000</td><td class="r">180,000</td><td class="r">—</td><td>660,000</td></tr>
+</table></div>
+</div>
+
+<div class="card">
+<h3>2027年到期明细</h3>
+<div class="tbl-wrap"><table>
+<tr><th>到期月</th><th>产品</th><th>本金</th><th>利率</th><th>到期利息/利息</th><th>备注</th></tr>
+<tr><td>7月</td><td>产品C-36694</td><td class="r">120,000</td><td class="r">9.4%</td><td class="r green">11,280</td><td>季度利息每季¥2,820</td></tr>
+<tr><td>8月</td><td>产品A-105期</td><td class="r">180,000</td><td class="r">9.6%</td><td class="r green">17,280</td><td>年度利息一次付</td></tr>
+<tr><td>10月</td><td>产品C-36606</td><td class="r">120,000</td><td class="r">9.0%</td><td class="r green">10,800</td><td>季度利息每季¥2,700</td></tr>
+<tr><td>12月</td><td>产品A-137期</td><td class="r">540,000</td><td class="r">9.4%</td><td class="r green">50,760</td><td>年度利息一次付</td></tr>
+<tr class="tt"><td colspan="3">2027合计</td><td></td><td class="r">≈90,000</td><td>本金¥960,000</td></tr>
+</table></div>
+</div>
+
+<div class="card">
+<h3>2028-2029年到期明细</h3>
+<div class="tbl-wrap"><table>
+<tr><th>到期月</th><th>产品</th><th>本金</th><th>利率</th><th>年利息</th></tr>
+<tr><td>2028-06</td><td>产品C-36851</td><td class="r">60,000</td><td class="r">8.8%</td><td class="r">5,280</td></tr>
+<tr><td>2028-10</td><td>产品A-295期</td><td class="r">600,000</td><td class="r">9.0%</td><td class="r">54,000</td></tr>
+<tr><td>2028-11</td><td>产品A-328期</td><td class="r">600,000</td><td class="r">9.0%</td><td class="r">54,000</td></tr>
+<tr><td>2029-03</td><td>产品A-343期</td><td class="r">300,000</td><td class="r">8.4%</td><td class="r">25,200</td></tr>
+<tr class="tt"><td colspan="3">合计</td><td></td><td class="r">138,480</td></tr>
+</table></div>
+</div>
+
+<div class="card">
+<h3>全周期汇总</h3>
+<table>
+<tr><th>年份</th><th>利息收入</th><th>到期本金</th><th>月均利息</th></tr>
+<tr><td>2026</td><td class="r">≈314,000</td><td class="r">840,000</td><td class="r">≈26,200</td></tr>
+<tr><td>2027</td><td class="r">≈228,000</td><td class="r">960,000</td><td class="r">≈19,000</td></tr>
+<tr><td>2028</td><td class="r">≈136,000</td><td class="r">1,260,000</td><td class="r">≈11,300</td></tr>
+<tr><td>2029</td><td class="r">≈6,600</td><td class="r">300,000</td><td class="r">≈550</td></tr>
+<tr class="tt"><td>4年总计</td><td class="r">≈685,000</td><td class="r">3,360,000</td><td></td></tr>
+</table>
+</div>
+
+</body>
+</html>
