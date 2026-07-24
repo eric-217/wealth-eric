@@ -71,6 +71,19 @@ function checkAuth() {
   return sessionStorage.getItem('wm_phone') && sessionStorage.getItem('wm_path');
 }
 
+/** 页面访问守卫：放在每个客户页面的 <head> 中调用 */
+function initAuth(loginUrl) {
+  if (!checkAuth()) {
+    window.location.href = loginUrl || '../../login.html';
+  }
+}
+
+/** 获取 auth.js 和 login.html 相对于当前页面的前缀（由 initAuth 自动推断） */
+(function(){
+  var p=window.__AUTH_LOGIN_URL__;
+  if(p&&!checkAuth()) window.location.href=p;
+})();
+
 /** 退出登录 */
 function logout() {
   sessionStorage.clear();
