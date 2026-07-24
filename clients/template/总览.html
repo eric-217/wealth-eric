@@ -28,9 +28,9 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="kbox"><div class="kl">总负债</div><div class="kv r">¥45万<div class="sub">负债率5.1%</div></div></div>
 </div>
 <div class="krow wide">
-<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥35万<div class="sub">固收利息+保险分红+生存金</div></div></div>
+<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥30.5万<div class="sub">固收利息+保险分红+生存金</div></div></div>
 <div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥6万<div class="sub">日常+还贷</div></div></div>
-<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">583%<div class="sub">被动收入÷总支出</div></div></div>
+<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">508%<div class="sub">被动收入÷总支出</div></div></div>
 </div>
 <h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>
 <h3>📊 总负债分布</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>
@@ -69,7 +69,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <script>
 new Chart(document.getElementById('chartAssets'),{type:'doughnut',data:{labels:['固收理财','保险现金价值','私募股权','房产','港险','银行存款'],datasets:[{data:[290,195,170,160,45,30],backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartDebt'),{type:'polarArea',data:{labels:['保险公司','银行','网贷平台'],datasets:[{data:[360,38,28],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
-new Chart(document.getElementById('chartIncome'),{type:'bar',data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','生存金'],datasets:[{data:[314,22,7,9,2,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'千元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+new Chart(document.getElementById('chartIncome'),{type:'bar',data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','生存金'],datasets:[{data:[265,22,7,9,2,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'千元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 new Chart(document.getElementById('chartInsType'),{type:'pie',data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[2,1,1,1],backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartProtType'),{type:'bar',
   data:{labels:['重疾保障','医疗保障','意外保障','身故保障'],

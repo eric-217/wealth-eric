@@ -42,6 +42,9 @@ tr.warn{background:#fef2f2}.bg{display:inline-block;padding:1px 5px;border-radiu
 .summary-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .summary-item{flex:1;min-width:80px;background:#f8fafc;border-radius:8px;padding:10px;text-align:center}
 .summary-item .sn{font-size:11px;color:#889}.summary-item .sv{font-size:18px;font-weight:700;margin-top:2px}
+.insbtn{padding:4px 8px;border:1px solid #c0c9d3;border-radius:3px;font-size:10px;color:#555;background:#fff;margin:1px 2px}
+.insbtn.active{color:#fff;background:#1a3a5c;border-color:#1a3a5c}
+.inssec{display:none}.inssec.active{display:block}
 footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </style></head><body>
 <div class="menu" id="menu"></div>
@@ -94,9 +97,9 @@ panels.overview='<div class="date-tag">📅 数据截止：2026年7月</div><div
 +'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1413万<div class="sub">净值率95.2%</div></div></div>'
 +'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥71万<div class="sub">负债率4.8%</div></div></div>'
 +'</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥57.2万<div class="sub">固收利息+保险分红+生存金</div></div></div>'
++'<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥50.8万<div class="sub">固收利息+保险分红+生存金</div></div></div>'
 +'<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥9.9万<div class="sub">日常¥7.5万+车贷¥2.4万</div></div></div>'
-+'<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">578%<div class="sub">被动收入÷总支出=5.8倍</div></div></div>'
++'<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">513%<div class="sub">被动收入÷总支出=5.1倍</div></div></div>'
 +'</div><h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>'
 +'<h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>'
 +'<h3>📊 年度被动收入分布</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>'
@@ -184,32 +187,93 @@ panels.trend='<div class="date-tag">📅 基线：2026年7月</div><div class="k
 +'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1484→1070万<div class="sub">2026→2028（固收退出）</div></div></div>'
 +'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1413→1580万<div class="sub">扣除固收重复计算后</div></div></div>'
 +'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→2万<div class="sub">2026年集中消化</div></div></div>'
-+'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">59万→8万<div class="sub">2026→2029断崖下降</div></div></div>'
++'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">50.8万→8万<div class="sub">2026→2029断崖下降</div></div></div>'
 +'</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">434%</div></div>'
++'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">374%</div></div>'
 +'<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">88%⚠</div></div>'
 +'<div class="kbox"><div class="kl">2030+自由度</div><div class="kv r">77%🔴</div></div>'
 +'</div>'
 +'<a href="趋势跟踪.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看完整趋势分析 →</a>';
 
 // --- 现金流子页面 ---
-panels.cf_fixincome='<div class="date-tag">📅 2026年7-12月（万元）</div><table><tr><th>月</th><th>产品</th><th>利息</th><th>到期本金</th><th>净现金流</th></tr>'
-+'<tr class="done"><td>7</td><td>众享37期</td><td class="tr">8.16</td><td>已退</td><td class="tr" style="color:#16a34a">+85.58</td></tr>'
-+'<tr><td>8</td><td>众享60期</td><td class="tr">3.06</td><td>30</td><td class="tr" style="color:#16a34a">+30.48</td></tr>'
-+'<tr><td>9</td><td>浩腾Q3</td><td class="tr">0.74</td><td>—</td><td class="tr" style="color:#dc2626">-1.24</td></tr>'
-+'<tr><td>10</td><td>—</td><td class="tr">—</td><td>—</td><td class="tr" style="color:#dc2626">-1.68</td></tr>'
-+'<tr><td>11</td><td>浩腾到期</td><td class="tr">0.74</td><td>30</td><td class="tr" style="color:#16a34a">+29.06</td></tr>'
-+'<tr><td>12</td><td>浩腾Q4</td><td class="tr">0.74</td><td>—</td><td class="tr" style="color:#dc2626">-0.94</td></tr>'
-+'<tr class="tt"><td>半年</td><td></td><td class="tr">13.43</td><td>140</td><td class="tr" style="color:#16a34a">+142.38</td></tr></table>'
-+'<p class="nt">单位：万元 | 支出含还贷和日常 | 未来12个月固收到期：2027年¥160万</p>';
+panels.cf_fixincome='<div class="date-tag">📅 2026年07月—09月 | 单位：元 | <span style="color:#d32f2f;font-weight:700">红色粗体</span>=含本金返还</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>07月</th><th>08月</th><th>09月</th></tr>'
++'<tr><td>悦享债权转让项目 9.0%</td><td class="tr">20万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">4,500</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>悦享债权转让项目 9.4%</td><td class="tr">20万</td><td class="tr">9.4%</td><td class="tr" style="color:#1d9e75">4,700</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td class="tr">—</td><td class="tr" style="color:#d32f2f;font-weight:700">330,600</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">28,800</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">22,500</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈328期 女儿名下</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,500</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">10,500</td></tr>'
++'<tr><td>悦享债权转让项目36851 女儿名下</td><td class="tr">10万</td><td class="tr">8.8%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">2,200</td></tr>'
++'<tr><td>浩腾恒烨收益权转让计划</td><td class="tr">30万</td><td class="tr">9.8%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">7,350</td><td class="tr">—</td></tr>'
++'<tr class="tt"><td>3个月合计</td><td class="tr">390万</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">31,700</td><td class="tr" style="color:#d32f2f;font-weight:700">389,250</td><td class="tr" style="color:#1d9e75">12,700</td></tr></table></div>'
++'<p class="nt">已到期退出：众享淳盈37期（2026-07-14到期，已到账881,600元，不在此表显示）| 红色粗体=含本金返还（众享60期08月到期还本）</p>';
 
-panels.cf_insurance='<p style="font-size:12px;color:#888;margin-bottom:8px">实际现金流入（到银行卡）</p><table><tr><th>保单</th><th>2026</th><th>2027</th><th>2028</th></tr>'
-+'<tr><td>国寿99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">¥5,000</td></tr>'
-+'<tr><td>财富年年</td><td class="tr">¥1,700</td><td class="tr">¥1,700</td><td class="tr">¥1,700</td></tr></table>'
-+'<p style="font-size:12px;color:#888;margin:12px 0 8px">账面现金价值（保单内，非现金）</p><div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2030</th><th>2036</th></tr>'
-+'<tr><td>新华主险</td><td class="tr">137.5万</td><td class="tr">—</td><td class="tr">173.2万</td></tr>'
-+'<tr><td>新华UA</td><td class="tr">39.0万</td><td class="tr">54万</td><td class="tr">68万</td></tr>'
-+'<tr><td>信美×2</td><td class="tr">107.2万</td><td class="tr">144万</td><td class="tr">192万</td></tr></table></div>';
+panels.cf_insurance='<div style="overflow-x:auto;white-space:nowrap;margin:0 0 12px;padding-bottom:4px;border-bottom:1px solid #e0e5ea">'
++'<button class="insbtn active" onclick="switchIns(1)">生存金</button>'
++'<button class="insbtn" onclick="switchIns(2)">现金价值</button>'
++'<button class="insbtn" onclick="switchIns(3)">万能账户</button>'
++'<button class="insbtn" onclick="switchIns(4)">保费</button>'
++'<button class="insbtn" onclick="switchIns(5)">红利</button>'
++'<button class="insbtn" onclick="switchIns(6)">复归红利</button>'
++'<button class="insbtn" onclick="switchIns(7)">终期红利</button>'
++'<button class="insbtn" onclick="switchIns(8)">身故金</button>'
++'<button class="insbtn" onclick="switchIns(9)">满期金</button>'
++'</div>'
++'<div id="inssec1" class="inssec active">'
++'<p class="date-tag">现金实际到账 | 单位：元</p><div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>'
++'<tr><td>新华惠鑫宝</td><td class="tr">36,000</td><td class="tr">36,000</td><td class="tr">36,000</td><td class="tr">36,000</td></tr>'
++'<tr><td>财富年年</td><td class="tr">1,700</td><td class="tr">1,700</td><td class="tr">1,700</td><td class="tr">1,700</td></tr>'
++'<tr><td>99鸿福</td><td class="tr">—</td><td class="tr">—</td><td class="tr">5,000</td><td class="tr">—</td></tr>'
++'<tr><td>平安钟爱一生</td><td class="tr" colspan="4">尚未开始（预计55岁/2038年起）</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">37,700</td><td class="tr">37,700</td><td class="tr">42,700</td><td class="tr">37,700</td></tr></table></div></div>'
++'<div id="inssec2" class="inssec">'
++'<p class="date-tag">账面价值 | 单位：元</p><div class="tbl-wrap"><table><tr><th>保单</th><th>2026</th><th>2030</th><th>2036</th></tr>'
++'<tr><td>新华主险</td><td class="tr">1,375,000</td><td class="tr">—</td><td class="tr">1,732,000</td></tr>'
++'<tr><td>新华UA</td><td class="tr">390,000</td><td class="tr">540,000</td><td class="tr">680,000</td></tr>'
++'<tr><td>信美×2</td><td class="tr">1,072,000</td><td class="tr">1,440,000</td><td class="tr">1,920,000</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">2,837,000</td><td class="tr">1,980,000</td><td class="tr">4,332,000</td></tr></table></div></div>'
++'<div id="inssec3" class="inssec">'
++'<p class="date-tag">新华惠鑫宝万能账户 | 保证利率2.5%</p>'
++'<div class="krow"><div class="kbox"><div class="kl">当前余额</div><div class="kv">390,000</div></div>'
++'<div class="kbox"><div class="kl">年增值</div><div class="kv g">≈11,000</div></div></div></div>'
++'<div id="inssec4" class="inssec">'
++'<p class="date-tag">当年实际保费支出 | 单位：元</p><table><tr><th>保单</th><th>2026</th><th>说明</th></tr>'
++'<tr><td>乐行无忧</td><td class="tr">2,460</td><td>年缴至2044年</td></tr>'
++'<tr><td>华贵大麦定寿</td><td class="tr">待确认</td><td>年缴</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">≥2,460</td><td>不含已缴清保单</td></tr></table></div>'
++'<div id="inssec5" class="inssec">'
++'<p class="date-tag">美式分红·年度现金红利 | 单位：元</p><table><tr><th>保单</th><th>累计红利</th><th>红利利息</th><th>合计</th><th>2026新增</th></tr>'
++'<tr><td>平安钟爱一生</td><td class="tr">36,536</td><td class="tr">10,865</td><td class="tr">47,401</td><td class="tr">1,192</td></tr>'
++'<tr><td>财富年年</td><td class="tr" colspan="3">待确认</td><td class="tr">待确认</td></tr></table></div>'
++'<div id="inssec6" class="inssec">'
++'<p class="date-tag">港险归原红利·公布即保证面值</p><table><tr><th>保单</th><th>有/无</th><th>说明</th></tr>'
++'<tr><td>国内保单</td><td style="color:#888">无</td><td>无复归红利机制</td></tr>'
++'<tr><td>永明港险</td><td style="color:#16a34a">有</td><td>5年后可锁定50%，积存3.5%</td></tr>'
++'<tr><td>周大福港险</td><td style="color:#f0a020">有</td><td>面值保证·CV非保证·无锁定</td></tr></table></div>'
++'<div id="inssec7" class="inssec">'
++'<p class="date-tag">退保/理赔/满期时一次性给付</p><table><tr><th>保单</th><th>有/无</th><th>说明</th></tr>'
++'<tr><td>国内保单</td><td style="color:#888">无</td><td>无终期红利机制</td></tr>'
++'<tr><td>永明港险</td><td style="color:#16a34a">有</td><td>面值非保证·退保按折现率折算</td></tr>'
++'<tr><td>周大福港险</td><td style="color:#16a34a">有</td><td>第10年可选财富跃进重定保证值</td></tr></table></div>'
++'<div id="inssec8" class="inssec">'
++'<p class="date-tag">当前身故赔付金额 | 单位：元</p><div class="tbl-wrap"><table><tr><th>保单</th><th>被保人</th><th>身故保障金</th></tr>'
++'<tr><td>新华惠鑫宝</td><td>陈莹</td><td class="tr">1,732,000+UA</td></tr>'
++'<tr><td>信美相互·儿子</td><td>子女A</td><td class="tr">536,000</td></tr>'
++'<tr><td>信美相互·女儿</td><td>子女B</td><td class="tr">536,000</td></tr>'
++'<tr><td>平安钟爱一生</td><td>陈莹</td><td class="tr">791,000*</td></tr>'
++'<tr><td>国寿99鸿福</td><td>陈莹</td><td class="tr">187,000</td></tr>'
++'<tr><td>阳光升终身寿</td><td>陈莹</td><td class="tr">140,000</td></tr>'
++'<tr><td>财富年年</td><td>陈莹</td><td class="tr">100,000</td></tr>'
++'<tr><td>乐行无忧</td><td>李春华</td><td class="tr">2.7~300万</td></tr>'
++'<tr style="background:#f0f4f8"><td>华贵大麦定寿</td><td>李春华</td><td class="tr">待补充</td></tr></table></div></div>'
++'<div id="inssec9" class="inssec">'
++'<p class="date-tag">到期/特定年龄一次性给付 | 单位：元</p><table><tr><th>保单</th><th>类型</th><th>金额</th><th>时间</th></tr>'
++'<tr><td>新华惠鑫宝</td><td>满期金</td><td class="tr">1,732,000</td><td>2036-11-16</td></tr>'
++'<tr><td>财富年年</td><td>祝寿金</td><td class="tr">2万×5=10万</td><td>60/65/70/75/80岁</td></tr>'
++'<tr><td>乐行无忧</td><td>满期生存</td><td class="tr">27,060</td><td>2045-06-12</td></tr>'
++'<tr><td>平安钟爱一生</td><td>祝寿金</td><td class="tr">100,000</td><td>88岁</td></tr></table></div>'
++'<p class="nt"><a href="现金流.html" style="color:#1a3a5c">查看完整的现金流明细 →</a></p>';
 
 panels.cf_active='<div class="date-tag">📅 2026年度预估</div><table><tr><th>来源</th><th>年金额</th><th>备注</th></tr>'
 +'<tr><td>港险佣金</td><td class="tr">待补充</td><td>20-30%佣金率</td></tr>'
@@ -217,12 +281,12 @@ panels.cf_active='<div class="date-tag">📅 2026年度预估</div><table><tr><t
 +'<tr><td>工资收入</td><td class="tr">待补充</td><td>—</td></tr></table><p class="nt">主动收入数据待补充。请联系提供各项明细。</p>';
 
 panels.cf_passive_cash='<div class="date-tag">📅 实际到账现金收入</div><table><tr><th>来源</th><th>2026年</th><th>备注</th></tr>'
-+'<tr><td>固收利息</td><td class="tr">¥523,000</td><td>10笔固收产品利息</td></tr>'
++'<tr><td>固收利息</td><td class="tr">¥441,000</td><td>10笔固收产品利息</td></tr>'
 +'<tr><td>新华生存金</td><td class="tr">¥36,000</td><td>每年11月16日转入</td></tr>'
 +'<tr><td>财富年年生存金</td><td class="tr">¥1,700</td><td>每年定期</td></tr>'
 +'<tr><td>保险分红</td><td class="tr">≈¥3,000</td><td>钟爱一生+财富年年</td></tr>'
 +'<tr><td>银行存款利息</td><td class="tr">—</td><td>灵活宝收益待计算</td></tr>'
-+'<tr class="tt"><td>现金被动收入</td><td class="tr">≈¥563,700</td><td></td></tr></table>';
++'<tr class="tt"><td>现金被动收入</td><td class="tr">≈¥481,700</td><td></td></tr></table>';
 
 panels.cf_passive_book='<div class="date-tag">📅 账面增长（非现金）</div><table><tr><th>来源</th><th>2026年</th><th>备注</th></tr>'
 +'<tr><td>保险现金价值增值</td><td class="tr">≈¥15,000</td><td>8份储蓄型保单</td></tr>'
@@ -241,12 +305,12 @@ panels.cf_expense='<div class="date-tag">📅 近半年支出计划</div><table>
 +'<tr class="tt"><td colspan="2">合计</td><td class="tr">¥66,820</td></tr></table>';
 
 panels.cf_freedom='<div class="date-tag">📅 基于2026年7月数据</div><div class="krow">'
-+'<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">¥57.2万</div></div>'
-+'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">578%</div></div>'
++'<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">¥50.8万</div></div>'
++'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">513%</div></div>'
 +'<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">¥6.0万</div></div>'
 +'<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div>'
 +'<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>'
-+'<tr><td>2026</td><td class="tr">59.0万</td><td class="tr">9.9万</td><td style="color:#16a34a">596%</td></tr>'
++'<tr><td>2026</td><td class="tr">50.8万</td><td class="tr">9.9万</td><td style="color:#16a34a">513%</td></tr>'
 +'<tr><td>2027</td><td class="tr">44.9万</td><td class="tr">9.0万</td><td>499%</td></tr>'
 +'<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">8.1万</td><td class="tr">9.0万</td><td style="color:#dc2626">90%⚠</td></tr>'
 +'<tr><td>2036</td><td class="tr">9.4万</td><td class="tr">9.0万</td><td>104%</td></tr></table>';
@@ -444,6 +508,16 @@ function switchSub(id){
   if(id==='overview') setTimeout(initCharts,100);
 }
 
+// 保险子模块切换
+function switchIns(n){
+  document.querySelectorAll('.insbtn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.inssec').forEach(function(s){s.classList.remove('active');});
+  var btns=document.querySelectorAll('.insbtn');
+  if(btns[n-1]) btns[n-1].classList.add('active');
+  var sec=document.getElementById('inssec'+n);
+  if(sec) sec.classList.add('active');
+}
+
 // ===== 图表 =====
 var chartsDone=false;
 function initCharts(){
@@ -459,7 +533,7 @@ function initCharts(){
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
   new Chart(document.getElementById('chartIncome'),{type:'bar',
     data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],
-    datasets:[{data:[52.3,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
+    datasets:[{data:[44.1,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
     options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
     scales:{x:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
   new Chart(document.getElementById('chartInsType'),{type:'pie',
