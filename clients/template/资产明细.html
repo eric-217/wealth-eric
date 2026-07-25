@@ -69,7 +69,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </div>
 
 <!-- 固收资产 -->
-<div class="accordion open" id="acc_fixincome">
+<div class="accordion" id="acc_fixincome">
 <div class="accordion-header" onclick="toggleAcc('acc_fixincome')">
   <div class="ah-left">🏦 固收资产 <span class="ah-num">N笔 · ¥XXX万</span></div>
   <div class="ah-arrow">▼</div>
@@ -90,7 +90,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </div></div>
 
 <!-- 保险资产 -->
-<div class="accordion open" id="acc_insurance">
+<div class="accordion" id="acc_insurance">
 <div class="accordion-header" onclick="toggleAcc('acc_insurance')">
   <div class="ah-left">🛡 保险资产 <span class="ah-num">X份国内 · X份港险 · ¥XXX万</span></div>
   <div class="ah-arrow">▼</div>
@@ -184,7 +184,87 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
-<p class="nt">私募股权数据根据客户实际持仓填充 | 此为脱敏模板</p>
+
+<!-- 总览表（示例数据×0.6） -->
+<div class="tbl-wrap"><table>
+<tr><th>基金</th><th>投入</th><th>DPI/净值</th><th>已回款</th><th>状态</th></tr>
+<tr><td>基金A</td><td class="tr">¥60万</td><td class="tr">XX%</td><td class="tr">约XX万</td><td>清算中</td></tr>
+<tr><td>基金B+C</td><td class="tr">¥78万</td><td class="tr">XX%</td><td class="tr">约XX万</td><td>运行中</td></tr>
+<tr><td>基金D</td><td class="tr">¥12万</td><td class="tr">XX%</td><td class="tr">约XX万</td><td>延长期</td></tr>
+<tr><td>基金E-K等7只</td><td class="tr">¥81万</td><td class="tr">净值0.96-0.99</td><td class="tr">—</td><td>正常</td></tr>
+</table></div>
+<p class="nt">示例数据（×0.6脱敏）| 实际数据按客户持仓填充 | 截止YYYY.12.31</p>
+
+<!-- 一、有详细投后数据的基金 -->
+<h4 style="margin-top:16px;">一、有详细投后数据的基金（示例3只）</h4>
+
+<!-- 基金A -->
+<div class="card">
+<h3>1. 基金A <span class="badge" style="background:#fefce8;color:#d97706">DPI XX%</span></h3>
+<span class="kv"><span class="k">投入</span><span class="v">¥60万（YYYY.MM.DD，登记LP）</span></span>
+<span class="kv"><span class="k">GP</span><span class="v">XX资产管理有限公司</span></span>
+<span class="kv"><span class="k">到期</span><span class="v">YYYY.MM.DD（已到期，清算中）</span></span>
+<span class="kv"><span class="k">已回款</span><span class="v"><strong>约¥XX万</strong></span></span>
+<span class="kv"><span class="k">剩余估值</span><span class="v">约¥XX-XX万</span></span>
+<div class="sep"></div>
+<h4>未退出项目</h4>
+<span class="kv"><span class="k"><span class="tag tag-r">仲裁中</span> 项目A</span><span class="v">估值已调低</span></span>
+<span class="kv"><span class="k"><span class="tag tag-g">待上市</span> 项目B</span><span class="v">YYYY年港股</span></span>
+<span class="kv"><span class="k"><span class="tag tag-y">申报中</span> 项目C</span><span class="v">YYYY年H1港股</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">风险</span><span class="v"><span class="tag tag-y">🟡 中等</span> 仲裁存在不确定性</span></span>
+</div>
+
+<!-- 基金B+C -->
+<div class="card">
+<h3>2. 基金B+C <span class="badge" style="background:#fefce8;color:#d97706">DPI ≈XX%</span></h3>
+<span class="kv"><span class="k">结构</span><span class="v">基金B（¥XX万）+ 基金C（¥XX万，众筹领投）</span></span>
+<span class="kv"><span class="k">GP</span><span class="v">XX投资基金管理有限公司</span></span>
+<span class="kv"><span class="k">规模</span><span class="v">约¥X,XXX万</span></span>
+<span class="kv"><span class="k">已回款</span><span class="v"><strong>约¥XX万</strong></span></span>
+<span class="kv"><span class="k">预估总回报</span><span class="v">约¥XX-XX万</span></span>
+<div class="sep"></div>
+<h4>底层子基金</h4>
+<span class="kv"><span class="k"><span class="tag tag-g">🟢</span> 子基金A</span><span class="v">TVPI=X.XX</span></span>
+<span class="kv"><span class="k"><span class="tag tag-g">🟢</span> 子基金B</span><span class="v">DPI=XX%</span></span>
+<span class="kv"><span class="k"><span class="tag tag-g">🟢</span> 子基金C</span><span class="v">TVPI=X.XX</span></span>
+<span class="kv"><span class="k"><span class="tag tag-r">🔴</span> 子基金D</span><span class="v">TVPI=X.XX</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">风险</span><span class="v"><span class="tag tag-y">🟡 中等</span> DPI偏低但部分子基金表现不错</span></span>
+</div>
+
+<!-- 基金D -->
+<div class="card">
+<h3>3. 基金D · SPV <span class="badge" style="background:#fef2f2;color:#dc2626">DPI ≈XX%</span></h3>
+<span class="kv"><span class="k">投入</span><span class="v">¥12万（YYYY.MM.DD，众筹）</span></span>
+<span class="kv"><span class="k">SPV</span><span class="v">XX股权投资中心</span></span>
+<span class="kv"><span class="k">GP</span><span class="v">XX投资管理</span></span>
+<span class="kv"><span class="k">规模</span><span class="v">约¥X,XXX万</span></span>
+<span class="kv"><span class="k">已回款</span><span class="v"><strong>约¥XX万</strong></span></span>
+<span class="kv"><span class="k">预估总回报</span><span class="v">约¥XX-XX万</span></span>
+<div class="sep"></div>
+<h4>底层子基金</h4>
+<span class="kv"><span class="k">子基金X</span><span class="v">TVPI=X.XX, DPI=XX%</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">风险</span><span class="v"><span class="tag tag-r">🔴 中高</span> DPI低，延长期至YYYY</span></span>
+</div>
+
+<!-- 二、净值跟踪 -->
+<h4 style="margin-top:16px;">二、净值跟踪（示例N只，未到退出期）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>基金</th><th>SPV</th><th>投入(×0.6)</th><th>净值</th><th>GP</th><th>赛道</th></tr>
+<tr><td>基金E</td><td>SPV-E</td><td class="tr">¥24万</td><td class="tr">0.9877</td><td>GP-X</td><td>医疗/半导体</td></tr>
+<tr><td>基金F</td><td>SPV-F</td><td class="tr">¥12万</td><td class="tr">0.9851</td><td>GP-Y</td><td>医疗/科技</td></tr>
+<tr><td>基金G</td><td>SPV-G</td><td class="tr">¥6万</td><td class="tr">0.9797</td><td>GP-X</td><td>TMT</td></tr>
+<tr><td>基金H</td><td>SPV-H</td><td class="tr">¥6万</td><td class="tr">0.9663</td><td>GP-Y</td><td>AI/消费</td></tr>
+<tr><td>基金I</td><td>SPV-I</td><td class="tr">¥6万</td><td class="tr">0.9560</td><td>GP-X</td><td>—</td></tr>
+<tr><td>基金J</td><td>SPV-J</td><td class="tr">¥12万</td><td class="tr">0.9666</td><td>GP-X</td><td>—</td></tr>
+<tr><td>基金K</td><td>SPV-K</td><td class="tr">¥15万</td><td class="tr">0.9690</td><td>GP-Y</td><td>—</td></tr>
+</table></div>
+<p class="nt">⚠️ 此为脱敏模板示例 | 实际基金名称、金额、GP信息由客户数据替换</p>
+
+<p class="nt" style="margin-top:8px;">📊 <strong>模板说明</strong>：以上为示例结构，新客户时按实际私募股权持仓填充数据</p>
+
 </div></div>
 
 <!-- 固定资产 -->

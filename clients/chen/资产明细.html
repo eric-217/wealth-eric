@@ -74,7 +74,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </div>
 
 <!-- 固收资产（手风琴折叠） -->
-<div class="accordion open" id="acc_fixincome">
+<div class="accordion" id="acc_fixincome">
 <div class="accordion-header" onclick="toggleAcc('acc_fixincome')">
   <div class="ah-left">🏦 固收资产 <span class="ah-num">10笔 · ¥480万</span></div>
   <div class="ah-arrow">▼</div>
@@ -95,7 +95,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </div></div>
 
 <!-- 保险资产（手风琴折叠） -->
-<div class="accordion open" id="acc_insurance">
+<div class="accordion" id="acc_insurance">
 <div class="accordion-header" onclick="toggleAcc('acc_insurance')">
   <div class="ah-left">🛡 保险资产 <span class="ah-num">8份国内 · 2份港险 · ¥324万</span></div>
   <div class="ah-arrow">▼</div>
@@ -319,12 +319,91 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
-<div class="tbl-wrap"><table><tr><th>基金</th><th>投入</th><th>DPI/净值</th><th>状态</th></tr>
-<tr><td>云和二期</td><td class="tr">100万</td><td class="tr">回款59.5万</td><td>清算中</td></tr>
-<tr><td>鼎盈+知泉</td><td class="tr">130万</td><td class="tr">回款8.3万</td><td>运行中</td></tr>
-<tr><td>高成基金</td><td class="tr">20万</td><td class="tr">回款2.2万</td><td>延长期</td></tr>
-<tr><td>健康5号等7只</td><td class="tr">135万</td><td class="tr">净值0.96-0.99</td><td>正常</td></tr></table></div>
-<p class="nt">✅ 100%数据覆盖 | 已回款¥70万 | 净值合计¥131.8万 | 截止2025.12.31</p>
+
+<!-- 总览表 -->
+<div class="tbl-wrap"><table>
+<tr><th>基金</th><th>投入</th><th>DPI/净值</th><th>已回款</th><th>状态</th></tr>
+<tr><td>云和二期</td><td class="tr">¥100万</td><td class="tr">59.48%</td><td class="tr">≈59.5万</td><td>清算中</td></tr>
+<tr><td>鼎盈+知泉</td><td class="tr">¥130万</td><td class="tr">≈27.6%</td><td class="tr">≈8.3万</td><td>运行中</td></tr>
+<tr><td>高成基金</td><td class="tr">¥20万</td><td class="tr">≈11%</td><td class="tr">≈2.2万</td><td>延长期</td></tr>
+<tr><td>健康5号等7只</td><td class="tr">¥135万</td><td class="tr">净值0.96-0.99</td><td class="tr">—</td><td>正常</td></tr>
+</table></div>
+<p class="nt">✅ 100%数据覆盖 | 已回款≈¥70万 | 净值合计≈¥131.8万 | 截止2025.12.31</p>
+
+<!-- 一、有详细投后数据的基金 -->
+<h4 style="margin-top:16px;">一、有详细投后数据的基金（3只）</h4>
+
+<!-- 1. 云和二期 -->
+<div class="card">
+<h3>1. 云和二期 · 坤元睿通 <span class="badge" style="background:#fefce8;color:#d97706">DPI 59.48%</span></h3>
+<span class="kv"><span class="k">投入</span><span class="v">¥100万（2017.09.25，登记LP）</span></span>
+<span class="kv"><span class="k">GP</span><span class="v">坤元资产管理有限公司</span></span>
+<span class="kv"><span class="k">到期</span><span class="v">2024.11.13（已到期，清算中）</span></span>
+<span class="kv"><span class="k">已回款</span><span class="v"><strong>≈¥59.48万</strong></span></span>
+<span class="kv"><span class="k">剩余估值</span><span class="v">≈¥30-45万</span></span>
+<div class="sep"></div>
+<h4>未退出项目</h4>
+<span class="kv"><span class="k"><span class="tag tag-r">仲裁中</span> 蓝德环保</span><span class="v">估值已调低</span></span>
+<span class="kv"><span class="k"><span class="tag tag-g">待上市</span> 埃索凯</span><span class="v">2026年7月港股</span></span>
+<span class="kv"><span class="k"><span class="tag tag-y">申报中</span> 江苏正道</span><span class="v">2026年H1港股</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">风险</span><span class="v"><span class="tag tag-y">🟡 中等</span> 蓝德环保仲裁存在不确定性</span></span>
+</div>
+
+<!-- 2. 鼎盈+知泉 -->
+<div class="card">
+<h3>2. 鼎盈+知泉 <span class="badge" style="background:#fefce8;color:#d97706">DPI ≈27.6%</span></h3>
+<span class="kv"><span class="k">结构</span><span class="v">鼎盈（¥100万，2018.03.06）+ 知泉母基金（¥30万，众筹领投）</span></span>
+<span class="kv"><span class="k">鼎盈GP</span><span class="v">北京蓝枫投资基金管理有限公司</span></span>
+<span class="kv"><span class="k">鼎盈规模</span><span class="v">¥4,090万</span></span>
+<span class="kv"><span class="k">知泉一期合计</span><span class="v">¥10,950万</span></span>
+<span class="kv"><span class="k">已回款（鼎盈）</span><span class="v"><strong>≈¥8.3万</strong></span></span>
+<span class="kv"><span class="k">预估总回报（鼎盈）</span><span class="v">≈¥25-33万</span></span>
+<div class="sep"></div>
+<h4>底层子基金</h4>
+<span class="kv"><span class="k"><span class="tag tag-g">🟢</span> 德同三期</span><span class="v">TVPI=1.89</span></span>
+<span class="kv"><span class="k"><span class="tag tag-g">🟢</span> 同创新兴</span><span class="v">DPI=89.77%</span></span>
+<span class="kv"><span class="k"><span class="tag tag-g">🟢</span> 清流成长二期</span><span class="v">TVPI=1.96</span></span>
+<span class="kv"><span class="k"><span class="tag tag-r">🔴</span> 真成优实</span><span class="v">TVPI=0.47</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">知泉母基金</span><span class="v"><span class="tag tag-y">待确认</span> ¥30万领投，底层标的不明</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">风险</span><span class="v"><span class="tag tag-y">🟡 中等</span> DPI偏低但德同/同创表现不错</span></span>
+</div>
+
+<!-- 3. 高成基金 -->
+<div class="card">
+<h3>3. 高成基金 · 德弘同济 <span class="badge" style="background:#fef2f2;color:#dc2626">DPI ≈11%</span></h3>
+<span class="kv"><span class="k">投入</span><span class="v">¥20万（2018.12.07，众筹占14.28%）</span></span>
+<span class="kv"><span class="k">SPV</span><span class="v">深圳市德弘同济股权投资中心</span></span>
+<span class="kv"><span class="k">GP</span><span class="v">德弘联信投资管理</span></span>
+<span class="kv"><span class="k">规模</span><span class="v">¥9,900万（同济¥4,700万+通赢二期¥5,240万）</span></span>
+<span class="kv"><span class="k">已回款</span><span class="v"><strong>≈¥2.2万</strong></span></span>
+<span class="kv"><span class="k">预估总回报</span><span class="v">≈¥22-25万</span></span>
+<div class="sep"></div>
+<h4>底层子基金</h4>
+<span class="kv"><span class="k">苏州高成行健</span><span class="v">TVPI=1.36, DPI=20%</span></span>
+<div class="sep"></div>
+<span class="kv"><span class="k">风险</span><span class="v"><span class="tag tag-r">🔴 中高</span> DPI仅11%，延长期至2028</span></span>
+</div>
+
+<!-- 二、净值跟踪基金 -->
+<h4 style="margin-top:16px;">二、净值跟踪（7只，2021-2023年成立，未到退出期）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>基金</th><th>SPV</th><th>投入</th><th>净值</th><th>GP</th><th>赛道</th></tr>
+<tr><td>健康5号</td><td>合力洪铭</td><td class="tr">¥40万</td><td class="tr">0.9877</td><td>视募</td><td>医疗/半导体</td></tr>
+<tr><td>经纬中国</td><td>涵鑫七号</td><td class="tr">¥20万</td><td class="tr">0.9851</td><td>涵崧</td><td>医疗/科技</td></tr>
+<tr><td>启明七期</td><td>洪帆二号</td><td class="tr">¥10万</td><td class="tr">0.9797</td><td>视募</td><td>TMT</td></tr>
+<tr><td>梅花六期</td><td>涵裕三号</td><td class="tr">¥10万</td><td class="tr">0.9663</td><td>涵崧</td><td>AI/消费/医疗</td></tr>
+<tr><td>洪帆一号</td><td>洪帆一号</td><td class="tr">¥10万</td><td class="tr">0.9560</td><td>视募</td><td>—</td></tr>
+<tr><td>未来6号</td><td>洪拓二号</td><td class="tr">¥20万</td><td class="tr">0.9666</td><td>视募</td><td>—</td></tr>
+<tr><td>领投一号</td><td>涵金八号</td><td class="tr">¥25万</td><td class="tr">0.9690</td><td>涵崧</td><td>—</td></tr>
+</table></div>
+<p class="nt">⚠️ 净值0.95-0.99属新基金正常范围（扣除管理费等后账面轻微亏损）。投资期刚结束，预计2027-2030年陆续进入退出期。</p>
+
+<!-- 数据质量 -->
+<p class="nt" style="margin-top:8px;">📊 <strong>数据覆盖</strong>：有投后数据3只（¥150万）| 有净值数据7只（¥135万）| 数据截至2025.12.31</p>
+
 </div></div>
 
 <!-- 固定资产（手风琴折叠） -->
