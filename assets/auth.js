@@ -1,13 +1,13 @@
 /**
- * 客户认证系统 — SHA-256 静态版 + 二次验证遮罩
+ * 客户认证系统 — SHA-256 静态版 + 智能二次验证遮罩
  * =================================
  * 
  * 工作流程：
  * 1. 每个页面加载时检查 sessionStorage 是否有认证记录
  * 2. 已认证 → 直接显示页面内容
- * 3. 未认证 → 显示验证遮罩（QR码 + 密码输入框）
- *    - QR码：扫描后在手机浏览器打开 login.html 登录
- *    - 密码框：输入手机号+密码直接验证
+ * 3. 未认证 → 显示验证遮罩
+ *    桌面端：QR码（手机扫码登录） + 密码输入框 → 两种方式
+ *    手机端：只显示密码输入框（手机上没法扫码）
  * 4. 验证通过后隐藏遮罩，显示页面内容
  *
  * 新增客户（只需3步）：
@@ -91,46 +91,60 @@ function logout() {
 
 // ========== 二次验证遮罩（页面守卫） ==========
 
+/** 检测是否为移动设备（触屏 + 窄屏 + UserAgent 综合判断） */
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+}
+
 /**
  * 显示验证遮罩。未登录时由页面守卫自动调用。
- * 遮罩内容：QR码（扫到手机浏览器打开 login.html） + 直接输入密码验证
+ * 
+ * 桌面端（电脑浏览器）：QR码 + 密码输入 → 两种方式任选
+ * 手机端（手机浏览器）：只显示密码输入框（手机上没法扫码）
  */
 function showAuthGate(loginUrl) {
-  // 已认证则跳过
   if (checkAuth()) return;
 
-  // 计算 QR 码 URL（用免费API生成）
+  var mobile = isMobile();
   var absLoginUrl = new URL(loginUrl, window.location.href).href;
-  var qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(absLoginUrl);
 
-  // 创建遮罩 HTML
+  // ====== QR码区域（仅桌面端显示） ======
+  var qrHtml = '';
+  if (!mobile) {
+    var qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(absLoginUrl);
+    qrHtml =
+      '<div style="background:#f8f9fc;border-radius:12px;padding:16px;margin-bottom:16px">' +
+        '<div style="font-size:13px;color:#666;margin-bottom:10px;font-weight:600">方式一：手机扫码登录</div>' +
+        '<img src="' + qrSrc + '" alt="扫码登录" style="width:160px;height:160px;border-radius:8px;border:1px solid #e0e0e0" ' +
+          'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'">' +
+        '<div style="display:none;font-size:12px;color:#999;padding:20px">QR码加载失败，请使用方式二</div>' +
+        '<div style="font-size:11px;color:#aaa;margin-top:8px">用手机扫描后输入密码登录</div>' +
+      '</div>' +
+      '<div style="display:flex;align-items:center;gap:10px;margin:0 0 16px">' +
+        '<div style="flex:1;height:1px;background:#e8e8e8"></div>' +
+        '<div style="font-size:12px;color:#bbb">或</div>' +
+        '<div style="flex:1;height:1px;background:#e8e8e8"></div>' +
+      '</div>';
+  }
+
+  // ====== 标题文案 ======
+  var titleText = mobile ? '身份验证' : '客户验证';
+  var subtitleText = mobile ? '请输入您的手机号和密码' : '请通过以下任一方式验证身份';
+  var inputLabel = mobile ? '登录' : '方式二：直接输入密码';
+
+  // ====== 创建遮罩 ======
   var overlay = document.createElement('div');
   overlay.id = '__auth_gate__';
   overlay.innerHTML =
     '<div style="position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:-apple-system,\'PingFang SC\',\'Microsoft YaHei\',sans-serif">' +
       '<div style="background:#fff;border-radius:16px;padding:32px 28px;max-width:360px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3)">' +
-        '<div style="font-size:20px;font-weight:700;color:#1a3a5c;margin-bottom:4px">客户验证</div>' +
-        '<div style="font-size:13px;color:#999;margin-bottom:20px">请通过以下任一方式验证身份</div>' +
+        '<div style="font-size:20px;font-weight:700;color:#1a3a5c;margin-bottom:4px">' + titleText + '</div>' +
+        '<div style="font-size:13px;color:#999;margin-bottom:20px">' + subtitleText + '</div>' +
 
-        // 方式一：QR码
-        '<div style="background:#f8f9fc;border-radius:12px;padding:16px;margin-bottom:16px">' +
-          '<div style="font-size:13px;color:#666;margin-bottom:10px;font-weight:600">方式一：手机扫码登录</div>' +
-          '<img src="' + qrSrc + '" alt="扫码登录" style="width:160px;height:160px;border-radius:8px;border:1px solid #e0e0e0" ' +
-            'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'">' +
-          '<div style="display:none;font-size:12px;color:#999;padding:20px">QR码加载失败，请使用方式二</div>' +
-          '<div style="font-size:11px;color:#aaa;margin-top:8px">用手机扫描后输入密码登录</div>' +
-        '</div>' +
+        qrHtml +
 
-        // 分隔
-        '<div style="display:flex;align-items:center;gap:10px;margin:0 0 16px">' +
-          '<div style="flex:1;height:1px;background:#e8e8e8"></div>' +
-          '<div style="font-size:12px;color:#bbb">或</div>' +
-          '<div style="flex:1;height:1px;background:#e8e8e8"></div>' +
-        '</div>' +
-
-        // 方式二：直接输入
         '<div style="text-align:left;margin-bottom:8px">' +
-          '<div style="font-size:13px;color:#666;margin-bottom:6px;font-weight:600">方式二：直接输入密码</div>' +
+          '<div style="font-size:13px;color:#666;margin-bottom:6px;font-weight:600">' + inputLabel + '</div>' +
           '<input id="__auth_phone__" type="tel" placeholder="手机号" maxlength="11" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:8px;outline:none;transition:border .2s" onfocus="this.style.borderColor=\'#1a3a5c\'" onblur="this.style.borderColor=\'#ddd\'">' +
           '<input id="__auth_pwd__" type="password" placeholder="密码" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:8px;outline:none;transition:border .2s" onfocus="this.style.borderColor=\'#1a3a5c\'" onblur="this.style.borderColor=\'#ddd\'" onkeydown="if(event.key===\'Enter\')doAuthGateVerify()">' +
           '<div id="__auth_err__" style="font-size:12px;color:#e53e3e;min-height:18px;margin-bottom:4px"></div>' +
@@ -144,10 +158,9 @@ function showAuthGate(loginUrl) {
     '</div>';
 
   document.body.appendChild(overlay);
-  // 隐藏 body 内原有内容防止闪动（CSS 未加载前）
   document.body.style.display = 'block';
 
-  // 自动聚焦
+  // 自动聚焦到手机号输入框
   setTimeout(function(){ var el=document.getElementById('__auth_phone__'); if(el)el.focus(); }, 300);
 }
 
