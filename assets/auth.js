@@ -40,6 +40,13 @@ var CLIENTS = {
     name: '陈女士',
     path: 'chen/菜单.html',
     hash: 'fe438d7c548ecc2818ccf0117f6b3150a7c40bb8cb24c28af6e1da5364c01229'
+  },
+
+  // 孙小姐 · 真实客户
+  '18689284768': {
+    name: '孙小姐',
+    path: 'sun/菜单.html',
+    hash: '365d59a2045a0a0b76fd99ab5d0fc911f98b36ca7c873fbba2aea46d555ac743'
   }
 
   // ========== 新增客户在此添加 ↓ ==========

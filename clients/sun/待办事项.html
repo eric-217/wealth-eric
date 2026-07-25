@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>待办事项 · 孙小姐</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F4F0;color:#3D3A4B;font-size:14px;padding:12px}
+.back{display:inline-block;padding:6px 14px;background:#7C6B9E;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;margin-bottom:12px}
+h2{font-size:17px;color:#6B5B8D;margin-bottom:10px}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:10px;box-shadow:0 1px 6px rgba(124,107,158,0.08)}
+.card h3{font-size:14px;color:#6B5B8D;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #EDE8F0}
+.task{display:flex;align-items:flex-start;padding:10px 8px;border-bottom:1px solid #f0f0f0;gap:10px}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:#7BA587}
+.task .tb{flex:1}
+.task .tbt{font-weight:600;font-size:13px}
+.task .tbd{font-size:11px;color:#8D8A9B;margin-top:2px}
+.task.done .tbt{text-decoration:line-through;color:#9B95A8}
+textarea{width:100%;height:100px;border:1px solid #E0DAEA;border-radius:8px;padding:12px;font-size:14px;font-family:inherit;resize:vertical;margin-top:8px;background:#FAF8F5}
+.btn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,#7C6B9E,#6B5B8D);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
+.btn:disabled{opacity:0.5}
+.msg{font-size:12px;margin-top:8px;text-align:center}
+.msg.ok{color:#7BA587}
+</style>
+<script>window.__AUTH_LOGIN_URL__="../../login.html";</script><script src="../../assets/auth.js"></script></head>
+<body>
+<a href="菜单.html" class="back">&larr; 返回菜单</a>
+
+<h2>待办事项</h2>
+
+<div class="card">
+<h3>保单操作</h3>
+<div id="tasks1"></div>
+</div>
+
+<div class="card">
+<h3>资金与账务</h3>
+<div id="tasks2"></div>
+</div>
+
+<div class="card">
+<h3>报告与沟通</h3>
+<div id="tasks3"></div>
+</div>
+
+<div class="card">
+<h3>意见和建议</h3>
+<textarea id="msg" placeholder="请在此写下您的建议、问题或需求..."></textarea>
+<button class="btn" id="send-btn" onclick="sendFeedback()">发送给理财顾问</button>
+<div class="msg" id="fb-msg"></div>
+</div>
+
+<script>
+var allTodos = [
+  // 保单操作
+  {cat:1, text:'安排保单全面检视', detail:'更新平安盈利保、智盈人生、和谐财富、鑫福年金、健康百分百等所有保单最新现金价值/账户余额。2024年9月检视后数据已过时。'},
+  {cat:1, text:'确认百万医疗4份续保日期', detail:'孙小姐、配偶、两个孩子各一份百万医疗，确认续保日期和保费，避免断保。'},
+  {cat:1, text:'确认鑫福年金领取规则', detail:'孩子·华的鑫福年金：领取金额、频次、起领日期需向保险公司确认。'},
+  {cat:1, text:'确认健康百分百交费状态', detail:'孩子·华的健康百分百：当前交费方式、金额、是否仍在缴需确认。'},
+  {cat:1, text:'智盈人生账户价值预警机制', detail:'建立每半年检视智盈人生万能账户价值的机制，关注保障成本递增是否会导致账户归零。'},
+  {cat:1, text:'评估配偶重疾险补充方案', detail:'配偶45岁，重疾仅10万。建议2027年前确认补充方案（关键窗口期）。'},
+  {cat:1, text:'两个孩子补充少儿意外险', detail:'年费约¥100-300/人，保费极低但保障实用。'},
+
+  // 资金与账务
+  {cat:2, text:'确认银行存款余额', detail:'当前银行存款数据缺失，需孙小姐提供。建议保持3-6个月支出（¥5-9万）作为应急储备。'},
+  {cat:2, text:'确认房产估值', detail:'自住房产面积、地段、大致市值。对净资产计算和资产配置比例有直接影响。'},
+  {cat:2, text:'2027年Q4到期产品续投规划', detail:'悦享债权×3 + 中瑞恒信共¥60万到期，提前3-6个月制定续投方案。关注利率下行趋势。'},
+  {cat:2, text:'确认和谐财富护理险缴费安排', detail:'年缴¥10万至2035年，还需¥90万。确认缴费账户、扣款日期，确保现金流充足。'},
+  {cat:2, text:'补充详细收支数据', detail:'目前月支出¥1.5万为估算值，建议孙小姐提供3个月实际账单以校准。'},
+
+  // 报告与沟通
+  {cat:3, text:'首次财富管理报告交付', detail:'完成所有页面填充后，向孙小姐交付首份完整财富管理报告。'},
+  {cat:3, text:'与孙小姐确认关键假设', detail:'月支出¥1.5万、固收利率下行预期、保险配置建议等假设需当面/电话沟通确认。'},
+  {cat:3, text:'半年后跟进检视', detail:'2027年1月安排第一次半年度检视。'},
+];
+
+var done = JSON.parse(localStorage.getItem('wm_todos_sun') || '[]');
+
+function renderTodos(cat, containerId) {
+  var list = allTodos.filter(function(t) { return t.cat === cat; });
+  if (list.length === 0) return;
+  var h = '';
+  list.forEach(function(t) {
+    var d = done.indexOf(t.text) >= 0;
+    h += '<div class="task' + (d ? ' done' : '') + '" onclick="toggle(\'' + t.text.replace(/'/g, "\\'") + '\')">';
+    h += '<input type="checkbox" ' + (d ? 'checked' : '') + ' onclick="event.stopPropagation();toggle(\'' + t.text.replace(/'/g, "\\'") + '\')">';
+    h += '<div class="tb"><div class="tbt">' + t.text + '</div>';
+    if (t.detail) h += '<div class="tbd">' + t.detail + '</div>';
+    h += '</div></div>';
+  });
+  document.getElementById(containerId).innerHTML = h;
+}
+
+function toggle(text) {
+  var i = done.indexOf(text);
+  if (i >= 0) done.splice(i, 1); else done.push(text);
+  localStorage.setItem('wm_todos_sun', JSON.stringify(done));
+  renderTodos(1, 'tasks1');
+  renderTodos(2, 'tasks2');
+  renderTodos(3, 'tasks3');
+}
+
+renderTodos(1, 'tasks1');
+renderTodos(2, 'tasks2');
+renderTodos(3, 'tasks3');
+
+async function sendFeedback() {
+  var msg = document.getElementById('msg').value.trim();
+  if (!msg) { showMsg('fb-msg', '请输入内容', ''); return; }
+  var btn = document.getElementById('send-btn');
+  btn.disabled = true; btn.textContent = '发送中...';
+  try {
+    var r = await fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
+    });
+    var d = await r.json();
+    if (d.ok) {
+      showMsg('fb-msg', '已发送给理财顾问', 'ok');
+      document.getElementById('msg').value = '';
+    } else {
+      showMsg('fb-msg', '发送失败，请稍后重试', '');
+    }
+  } catch(e) { showMsg('fb-msg', '网络错误，请稍后重试', ''); }
+  btn.disabled = false; btn.textContent = '发送给理财顾问';
+}
+
+function showMsg(id, text, cls) {
+  var el = document.getElementById(id);
+  el.textContent = text; el.className = 'msg ' + cls;
+  setTimeout(function() { el.textContent = ''; el.className = 'msg'; }, 3000);
+}
+</script>
+</body>
+</html>

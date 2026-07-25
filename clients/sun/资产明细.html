@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>资产明细</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F4F0;color:#3D3A4B;font-size:15px;padding-bottom:40px}
+.backbar{position:sticky;top:0;background:linear-gradient(135deg,#7C6B9E,#6B5B8D);z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.backbar a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:13px}
+.c{padding:12px}
+
+/* 总览卡片 */
+.summary-card{background:linear-gradient(135deg,#7C6B9E,#9B8DBA);border-radius:14px;padding:20px 16px;margin-bottom:16px;color:#fff;box-shadow:0 2px 14px rgba(124,107,158,0.25)}
+.summary-card .s-title{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px}
+.summary-card .s-value{font-size:36px;font-weight:800;letter-spacing:1px}
+.summary-card .s-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.summary-card .s-item{background:rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px}
+.summary-card .s-item .si-label{font-size:11px;color:rgba(255,255,255,0.65);margin-bottom:2px}
+.summary-card .s-item .si-value{font-size:18px;font-weight:700}
+
+/* 折叠面板 */
+.accordion{margin-bottom:12px}
+.accordion-header{background:#EDE8F0;border-radius:10px 10px 0 0;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:background .2s}
+.accordion-header:hover{background:#E0DAEA}
+.accordion-header .ah-left{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:#6B5B8D}
+.accordion-header .ah-num{font-size:12px;color:#8D8A9B;font-weight:400}
+.accordion-header .ah-arrow{font-size:12px;color:#8D8A9B;transition:transform .2s}
+.accordion.open .accordion-header .ah-arrow{transform:rotate(180deg)}
+.accordion-body{display:none;background:#fff;border-radius:0 0 10px 10px;padding:12px 16px;border:1px solid #EDE8F0;border-top:none}
+.accordion.open .accordion-body{display:block}
+
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(124,107,158,0.08)}
+.card h3{font-size:14px;color:#6B5B8D;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #EDE8F0}
+.card h3 .badge{display:inline-block;font-size:11px;background:#F5F2F9;color:#6B5B8D;border-radius:4px;padding:2px 8px;margin-left:6px;font-weight:400}
+.card h4{font-size:13px;color:#6B5B8D;margin:6px 0;border-bottom:1px solid #EDE8F0;padding-bottom:4px}
+
+.date-tag{font-size:12px;color:#8D8A9B;margin-bottom:12px;padding:4px 10px;background:#F5F2F9;border-radius:4px;display:inline-block}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}th{background:#7C6B9E;color:#fff;padding:8px 6px;font-size:11px;text-align:left}
+td{padding:7px 6px;border:1px solid #E0DAEA;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#FAF8F5}
+tr.tt{font-weight:700;background:#EDE8F5;border-top:2px solid #7C6B9E}tr.done{color:#aaa;text-decoration:line-through}
+.tbl-wrap{overflow-x:auto;margin:6px -4px;padding:0 4px}.tbl-wrap table{min-width:500px}
+.nt{font-size:12px;color:#8D8A9B;padding:8px;background:#F8F5F9;border-radius:6px;margin-top:8px}
+.bg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#E8F5E9;color:#5B8C5A}
+.ba{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;background:#FDF9F3;color:#C4956A}
+
+.ins-row{cursor:pointer;user-select:none}.ins-row td{padding:9px 8px}
+.ins-row:hover{background:#f0f4f8}
+.ins-detail{display:none;background:#f8fafc}.ins-detail.show{display:table-row}
+.ins-detail td{padding:12px 8px;font-size:12px;line-height:1.7}
+.ins-detail .kv{display:inline-block;margin-right:18px;margin-bottom:4px}
+.ins-detail .kv .k{color:#889;font-size:11px}.ins-detail .kv .v{color:#222;font-weight:500}
+.ins-detail .tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:10px;margin-right:4px}
+.tag-g{background:#f0fdf4;color:#16a34a}.tag-y{background:#fefce8;color:#d97706}.tag-r{background:#fef2f2;color:#dc2626}
+.ins-detail .sep{border-top:1px solid #e0e0e0;margin:8px 0;padding-top:8px}
+
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+.btn-sm{display:inline-block;padding:6px 14px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:6px}
+</style><script>window.__AUTH_LOGIN_URL__="../../login.html";</script><script src="../../assets/auth.js"></script></head><body>
+<div class="backbar"><a href="菜单.html">← 返回</a> 资产明细</div>
+<div class="c">
+
+<!-- 总览卡片 -->
+<div class="summary-card">
+  <div class="s-title">总资产</div>
+  <div class="s-value">¥338万</div>
+  <div class="s-grid">
+    <div class="s-item"><div class="si-label">固收资产</div><div class="si-value">¥240万</div></div>
+    <div class="s-item"><div class="si-label">保险资产</div><div class="si-value">¥98万</div></div>
+    <div class="s-item"><div class="si-label">固定资产</div><div class="si-value">待估</div></div>
+    <div class="s-item"><div class="si-label">银行存款</div><div class="si-value">待补充</div></div>
+  </div>
+</div>
+
+<!-- 固收资产 -->
+<div class="accordion" id="acc_fixincome">
+<div class="accordion-header" onclick="toggleAcc('acc_fixincome')">
+  <div class="ah-left">🏦 固收资产 <span class="ah-num">10笔 · ¥240万</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>投入日</th><th>到期日</th><th>付息</th></tr>
+<tr><td>悦享债权36730</td><td class="tr">¥100,000</td><td class="tr">9.0%</td><td>2024-10-29</td><td>2027-10-30</td><td>季度</td></tr>
+<tr><td>悦享债权36543</td><td class="tr">¥100,000</td><td class="tr">9.0%</td><td>2024-11-06</td><td>2027-11-07</td><td>季度</td></tr>
+<tr><td>悦享债权36763</td><td class="tr">¥100,000</td><td class="tr">9.0%</td><td>2024-12-04</td><td>2027-12-05</td><td>季度</td></tr>
+<tr><td>中瑞恒信收益权转让计划</td><td class="tr">¥300,000</td><td class="tr">9.2%</td><td>2024-12-10</td><td>2027-12-11</td><td>季度</td></tr>
+<tr><td>百达奔汐收益权转让计划</td><td class="tr">¥500,000</td><td class="tr">9.2%</td><td>2025-03-04</td><td>2028-03-05</td><td>季度</td></tr>
+<tr><td>众享淳盈162期</td><td class="tr">¥300,000</td><td class="tr">9.4%</td><td>2025-03-13</td><td>2028-03-14</td><td>年度</td></tr>
+<tr><td>众享淳盈251期</td><td class="tr">¥300,000</td><td class="tr">8.8%</td><td>2025-09-01</td><td>2028-09-02</td><td>季度</td></tr>
+<tr><td>鸿致安荣收益权转让计划</td><td class="tr">¥300,000</td><td class="tr">8.8%</td><td>2025-12-01</td><td>2028-12-02</td><td>季度</td></tr>
+<tr><td>众享淳盈395期</td><td class="tr">¥300,000</td><td class="tr">8.4%</td><td>2026-01-28</td><td>2029-01-29</td><td>季度</td></tr>
+<tr><td>众享淳盈38期</td><td class="tr">¥100,000</td><td class="tr">8.4%</td><td>2026-03-02</td><td>2029-03-03</td><td>年度</td></tr>
+<tr class="tt"><td>合计</td><td class="tr">¥2,400,000</td><td colspan="4">加权平均利率 8.93% · 年利息≈¥215,200</td></tr></table></div>
+<a href="固收现金流明细.html" class="btn-sm">查看近一年利息收益 →</a>
+</div></div>
+
+<!-- 保险资产 -->
+<div class="accordion open" id="acc_insurance">
+<div class="accordion-header" onclick="toggleAcc('acc_insurance')">
+  <div class="ah-left">🛡 保险资产 <span class="ah-num">7份储蓄型 · 4份医疗险 · ¥98万</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+
+<!-- 孙小姐本人 -->
+<h4>孙小姐本人（3份储蓄型 + 1份医疗）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>保单价值</th><th>类型</th></tr>
+
+<tr class="ins-row" onclick="toggle('det_pa')"><td>平安盈利保 ▸</td><td class="tr">¥52.9万</td><td>年金+万能</td></tr>
+<tr class="ins-detail" id="det_pa"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">平安盈利保年金 + 万能账户</span></span><br>
+<span class="kv"><span class="k">投保日期</span><span class="v">2020.09.03</span></span>
+<span class="kv"><span class="k">交费</span><span class="v">¥10万/年 × 5年 · 已缴清</span></span>
+<span class="kv"><span class="k">状态</span><span class="v"><span class="tag tag-g">✅ 第5个保单年度</span></span></span>
+<div class="sep"></div>
+<h4>💰 领取/返还</h4>
+<span class="kv"><span class="k">特别生存金</span><span class="v">第5年 ¥60,000（已领 → 万能账户）</span></span><br>
+<span class="kv"><span class="k">生存金</span><span class="v">第5-14年 ¥12,000/年 → 万能账户</span></span><br>
+<span class="kv"><span class="k">满期金（第15年）</span><span class="v">¥510,500</span></span>
+<div class="sep"></div>
+<h4>💎 保单价值（2024.09检视）</h4>
+<span class="kv"><span class="k">万能账户</span><span class="v">¥72,000</span></span>
+<span class="kv"><span class="k">现金价值</span><span class="v">¥457,000</span></span>
+<span class="kv"><span class="k">合计</span><span class="v"><strong>¥529,000</strong></span></span><br>
+<span class="kv"><span class="k">5年后预估</span><span class="v">¥589,019</span></span>
+<span class="kv"><span class="k">10年后预估</span><span class="v">¥703,988</span></span>
+<span class="kv"><span class="k">期满日预估</span><span class="v">¥733,199</span></span>
+</td></tr>
+
+<tr class="ins-row" onclick="toggle('det_zynv')"><td>平安智盈人生（万能） ▸</td><td class="tr">¥7.0万</td><td>终身寿+万能</td></tr>
+<tr class="ins-detail" id="det_zynv"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">平安智盈人生终身寿险 + 万能账户</span></span><br>
+<span class="kv"><span class="k">投保日期</span><span class="v">2009.08.25</span></span>
+<span class="kv"><span class="k">交费</span><span class="v">¥6,202.5/年 · 终身缴费</span></span>
+<span class="kv"><span class="k">已缴</span><span class="v">¥99,240（16年）</span></span>
+<div class="sep"></div>
+<h4>📦 保障范围</h4>
+<span class="kv"><span class="k">寿险保额</span><span class="v">¥300,000</span></span>
+<span class="kv"><span class="k">重疾保额</span><span class="v">¥250,000（31种）</span></span><br>
+<span class="kv"><span class="k">意外保额</span><span class="v">¥60,000</span></span>
+<span class="kv"><span class="k">医疗保额</span><span class="v">¥10,000</span></span>
+<div class="sep"></div>
+<h4>💎 保单价值（2024.09检视）</h4>
+<span class="kv"><span class="k">万能账户</span><span class="v">¥69,812</span></span><br>
+<span class="kv"><span class="k">5年后预估</span><span class="v">¥86,781</span></span>
+<span class="kv"><span class="k">10年后预估</span><span class="v">¥97,889</span></span>
+<div class="sep"></div>
+<p class="nt">⚠️ 保单将从第31年起保费不足抵扣保障成本，万能账户进入负增长。保障价值大于储蓄价值。</p>
+</td></tr>
+
+<tr class="ins-row" onclick="toggle('det_hxtf')"><td>和谐财富一生护理险 ▸</td><td class="tr">¥20万</td><td>长期护理</td></tr>
+<tr class="ins-detail" id="det_hxtf"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">和谐财富一生护理险</span></span><br>
+<span class="kv"><span class="k">交费</span><span class="v">¥10万/年 × 5年</span></span>
+<span class="kv"><span class="k">已缴</span><span class="v">¥200,000（未缴¥300,000）</span></span>
+<span class="kv"><span class="k">起始</span><span class="v">2025年</span></span>
+<div class="sep"></div>
+<h4>📦 保障内容</h4>
+<span class="kv"><span class="k">给付条件</span><span class="v">长期护理状态</span></span>
+<span class="kv"><span class="k">50年后预估</span><span class="v">约¥250万</span></span>
+<span class="kv"><span class="k">复利水平</span><span class="v">3.5%复利长期储蓄</span></span>
+</td></tr>
+
+</table></div>
+
+<!-- 配偶 -->
+<h4 style="margin-top:16px">配偶·陈先生（1份储蓄型 + 1份医疗）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>保单价值</th><th>类型</th></tr>
+
+<tr class="ins-row" onclick="toggle('det_zynan')"><td>平安智盈人生（万能） ▸</td><td class="tr">¥6.4万</td><td>终身寿+万能</td></tr>
+<tr class="ins-detail" id="det_zynan"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">平安智盈人生终身寿险 + 万能账户</span></span><br>
+<span class="kv"><span class="k">投保日期</span><span class="v">2010.05.10</span></span>
+<span class="kv"><span class="k">交费</span><span class="v">¥6,223.5/年 · 终身缴费</span></span>
+<span class="kv"><span class="k">已缴</span><span class="v">¥93,352.5（15年）</span></span>
+<div class="sep"></div>
+<h4>📦 保障范围</h4>
+<span class="kv"><span class="k">寿险保额</span><span class="v">¥300,000</span></span>
+<span class="kv"><span class="k">重疾保额</span><span class="v">¥250,000（31种）</span></span><br>
+<span class="kv"><span class="k">意外保额</span><span class="v">¥60,000</span></span>
+<span class="kv"><span class="k">医疗保额</span><span class="v">¥10,000</span></span>
+<div class="sep"></div>
+<h4>💎 保单价值（2024.09检视）</h4>
+<span class="kv"><span class="k">万能账户</span><span class="v">¥63,952.5</span></span><br>
+<span class="kv"><span class="k">5年后预估</span><span class="v">¥79,372</span></span>
+<span class="kv"><span class="k">10年后预估</span><span class="v">¥86,188</span></span>
+<div class="sep"></div>
+<p class="nt">⚠️ 保单将从第26年起保费不足抵扣保障成本，万能账户进入负增长。保障价值大于储蓄价值。</p>
+</td></tr>
+
+</table></div>
+
+<!-- 孩子1 -->
+<h4 style="margin-top:16px">孩子1·森（1份储蓄型 + 1份医疗）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>保单价值</th><th>类型</th></tr>
+
+<tr class="ins-row" onclick="toggle('det_ky')"><td>泰康康悦两全 ▸</td><td class="tr">¥1.2万</td><td>两全+重疾</td></tr>
+<tr class="ins-detail" id="det_ky"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">泰康康悦两全保险</span></span><br>
+<span class="kv"><span class="k">交费</span><span class="v">¥2,463/年</span></span>
+<span class="kv"><span class="k">已缴</span><span class="v">¥12,141（未缴¥48,564）</span></span>
+<span class="kv"><span class="k">保障期</span><span class="v">30年</span></span>
+<div class="sep"></div>
+<h4>📦 保障范围</h4>
+<span class="kv"><span class="k">重疾保额</span><span class="v">¥200,000（42种）</span></span>
+<span class="kv"><span class="k">意外保额</span><span class="v">¥50,000（附加险）</span></span>
+<div class="sep"></div>
+<h4>💰 满期返还</h4>
+<span class="kv"><span class="k">30年到期返还</span><span class="v">¥131,700</span></span>
+</td></tr>
+
+</table></div>
+
+<!-- 孩子2 -->
+<h4 style="margin-top:16px">孩子2·华（2份储蓄型 + 1份医疗）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>保单价值</th><th>类型</th></tr>
+
+<tr class="ins-row" onclick="toggle('det_xf')"><td>泰康鑫福年金 ▸</td><td class="tr">¥7.5万</td><td>年金+万能</td></tr>
+<tr class="ins-detail" id="det_xf"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">泰康鑫福年金保险</span></span><br>
+<span class="kv"><span class="k">交费</span><span class="v">¥12,457.2/年</span></span>
+<span class="kv"><span class="k">已缴</span><span class="v">¥74,743.2（未缴¥49,371.6）</span></span>
+<div class="sep"></div>
+<h4>💰 领取</h4>
+<span class="kv"><span class="k">第6年起</span><span class="v">¥1,470/年 → 万能账户（85年共¥12.5万+分红）</span></span><br>
+<span class="kv"><span class="k">65岁前</span><span class="v">¥99,727</span></span>
+<span class="kv"><span class="k">99岁前</span><span class="v">¥165,925</span></span>
+<span class="kv"><span class="k">94年合计</span><span class="v">约¥269,654 + 分红</span></span>
+</td></tr>
+
+<tr class="ins-row" onclick="toggle('det_jk')"><td>泰康健康百分百 ▸</td><td class="tr">¥3.2万</td><td>重疾终身</td></tr>
+<tr class="ins-detail" id="det_jk"><td colspan="3">
+<h4>📋 基础信息</h4>
+<span class="kv"><span class="k">产品</span><span class="v">泰康健康百分百</span></span><br>
+<span class="kv"><span class="k">交费</span><span class="v">¥3,899.35/年 × 19年</span></span>
+<span class="kv"><span class="k">已缴</span><span class="v">¥74,743.2（未缴¥49,371.6）</span></span>
+<span class="kv"><span class="k">保障期</span><span class="v">终身</span></span>
+<div class="sep"></div>
+<h4>📦 保障范围</h4>
+<span class="kv"><span class="k">重疾保额</span><span class="v">¥350,000（105种重疾 + 60种轻症）</span></span>
+<div class="sep"></div>
+<h4>💎 保单价值</h4>
+<span class="kv"><span class="k">现金价值</span><span class="v">¥20,292</span></span>
+<span class="kv"><span class="k">万能账户</span><span class="v">¥12,000</span></span>
+<span class="kv"><span class="k">合计</span><span class="v"><strong>¥32,292</strong></span></span>
+</td></tr>
+
+</table></div>
+
+<!-- 医疗险概况 -->
+<h4 style="margin-top:16px">纯保障·医疗险（4份）</h4>
+<p class="nt" style="margin-bottom:6px">百万医疗险为消费型保障，不计入资产价值</p>
+<div class="tbl-wrap"><table>
+<tr><th>产品</th><th>被保人</th><th>年保费</th><th>保额</th><th>续保</th></tr>
+<tr><td>泰康百万医疗</td><td>孙小姐</td><td class="tr">¥1,056</td><td class="tr">200万</td><td>20年</td></tr>
+<tr><td>泰康百万医疗</td><td>陈先生</td><td class="tr">¥1,056</td><td class="tr">200万</td><td>20年</td></tr>
+<tr><td>泰康百万医疗</td><td>孩子·森</td><td class="tr">¥411</td><td class="tr">400万</td><td>20年</td></tr>
+<tr><td>泰康百万医疗</td><td>孩子·华</td><td class="tr">¥994</td><td class="tr">50万</td><td>1年</td></tr>
+</table></div>
+
+</div></div>
+
+<!-- 私募股权 -->
+<div class="accordion" id="acc_pe">
+<div class="accordion-header" onclick="toggleAcc('acc_pe')">
+  <div class="ah-left">📈 私募股权 <span class="ah-num">暂无</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<p class="nt">暂无私募股权投资。后续如有配置将在此展示。</p>
+</div></div>
+
+<!-- 固定资产 -->
+<div class="accordion" id="acc_property">
+<div class="accordion-header" onclick="toggleAcc('acc_property')">
+  <div class="ah-left">🏠 固定资产 <span class="ah-num">1套自住 · 待评估</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<p class="nt">自住房产，市值待评估。后续补充房产信息后将在此展示详情。</p>
+</div></div>
+
+<!-- 银行存款 -->
+<div class="accordion" id="acc_bank">
+<div class="accordion-header" onclick="toggleAcc('acc_bank')">
+  <div class="ah-left">🏧 银行存款 <span class="ah-num">待补充</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<p class="nt">银行存款数据待客户确认后补充。</p>
+</div></div>
+
+<!-- 基金/股票 -->
+<div class="accordion" id="acc_fundstock">
+<div class="accordion-header" onclick="toggleAcc('acc_fundstock')">
+  <div class="ah-left">📊 基金/股票 <span class="ah-num">暂无</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<p class="nt">暂无持仓数据。后续如有配置将在此展示。</p>
+</div></div>
+
+</div>
+<!-- 数据来源：2024.09保单年检 + 2025.07固收持仓 -->
+<script>
+function toggleAcc(id){
+  var el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+function toggle(id){
+  var d=document.getElementById(id);
+  d.classList.toggle('show');
+  var row=d.previousElementSibling;
+  if(row){
+    var td=row.querySelector('td:first-child');
+    if(td)td.innerHTML=d.classList.contains('show')?td.innerHTML.replace('▸','▾'):td.innerHTML.replace('▾','▸');
+  }
+}
+</script></body></html>

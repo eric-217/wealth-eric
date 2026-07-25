@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>现金流 · 孙小姐</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F4F0;color:#3D3A4B;font-size:15px;padding-bottom:40px}
+.backbar{position:sticky;top:0;background:linear-gradient(135deg,#7C6B9E,#6B5B8D);z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.backbar a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:13px}
+.c{padding:12px}
+.summary-card{background:linear-gradient(135deg,#7C6B9E,#9B8DBA);border-radius:14px;padding:20px 16px;margin-bottom:16px;color:#fff;box-shadow:0 2px 14px rgba(124,107,158,0.25)}
+.summary-card .s-title{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px}
+.summary-card .s-value{font-size:32px;font-weight:800;letter-spacing:1px}
+.summary-card .s-value .s-unit{font-size:14px;font-weight:400;opacity:0.7}
+.summary-card .s-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.summary-card .s-item{background:rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px}
+.summary-card .s-item .si-label{font-size:11px;color:rgba(255,255,255,0.65);margin-bottom:2px}
+.summary-card .s-item .si-value{font-size:18px;font-weight:700}
+.accordion{margin-bottom:12px}
+.accordion-header{background:#EDE8F0;border-radius:10px 10px 0 0;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:background .2s}
+.accordion-header:hover{background:#E0DAEA}
+.accordion-header .ah-left{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:#6B5B8D}
+.accordion-header .ah-num{font-size:12px;color:#8D8A9B;font-weight:400}
+.accordion-header .ah-arrow{font-size:12px;color:#8D8A9B;transition:transform .2s}
+.accordion.open .accordion-header .ah-arrow{transform:rotate(180deg)}
+.accordion-body{display:none;background:#fff;border-radius:0 0 10px 10px;padding:12px 16px;border:1px solid #EDE8F0;border-top:none}
+.accordion.open .accordion-body{display:block}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(124,107,158,0.08)}
+.card h3{font-size:14px;color:#6B5B8D;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #EDE8F0}
+.date-tag{font-size:12px;color:#8D8A9B;margin-bottom:12px;padding:4px 10px;background:#F5F2F9;border-radius:4px;display:inline-block}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.kbox{background:#F8F5F9;border:1px solid #EDE8F0;border-radius:8px;padding:12px;text-align:center}
+.kbox .kl{font-size:11px;color:#8D8A9B;margin-bottom:4px}.kbox .kv{font-size:20px;font-weight:700}
+.kbox .kv.g{color:#7BA587}.kbox .kv.r{color:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th{background:#7C6B9E;color:#fff;padding:8px 6px;font-size:11px;text-align:left}
+td{padding:7px 6px;border:1px solid #E0DAEA;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#FAF8F5}
+tr.tt{font-weight:700;background:#EDE8F5;border-top:2px solid #7C6B9E}tr.warn{background:#FEF2F2}
+.tbl-wrap{overflow-x:auto;margin:6px -4px;padding:0 4px}.tbl-wrap table{min-width:500px}
+.nt{font-size:12px;color:#8D8A9B;padding:10px;background:#F8F5F9;border-radius:8px;margin-top:8px}
+footer{text-align:center;font-size:11px;color:#B5B2C2;padding:16px}
+</style>
+<script>window.__AUTH_LOGIN_URL__="../../login.html";</script><script src="../../assets/auth.js"></script>
+<script>
+function toggleAcc(id){document.getElementById(id).classList.toggle('open')}
+</script></head><body>
+<div class="backbar"><a href="菜单.html">&larr; 返回</a> 现金流</div>
+<div class="c">
+
+<!-- 总览卡片 -->
+<div class="summary-card">
+  <div class="s-title">年度被动收入</div>
+  <div class="s-value">¥22.7万<span class="s-unit"> /年</span></div>
+  <div class="s-grid">
+    <div class="s-item"><div class="si-label">固收利息</div><div class="si-value">¥21.5万</div></div>
+    <div class="s-item"><div class="si-label">保险生存金</div><div class="si-value">¥1.2万</div></div>
+    <div class="s-item"><div class="si-label">万能账户增值</div><div class="si-value">≈¥0.5万</div></div>
+    <div class="s-item"><div class="si-label">财务自由度</div><div class="si-value">126%</div></div>
+  </div>
+</div>
+
+<!-- 固收现金流 -->
+<div class="accordion open" id="acc_fixincome">
+<div class="accordion-header" onclick="toggleAcc('acc_fixincome')">
+  <div class="ah-left">💰 固收现金流 <span class="ah-num">季度付息 · 年利息¥21.5万</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<div class="date-tag">2026年7月 — 12月 | 单位：元 | 绿色=利息 | 无可到期产品</div>
+<div class="krow">
+  <div class="kbox"><div class="kl">H2总利息</div><div class="kv g">¥89,300</div></div>
+  <div class="kbox"><div class="kl">月均利息</div><div class="kv">¥14,883</div></div>
+</div>
+<div class="tbl-wrap"><table>
+<tr><th>月份</th><th>利息收入</th><th>到期本金</th><th>合计流入</th></tr>
+<tr><td>7月</td><td class="tr">8,550</td><td class="tr">—</td><td class="tr g" style="color:#7BA587;font-weight:600">8,550</td></tr>
+<tr><td>8月</td><td class="tr">2,250</td><td class="tr">—</td><td class="tr g" style="color:#7BA587;font-weight:600">2,250</td></tr>
+<tr><td>9月</td><td class="tr">33,850</td><td class="tr">—</td><td class="tr g" style="color:#7BA587;font-weight:600">33,850</td></tr>
+<tr><td>10月</td><td class="tr">8,550</td><td class="tr">—</td><td class="tr g" style="color:#7BA587;font-weight:600">8,550</td></tr>
+<tr><td>11月</td><td class="tr">2,250</td><td class="tr">—</td><td class="tr g" style="color:#7BA587;font-weight:600">2,250</td></tr>
+<tr><td>12月</td><td class="tr">33,850</td><td class="tr">—</td><td class="tr g" style="color:#7BA587;font-weight:600">33,850</td></tr>
+<tr class="tt"><td>H2合计</td><td class="tr">89,300</td><td class="tr">0</td><td class="tr">89,300</td></tr>
+</table></div>
+<div class="krow" style="margin-top:12px">
+  <div class="kbox"><div class="kl">2027年到期本金</div><div class="kv" style="color:#C4956A">¥60万</div></div>
+  <div class="kbox"><div class="kl">2028年到期本金</div><div class="kv">¥140万</div></div>
+</div>
+<a href="固收现金流明细.html" style="display:block;text-align:center;padding:10px;background:#F5F2F9;border-radius:8px;color:#7C6B9E;text-decoration:none;font-size:13px;font-weight:600;margin-top:10px">查看详细明细 →</a>
+</div></div>
+
+<!-- 保险生存金 -->
+<div class="accordion" id="acc_ins">
+<div class="accordion-header" onclick="toggleAcc('acc_ins')">
+  <div class="ah-left">🛡 保险生存金 <span class="ah-num">年均¥1.2万+ 特别金¥6万</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<div class="tbl-wrap"><table>
+<tr><th>保单</th><th>领取类型</th><th>金额</th><th>频次</th><th>到账方式</th></tr>
+<tr><td>平安盈利保</td><td>特别生存金（第5年）</td><td class="tr">¥60,000</td><td>一次性</td><td>→ 万能账户</td></tr>
+<tr><td>平安盈利保</td><td>生存金</td><td class="tr">¥12,000/年</td><td>第5-14年</td><td>→ 万能账户</td></tr>
+<tr><td>平安盈利保</td><td>满期金（第15年）</td><td class="tr">¥510,500</td><td>一次性</td><td>现金</td></tr>
+</table></div>
+<p class="nt">平安盈利保生存金转入万能账户，不直接进入现金流。满期金¥51万在第15年一次性领取。其余保单（鑫福年金等）领取规则待确认。</p>
+</div></div>
+
+<!-- 支出明细 -->
+<div class="accordion" id="acc_expense">
+<div class="accordion-header" onclick="toggleAcc('acc_expense')">
+  <div class="ah-left">💳 支出概览 <span class="ah-num">月均¥1.5万 · 年均¥18万</span></div>
+  <div class="ah-arrow">▼</div>
+</div>
+<div class="accordion-body">
+<div class="krow">
+  <div class="kbox"><div class="kl">月度生活支出（估）</div><div class="kv">¥15,000</div></div>
+  <div class="kbox"><div class="kl">年度生活支出（估）</div><div class="kv">¥180,000</div></div>
+</div>
+<div class="tbl-wrap"><table>
+<tr><th>类别</th><th>月估</th><th>年估</th><th>说明</th></tr>
+<tr><td>A 生活</td><td class="tr">¥4,000</td><td class="tr">¥48,000</td><td>日常饮食、日用品</td></tr>
+<tr><td>B 教育</td><td class="tr">¥3,000</td><td class="tr">¥36,000</td><td>两个孩子教育支出</td></tr>
+<tr><td>C 交通</td><td class="tr">¥1,500</td><td class="tr">¥18,000</td><td>通勤、车辆</td></tr>
+<tr><td>D 家庭</td><td class="tr">¥2,000</td><td class="tr">¥24,000</td><td>水电煤、物业、维修</td></tr>
+<tr><td>E 旅游</td><td class="tr">¥1,000</td><td class="tr">¥12,000</td><td>年度旅行分摊</td></tr>
+<tr><td>F 医疗</td><td class="tr">¥1,000</td><td class="tr">¥12,000</td><td>自费医疗、药品</td></tr>
+<tr><td>G 住房</td><td class="tr">—</td><td class="tr">—</td><td>自住无房贷</td></tr>
+<tr><td>H 保险保费</td><td class="tr">¥500</td><td class="tr">¥6,000</td><td>百万医疗续保均摊</td></tr>
+<tr><td>I 人情</td><td class="tr">¥1,000</td><td class="tr">¥12,000</td><td>社交、礼金</td></tr>
+<tr class="tt"><td>合计</td><td class="tr">¥14,000</td><td class="tr">¥168,000</td><td></td></tr>
+</table></div>
+<p class="nt">以上为估算值，实际金额需孙小姐确认。另有和谐财富一生护理险年缴¥10万（大额固定支出），智盈人生万能账户月扣保障成本。综合年度支出约¥30万（含大额保费）。</p>
+</div></div>
+
+<!-- 年度现金流总结 -->
+<div class="card">
+<h3>年度现金流总结</h3>
+<div class="krow">
+  <div class="kbox"><div class="kl">被动收入</div><div class="kv g">¥227,200</div></div>
+  <div class="kbox"><div class="kl">生活支出</div><div class="kv r">-¥180,000</div></div>
+</div>
+<div class="krow">
+  <div class="kbox"><div class="kl">大额保费</div><div class="kv" style="color:#C4956A">-¥100,000</div></div>
+  <div class="kbox"><div class="kl">净现金流（含保费）</div><div class="kv" style="color:#dc2626">-¥52,800</div></div>
+</div>
+<p class="nt">⚠️ 含和谐财富护理险年缴¥10万后，净现金流为负（约-¥5.3万/年）。这部分缺口需由银行存款或其它收入覆盖。如排除此保费，日常收支盈余约¥4.7万/年。2027年后固收陆续到期，资金安排需提前规划。</p>
+</div>
+
+</div><footer>更新：2026-07-25 · 孙小姐专属</footer></body></html>
