@@ -51,7 +51,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="backbar" id="backbar"><a href="菜单.html">← 返回菜单</a> <span id="backtitle"></span></div>
 <div class="submenu" id="submenu"></div>
 <div class="c" id="container"></div>
-<footer>更新：2026-07-21</footer>
+<footer>更新：2026-08-07</footer>
 
 <script>
 // ===== 主菜单 =====
@@ -325,33 +325,40 @@ panels.cf_expense_plan='<table><tr><th>项目</th><th>预算</th><th>时间</th>
 // --- 保险保障 ---
 panels.protection='<h3>保障配置状态</h3><div class="tbl-wrap"><table style="font-size:13px">'
 +'<tr><th>家庭成员</th><th>医疗险</th><th>重疾险</th><th>意外险</th><th>定寿险</th><th>养老储备</th><th>储蓄增值</th></tr>'
-+'<tr><td>陈女士(43)</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#16a34a">✓</td></tr>'
-+'<tr><td>李先生(45)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
+// @@GEN_START:protection_matrix_js@@
++'<tr><td>陈女士(43)</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#16a34a">✓</td></tr>'
++'<tr><td>李先生(45)</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
 +'<tr><td>儿子(9)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
 +'<tr><td>女儿(9)</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#16a34a">✓</td><td style="text-align:center;color:#dc2626">✗</td></tr>'
-+'<tr><td>罗女士(69)</td><td style="text-align:center;color:#d97706">⚠</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td><td style="text-align:center;color:#dc2626">✗</td></tr></table></div>'
++'<tr><td>罗女士(69)</td><td style="text-align:center;color:#999999">—</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#999999">—</td><td style="text-align:center;color:#999999">—</td><td style="text-align:center;color:#999999">—</td><td style="text-align:center;color:#999999">—</td></tr>'
+// @@GEN_END:protection_matrix_js@@
++'</table></div>'
 +'<p class="nt">✓=已配置 ⚠=待确认(保障类保单条款未读取) ✗=未配置 | 罗女士可能有城乡居民医保</p>'
 +'<h3>保障额度概览</h3><div class="tbl-wrap"><table style="font-size:13px">'
 +'<tr><th>家庭成员</th><th>重疾保障</th><th>医疗保障</th><th>意外保障</th><th>身故保障</th></tr>'
-+'<tr><td>陈女士(43)</td><td style="text-align:center;color:#d97706">¥10万⚠</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td></tr>'
-+'<tr><td>李先生(45)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
++'<tr><td>陈女士(43)</td><td style="text-align:center;color:#d97706">¥10万⚠</td><td style="text-align:center;color:#16a34a">800万总/400万年</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#d97706">待确认</td></tr>'
++'<tr><td>李先生(45)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#16a34a">800万总/400万年</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
 +'<tr><td>儿子(9)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
 +'<tr><td>女儿(9)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr>'
 +'<tr><td>罗女士(69)</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#d97706">待确认</td><td style="text-align:center;color:#dc2626">—</td><td style="text-align:center;color:#dc2626">—</td></tr></table></div>'
-+'<p class="nt">⚠ 钟爱一生附加重疾¥10万已缴清，是否仍有效待确认。复星·华贵·安居保3份保障型条款待读取。</p>';
++'<p class="nt">⚠ 钟爱一生附加重疾¥10万已缴清，是否仍有效待确认。复星联合优选一号医疗险已配置（陈莹+李春华，家庭总保额800万/年赔付限额400万）。华贵·安居保2份保障型条款待读取。</p>';
 
 // --- 保单管理 ---
 panels.policies='<div class="date-tag">📅 数据截止：2026年7月</div>'
 
 // 缴费提醒
 +'<h3>💰 交费提醒</h3><table><tr><th>保单</th><th>交费日</th><th>金额</th><th>状态</th></tr>'
-+'<tr class="warn"><td>永明星河尊享2（港险）</td><td>2026-08-26</td><td class="tr">$15,012.82</td><td>🔴 第2年待缴</td></tr>'
+// @@GEN_START:premium_reminders_js@@
++'<tr><td>永明星河尊享2（港险）</td><td>2026-08-26</td><td class="tr">$15,012.82</td><td>🔴 待缴 <small>第2年保费</small></td></tr>'
++'<tr><td>复星优选一号医疗险</td><td>2026-12-29</td><td class="tr">¥1,287.93</td><td>⏰ 年缴续保 <small>陈莹618.07+李春华669.86</small></td></tr>'
++'<tr><td>周大福匠心传承2（港险）</td><td>预缴完成</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>平安钟爱一生</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>新华惠鑫宝二代</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>信美挚信一生×2</td><td>趸交</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>阳光升/财富年年</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>国寿99鸿福</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
-+'<tr><td>周大福匠心传承2（港险）</td><td>预缴完成</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr></table>'
+// @@GEN_END:premium_reminders_js@@
++'</table>'
 
 // 变更状态
 +'<h3>📝 投保人/受益人变更</h3><table><tr><th>保单</th><th>原投保人</th><th>现投保人</th><th>受益人</th><th>状态</th></tr>'

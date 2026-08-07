@@ -307,65 +307,24 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 支出明细 -->
 <div class="accordion" id="acc_expense">
 <div class="accordion-header" onclick="toggleAcc('acc_expense')">
-  <div class="ah-left">💳 支出明细 <span class="ah-num">近半年 ¥52,720</span></div>
+  <div class="ah-left">💳 支出明细 <span class="ah-num">近半年 ¥54,008</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
+<!-- @@GEN_START:expense_detail@@ -->
 <table><tr><th>类别</th><th>项目</th><th>金额</th></tr>
-<tr><td>A 生活</td><td>手机</td><td class="tr">7,000元</td></tr>
+<tr><td>A 生活</td><td>手机</td><td class="tr">15,000元</td></tr>
 <tr><td>B 教育</td><td>校服+餐费+夏令营</td><td class="tr">8,600元</td></tr>
 <tr><td>B 教育</td><td>托管+班费+文具</td><td class="tr">9,500元</td></tr>
 <tr><td>C 交通</td><td>车贷×6</td><td class="tr">21,120元</td></tr>
-<tr><td>D 家庭</td><td>骨灰下葬+回老家等</td><td class="tr">3,000元</td></tr>
+<tr><td>D 家庭</td><td>骨灰下葬+回老家等</td><td class="tr">9,100元</td></tr>
 <tr><td>E 旅游</td><td>秋游+秋假</td><td class="tr">3,500元</td></tr>
-<tr class="tt"><td colspan="2">合计</td><td class="tr">52,720元</td></tr></table>
+<tr><td>G 医疗</td><td>复星优选一号医疗险12月续保</td><td class="tr">1,288元</td></tr>
+<tr class="tt"><td colspan="2">合计</td><td class="tr">68,108元</td></tr>
+</table>
+
+<!-- @@GEN_END:expense_detail@@ -->
 </div></div>
 
 <!-- 财务自由度 -->
-<div class="accordion" id="acc_freedom">
-<div class="accordion-header" onclick="toggleAcc('acc_freedom')">
-  <div class="ah-left">🎯 财务自由度 <span class="ah-num">2026年 502% | 2029年预警</span></div>
-  <div class="ah-arrow">▼</div>
-</div>
-<div class="accordion-body">
-<div class="krow">
-<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">497,000</div></div>
-<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">502%</div></div>
-<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">60,000</div></div>
-<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div>
-<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>
-<tr><td>2026</td><td class="tr">497,000</td><td class="tr">99,000</td><td style="color:#16a34a">502%</td></tr>
-<tr><td>2027</td><td class="tr">449,000</td><td class="tr">90,000</td><td>499%</td></tr>
-<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">81,000</td><td class="tr">90,000</td><td style="color:#dc2626">90%</td></tr>
-<tr><td>2036</td><td class="tr">94,000</td><td class="tr">90,000</td><td>104%</td></tr></table>
-</div></div>
-
-<!-- 支出计划 -->
-<div class="accordion" id="acc_expense_plan">
-<div class="accordion-header" onclick="toggleAcc('acc_expense_plan')">
-  <div class="ah-left">📅 支出计划 <span class="ah-num">大额支出 2029年起</span></div>
-  <div class="ah-arrow">▼</div>
-</div>
-<div class="accordion-body">
-<h4>大额支出规划</h4>
-<table><tr><th>项目</th><th>预算</th><th>时间</th></tr>
-<tr><td>住房装修</td><td class="tr">200,000</td><td>2029</td></tr>
-<tr><td>郴州置业</td><td class="tr">450,000-600,000</td><td>2029</td></tr>
-<tr><td>房车</td><td class="tr">300,000-500,000</td><td>2029-30</td></tr>
-<tr><td>教育婚嫁</td><td class="tr">1,200,000-1,800,000</td><td>32-47</td></tr></table>
-<h4 style="margin-top:12px">车贷偿还</h4>
-<table><tr><td>2026下</td><td class="tr">6期 · 21,120元</td><td>2027</td><td class="tr">12期 · 42,240元</td></tr></table>
-</div></div>
-
-</div>
-<footer>更新：2026-07-25</footer>
-<script>
-function toggleAcc(id){
-  var el=document.getElementById(id);
-  el.classList.toggle('open');
-}
-function toggleSub(id){
-  var el=document.getElementById(id);
-  el.classList.toggle('open');
-}
-</script></body></html>
+<div class="
