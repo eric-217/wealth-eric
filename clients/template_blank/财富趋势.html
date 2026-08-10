@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>财富趋势</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#222;font-size:15px}
+.backbar{position:sticky;top:0;background:#1a3a5c;z-index:100;padding:10px 12px;color:#fff;font-size:15px;font-weight:600}
+.backbar a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;margin-right:8px}
+.c{padding:10px}.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card h3{font-size:15px;color:#334;margin-bottom:10px}
+.date-tag{font-size:12px;color:#888;margin-bottom:12px;padding:4px 10px;background:#f0f4f8;border-radius:4px;display:inline-block}
+.chart-wrap{position:relative;width:100%;margin:4px auto}
+.chart-wrap canvas{width:100%!important;height:auto!important}
+.legend-note{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}th{background:#1a3a5c;color:#fff;padding:7px 6px;font-size:11px;text-align:left}
+td{padding:6px 6px;border:1px solid #ddd}td.r{text-align:right}tr:nth-child(even){background:#fafafa}
+.nt{font-size:12px;color:#888;padding:8px;background:#f8fafc;border-radius:6px;margin-top:8px}
+footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
+</style><script>window.__AUTH_LOGIN_URL__="../../login.html";</script><script src="../../assets/auth.js"></script></head><body>
+<div class="backbar"><a href="菜单.html">← 返回菜单</a> 财富趋势</div>
+<div class="c">
+<div class="card">
+<div class="date-tag">📅 数据版本：2026-07-25 起 · 共 <span id="verCount">0</span> 个记录点</div>
+<h3>📈 资产与负债趋势（万元）</h3>
+<div class="chart-wrap"><canvas id="chartAsset" height="230"></canvas></div>
+<div class="legend-note">总资产 = 固收+保单现金价值+港险+房产+私募+存款 ｜ 净资产 = 总资产 - 总负债</div>
+</div>
+
+<div class="card">
+<h3>💰 收入与自由度趋势</h3>
+<div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>
+<div class="legend-note">被动收入（万元/年）= 固收利息+生存金+万能账户增值 ｜ 财务自由度 = 被动收入 ÷ 年支出</div>
+</div>
+
+<div class="card">
+<h3>🏗️ 资产结构分布趋势（万元）</h3>
+<div class="chart-wrap"><canvas id="chartStructure" height="220"></canvas></div>
+<div class="legend-note">各资产类别随时间的消长：固收本金 / 保单现金价值 / 港险 / 房产 / 私募净值 / 银行存款</div>
+</div>
+
+<div class="card">
+<h3>📋 历史记录明细</h3>
+<div id="histTable"></div>
+<p class="nt">注：无实质变更的月份不新增记录点，对应曲线以平线延续。</p>
+</div>
+</div>
+<footer>船长财富管理 </footer>
+<script>
+var HIST = {"client": "示例客户", "updated": "2026-08-10", "note": "脱敏待填写，实际数据由客户数据源生成", "versions": [{"date": "2026-07-25", "label": "v2026.07 基线", "总资产[金额], "净资产[金额] "总负债[金额] "被动收入[金额] "财务自由度": 440, "固收本金[金额] "保单现金价值[金额] "港险": 50, "房产": 200, "私募净值[金额] "银行存款": 40, "note": "演示"}, {"date": "2026-08-07", "label": "2026-08 更新", "总资产[金额], "净资产[金额] "总负债[金额] "被动收入[金额] "财务自由度": 440, "固收本金[金额] "保单现金价值[金额] "港险": 50, "房产": 200, "私募净值[金额] "银行存款": 40, "note": "演示"}]};
+
+// 渲染记录点
+document.getElementById('verCount').textContent = HIST.versions.length;
+
+// 数据提取
+var dates = HIST.versions.map(function(v){ return v.date; });
+var get = function(key){ return HIST.versions.map(function(v){ return v[key]; }); };
+
+Chart.defaults.font.family = '-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
+Chart.defaults.font.size = 11;
+
+// 1. 资产与负债
+new Chart(document.getElementById('chartAsset'),{type:'line',
+  data:{labels:dates,datasets:[
+    {label:'总资产[金额]data:get('总资产[金额]borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.08)',fill:true,tension:0.3,borderWidth:2},
+    {label:'净资产[金额]data:get('净资产[金额]borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,0.06)',fill:true,tension:0.3,borderWidth:2},
+    {label:'总负债[金额]data:get('总负债[金额]borderColor:'#dc2626',backgroundColor:'transparent',tension:0.3,borderWidth:1.5,borderDash:[5,3]}
+  ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:14}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y+'万元';}}}},
+    scales:{y:{title:{display:true,text:'万元'},ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
+
+// 2. 收入与自由度
+new Chart(document.getElementById('chartIncome'),{type:'line',
+  data:{labels:dates,datasets:[
+    {label:'被动收入(万元/年)',data:get('被动收入[金额]borderColor:'#d97706',backgroundColor:'rgba(217,119,6,0.08)',fill:true,tension:0.3,borderWidth:2},
+    {label:'财务自由度(%)',data:get('财务自由度'),borderColor:'#7c3aed',backgroundColor:'transparent',tension:0.3,borderWidth:2}
+  ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:14}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y;}}}},
+    scales:{y:{title:{display:true,text:'数值'},ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
+
+// 3. 资产结构分布
+new Chart(document.getElementById('chartStructure'),{type:'line',
+  data:{labels:dates,datasets:[
+    {label:'固收本金[金额]data:get('固收本金[金额]borderColor:'#2563eb',tension:0.3,borderWidth:1.5},
+    {label:'保单现金价值[金额]data:get('保单现金价值[金额]borderColor:'#7c3aed',tension:0.3,borderWidth:1.5},
+    {label:'港险',data:get('港险'),borderColor:'#0891b2',tension:0.3,borderWidth:1.5},
+    {label:'房产',data:get('房产'),borderColor:'#d97706',tension:0.3,borderWidth:1.5},
+    {label:'私募净值[金额]data:get('私募净值[金额]borderColor:'#16a34a',tension:0.3,borderWidth:1.5},
+    {label:'银行存款',data:get('银行存款'),borderColor:'#eab308',tension:0.3,borderWidth:1.5}
+  ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:12,font:{size:10}}}},
+    scales:{y:{title:{display:true,text:'万元'},ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
+
+// 历史明细表
+var keys = ['date','label','总资产[金额]'净资产[金额]'总负债[金额]'被动收入[金额]'财务自由度','固收本金[金额]'保单现金价值[金额]'港险','房产','私募净值[金额]'银行存款'];
+var h = '<table><tr><th>日期</th><th>版本说明</th><th>总资产</th><th>净资产</th><th>总负债</th><th>被动收入</th><th>自由度</th><th>固收</th><th>保单CV</th><th>港险</th><th>房产</th><th>私募</th><th>存款</th></tr>';
+HIST.versions.forEach(function(v){
+  h += '<tr><td>'+v.date+'</td><td>'+v.label+'</td>';
+  h += '<td class="r">'+v['总资产']+'</td><td class="r">'+v['净资产']+'</td><td class="r">'+v['总负债']+'</td>';
+  h += '<td class="r">'+v['被动收入']+'</td><td class="r">'+v['财务自由度']+'%</td><td class="r">'+v['固收本金']+'</td>';
+  h += '<td class="r">'+v['保单现金价值']+'</td><td class="r">'+v['港险']+'</td><td class="r">'+v['房产']+'</td><td class="r">'+v['私募净值']+'</td><td class="r">'+v['银行存款']+'</td></tr>';
+});
+h += '</table>';
+document.getElementById('histTable').innerHTML = h;
+</script></body></html>
