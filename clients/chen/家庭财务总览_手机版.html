@@ -92,10 +92,10 @@ var panels={};
 var defaultSub={'assets':'assets_fixincome','cashflow':'cf_fixincome'};
 
 // --- 总览 ---
-panels.overview='<div class="date-tag">📅 数据截止：2026年7月</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1484万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
-+'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1413万<div class="sub">净值率95.2%</div></div></div>'
-+'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥71万<div class="sub">负债率4.8%</div></div></div>'
+panels.overview='<div class="date-tag">📅 数据截止：2026年8月</div><div class="krow wide">'
++'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1447万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
++'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1416万<div class="sub">净值率97.8%</div></div></div>'
++'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥31万<div class="sub">负债率2.2%</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥49.7万<div class="sub">固收利息+保险分红+生存金</div></div></div>'
 +'<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥9.9万<div class="sub">日常¥7.5万+车贷¥2.4万</div></div></div>'
@@ -104,11 +104,11 @@ panels.overview='<div class="date-tag">📅 数据截止：2026年7月</div><div
 +'<h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>'
 +'<h3>📊 年度被动收入分布</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>'
 +'<h3 style="margin-top:20px">💰 固收资产摘要</h3><div class="summary-row">'
-+'<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">10笔</div></div>'
-+'<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥480万</div></div>'
-+'<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">2笔</div></div>'
-+'<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥60万</div></div>'
-+'<div class="summary-item"><div class="sn">未来6个月利息收入</div><div class="sv">¥13.4万</div></div>'
++'<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">9笔</div></div>'
++'<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥450万</div></div>'
++'<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">1笔</div></div>'
++'<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥30万</div></div>'
++'<div class="summary-item"><div class="sn">未来6个月利息收入</div><div class="sv">¥10.3万</div></div>'
 +'</div><h3 style="margin-top:20px">🏢 私募股权投资摘要</h3><div class="summary-row">'
 +'<div class="summary-item"><div class="sn">持有基金</div><div class="sv">10只</div></div>'
 +'<div class="summary-item"><div class="sn">总投入</div><div class="sv">¥285万</div></div>'
@@ -122,15 +122,15 @@ panels.overview='<div class="date-tag">📅 数据截止：2026年7月</div><div
 +'<div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥2,350万</div></div>'
 +'<div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">186%</div></div>'
 +'</div><h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">'
-+'<div class="kbox"><div class="kl">流动比率</div><div class="kv g">8.4x<div class="sub">流动资产¥113万/流动负债¥13.5万</div></div></div>'
++'<div class="kbox"><div class="kl">流动比率</div><div class="kv g">7.8x<div class="sub">流动资产≈¥105.7万/流动负债¥13.5万</div></div></div>'
 +'<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">54个月<div class="sub">参考基准6-12月,资金利用效率待优化</div></div></div>'
-+'<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">21%<div class="sub">最大单笔¥100万占固收总额21%</div></div></div>'
-+'<div class="kbox"><div class="kl">保险占比</div><div class="kv b">21.8%<div class="sub">储蓄型8份·私募指¥285万按投入成本计</div></div></div>';
++'<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">22%<div class="sub">最大单笔¥100万占固收总额22%</div></div></div>'
++'<div class="kbox"><div class="kl">保险占比</div><div class="kv b">22.4%<div class="sub">储蓄型8份·私募指¥285万按投入成本计</div></div></div>';
 
 // --- 资产明细子页面 ---
-panels.assets_fixincome='<h3>固收（10笔·¥480万）</h3><div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>'
+panels.assets_fixincome='<h3>固收（9笔·¥450万）</h3><div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>'
 +'<tr class="done"><td>众享淳盈37期</td><td class="tr">80万</td><td class="tr">10.2%</td><td>✅退出</td></tr>'
-+'<tr><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>2026-08</td></tr>'
++'<tr class="done"><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>✅退出</td></tr>'
 +'<tr><td>浩腾恒烨</td><td class="tr">30万</td><td class="tr">9.8%</td><td>2026-11</td></tr>'
 +'<tr><td>悦享36694</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>'
 +'<tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td>2027-08</td></tr>'
@@ -176,17 +176,17 @@ panels.assets_other='<div class="date-tag">📅 数据截止：2026年7月</div>
 
 // --- 负债明细 ---
 panels.debt='<table><tr><th>负债</th><th>本金</th><th>机构</th><th>月供/息</th><th>利率</th></tr>'
-+'<tr><td>新华惠鑫宝贷款</td><td class="tr">¥600,000</td><td>保险公司</td><td class="tr">¥2,125</td><td>4.25%日计息</td></tr>'
++'<tr><td>新华惠鑫宝贷款</td><td class="tr">¥200,000</td><td>保险公司</td><td class="tr">¥708</td><td>4.25%日计息</td></tr>'
 +'<tr><td>车贷</td><td class="tr">¥63,360</td><td>银行</td><td class="tr">¥3,520</td><td>约18期未还</td></tr>'
 +'<tr><td>网贷</td><td class="tr">¥46,000</td><td>网贷平台</td><td class="tr">待确认</td><td>待确认</td></tr>'
-+'<tr class="tt"><td>合计</td><td class="tr">¥709,360</td><td></td><td class="tr">¥5,645/月</td><td></td></tr></table>'
-+'<p class="nt">信美相互贷款已还清 ✅ | 新华贷款已部分还款至¥60万 | 总负债率4.8%</p>';
++'<tr class="tt"><td>合计</td><td class="tr">¥309,360</td><td></td><td class="tr">¥4,228/月</td><td></td></tr></table>'
++'<p class="nt">信美相互贷款已还清 ✅ | 新华贷款本金已还¥80万（7月+8/31），余额¥20万、11/19到期 | 总负债率2.2%</p>';
 
 // --- 趋势跟踪（跳转到详细页面）---
 panels.trend='<div class="date-tag">📅 基线：2026年7月</div><div class="krow">'
 +'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1484→1070万<div class="sub">2026→2028（固收退出）</div></div></div>'
 +'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1413→1580万<div class="sub">扣除固收重复计算后</div></div></div>'
-+'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→2万<div class="sub">2026年集中消化</div></div></div>'
++'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→31万<div class="sub">新华贷已还¥80万，余额20万11/19到期</div></div></div>'
 +'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">50.8万→8万<div class="sub">2026→2029断崖下降</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">374%</div></div>'
@@ -196,18 +196,17 @@ panels.trend='<div class="date-tag">📅 基线：2026年7月</div><div class="k
 +'<a href="趋势跟踪.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看完整趋势分析 →</a>';
 
 // --- 现金流子页面 ---
-panels.cf_fixincome='<div class="date-tag">📅 2026年07月—09月 | 单位：元 | <span style="color:#d32f2f;font-weight:700">红色粗体</span>=含本金返还</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>07月</th><th>08月</th><th>09月</th></tr>'
+panels.cf_fixincome='<div class="date-tag">📅 2026年07月—09月 | 单位：元 | 绿色=利息（含本金返还的产品均已到期退出）</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>07月</th><th>08月</th><th>09月</th></tr>'
 +'<tr><td>悦享债权转让项目 9.0%</td><td class="tr">20万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">4,500</td><td class="tr">—</td><td class="tr">—</td></tr>'
 +'<tr><td>悦享债权转让项目 9.4%</td><td class="tr">20万</td><td class="tr">9.4%</td><td class="tr" style="color:#1d9e75">4,700</td><td class="tr">—</td><td class="tr">—</td></tr>'
-+'<tr><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td class="tr">—</td><td class="tr" style="color:#d32f2f;font-weight:700">330,600</td><td class="tr">—</td></tr>'
 +'<tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">28,800</td><td class="tr">—</td></tr>'
 +'<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">22,500</td><td class="tr">—</td><td class="tr">—</td></tr>'
 +'<tr><td>众享淳盈328期 女儿名下</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,500</td><td class="tr">—</td></tr>'
 +'<tr><td>众享淳盈343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">10,500</td></tr>'
 +'<tr><td>悦享债权转让项目36851 女儿名下</td><td class="tr">10万</td><td class="tr">8.8%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">2,200</td></tr>'
 +'<tr><td>浩腾恒烨收益权转让计划</td><td class="tr">30万</td><td class="tr">9.8%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">7,350</td><td class="tr">—</td></tr>'
-+'<tr class="tt"><td>3个月合计</td><td class="tr">390万</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">31,700</td><td class="tr" style="color:#d32f2f;font-weight:700">389,250</td><td class="tr" style="color:#1d9e75">12,700</td></tr></table></div>'
-+'<p class="nt">已到期退出：众享淳盈37期（2026-07-14到期，已到账881,600元，不在此表显示）| 红色粗体=含本金返还（众享60期08月到期还本）</p>';
++'<tr class="tt"><td>3个月合计</td><td class="tr">360万</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">31,700</td><td class="tr" style="color:#1d9e75">58,650</td><td class="tr" style="color:#1d9e75">12,700</td></tr></table></div>'
++'<p class="nt">已到期退出：众享淳盈37期（2026-07-14到期，已到账881,600元）+ 众享淳盈60期（2026-08-30到期，本息330,600元已到账，8/31用于归还新华贷款），均不在此表显示 | 在途9笔·本金¥450万</p>';
 
 panels.cf_insurance='<div style="overflow-x:auto;white-space:nowrap;margin:0 0 12px;padding-bottom:4px;border-bottom:1px solid #e0e5ea">'
 +'<button class="insbtn active" onclick="switchIns(1)">生存金</button>'
@@ -403,7 +402,7 @@ panels.policies='<div class="date-tag">📅 数据截止：2026年7月</div>'
 +'<h3>⚠️ 保单条款注意事项</h3><table><tr><th>保单</th><th>注意事项</th></tr>'
 +'<tr><td>信美挚信一生×2</td><td>60岁前无生存金发放; 保证领取25年(60-85岁); 身故赔付=max(¥50万,CV)</td></tr>'
 +'<tr><td>钟爱一生</td><td>附加重疾(9201)¥10万已缴清⚠️是否仍有效待确认; 豁免重疾B已失效(无保费可豁免)</td></tr>'
-+'<tr><td>新华惠鑫宝</td><td>保单贷款¥60万(4.25%日计息); 生存金自动转入万能账户; 万能账户保证2.5%</td></tr>'
++'<tr><td>新华惠鑫宝</td><td>保单贷款余额¥20万(4.25%日计息; 原贷¥100万已还¥80万, 2026-11-19到期); 生存金自动转入万能账户; 万能账户保证2.5%</td></tr>'
 +'<tr><td>永明星河尊享2</td><td>归原红利公布即保证✅; 意外护理$30万免费至65岁; 5年后可价值锁定50%</td></tr>'
 +'<tr><td>周大福匠心传承2</td><td>复归红利现金价值非保证⚠️(与永明不同); 第10年可选财富跃进; 保费豁免2年免费</td></tr>'
 +'<tr><td>国寿99鸿福</td><td>生存金¥5,000/3年(固定,不随保额增长); 保额5%/年仅影响身故赔付</td></tr>'
@@ -439,7 +438,7 @@ panels.todo='<h3>保单操作</h3><table>'
 +'<tr><td>2</td><td>确认永明港险第2年保费已缴</td><td>8月26日前</td></tr>'
 +'<tr><td>3</td><td>确认周大福港险保单状态</td><td><span class="bg">✅</span></td></tr></table>'
 +'<h3>资金与账务</h3><table>'
-+'<tr><td>4</td><td>确认众享淳盈60期(¥30万)到期到账</td><td>8月</td></tr>'
++'<tr><td>4</td><td>众享淳盈60期已到账 ✅（本息¥330,600已用于归还新华贷款）</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>5</td><td>确认浩腾恒烨Q3利息到账</td><td>9月</td></tr>'
 +'<tr><td>6</td><td>车贷月供¥3,520正常扣款</td><td>每月</td></tr></table>'
 +'<h3>报告与沟通</h3><table>'
@@ -531,12 +530,12 @@ function initCharts(){
   if(chartsDone||!document.getElementById('chartAssets'))return; chartsDone=true;
   new Chart(document.getElementById('chartAssets'),{type:'doughnut',
     data:{labels:['固收理财','保险现金价值','私募股权','房产','港险','银行存款'],
-    datasets:[{data:[480,324,285,270,72,53],
+    datasets:[{data:[450,324,285,270,72,45.9],
     backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
   new Chart(document.getElementById('chartDebt'),{type:'polarArea',
     data:{labels:['保险公司(新华)','银行(车贷)','网贷平台'],
-    datasets:[{data:[600,63,46],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
+    datasets:[{data:[200,63,46],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
   new Chart(document.getElementById('chartIncome'),{type:'bar',
     data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],

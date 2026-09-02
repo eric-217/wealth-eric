@@ -30,43 +30,47 @@ tr.d{color:#999;text-decoration:line-through}
 <h2>负债明细</h2>
 
 <div class="card">
-<h3>新华惠鑫宝 保单贷款 <span style="font-size:12px;color:#d97706">还款计划中</span></h3>
+<h3>新华惠鑫宝 保单贷款 <span style="font-size:12px;color:#16a34a">已还款80万 · 剩20万</span></h3>
 <table>
+<tr><td>原贷款本金</td><td class="r">1,000,000元</td></tr>
+<tr><td>累计已还（本金）</td><td class="r">800,000元</td></tr>
+<tr><td>当前余额</td><td class="r"><strong>200,000元</strong></td></tr>
 <tr><td>年利率</td><td class="r">4.25%（日计息）</td></tr>
-<tr><td>计息方式</td><td>按日计息，每180天还一次利息</td></tr>
+<tr><td>计息方式</td><td>按日计息，利随本清</td></tr>
 <tr><td>到期日</td><td class="r">2026年11月19日</td></tr>
 </table>
 
-<div style="margin-top:10px"><strong>分期还款计划</strong></div>
+<div style="margin-top:10px"><strong>已执行还款</strong></div>
 
-<div class="phase">
-<strong>第一阶段：当前 ~ 8月还款前</strong><br>
-本金：<span class="amt">600,000元</span> &nbsp;|&nbsp; 
-月利息：约2,125元（600,000 &times; 4.25% &divide; 12）<br>
-期间利息：约2,125元（按30天估算，日计息精确到天）
+<div class="phase" style="border-left-color:#16a34a">
+<strong>2026年7月（第一笔）</strong><br>
+还款本金：<span class="amt">400,000元</span><br>
+资金来源：众享淳盈37期到账资金（¥881,600）<br>
+还款后余额：600,000元
+</div>
+
+<div class="phase" style="border-left-color:#16a34a">
+<strong>2026年8月31日（第二笔）</strong><br>
+还款本金：<span class="amt">400,000元</span> &nbsp;+&nbsp; 利息 <span class="amt">3,155.56元</span><br>
+资金来源：众享淳盈60期到账（¥330,600）+ 现金池补差<br>
+还款后余额：<span class="amt">200,000元</span><br>
+月利息：约708元（200,000 &times; 4.25% &divide; 12）
 </div>
 
 <div class="phase">
-<strong>第二阶段：8月还30万 → 剩余本金30万</strong><br>
-8月还款：<span class="amt">300,000元</span>（本金）<br>
-剩余本金：<span class="amt">300,000元</span> &nbsp;|&nbsp; 
-月利息：约1,063元（300,000 &times; 4.25% &divide; 12）<br>
-期间利息：约3,188元（8月~11月，约90天）
-</div>
-
-<div class="phase">
-<strong>第三阶段：11月全部还清</strong><br>
-11月还款：<span class="amt">300,000元 + 当期利息</span><br>
+<strong>剩余计划：余额20万 → 2026年11月19日到期前还清</strong><br>
+11月到期操作：<span class="amt">200,000元 + 当期利息</span>（到期日需操作：还清或续贷）<br>
 还清后：<span class="amt" style="color:#16a34a">贷款余额 = 0元</span>
 </div>
 
 <table style="margin-top:10px">
-<tr><th>还款节点</th><th>还款金额（元）</th><th>累计利息（元）</th></tr>
-<tr><td>2026年8月（还本金30万）</td><td class="r">300,000</td><td class="r">约2,125</td></tr>
-<tr><td>2026年11月（还清）</td><td class="r">约303,188</td><td class="r">约5,313</td></tr>
-<tr class="tt"><td>合计</td><td class="r">约603,188</td><td class="r">约5,313</td></tr>
+<tr><th>还款节点</th><th>还款金额（元）</th><th>利息（元）</th></tr>
+<tr><td>2026年7月（还本金40万）</td><td class="r">400,000</td><td class="r">—</td></tr>
+<tr><td>2026年8月31日（还本金40万）</td><td class="r">400,000</td><td class="r">3,155.56</td></tr>
+<tr><td>2026年11月（余额到期，待还）</td><td class="r">200,000</td><td class="r">待结算</td></tr>
+<tr class="tt"><td>合计（本金）</td><td class="r">1,000,000</td><td class="r">3,155.56+</td></tr>
 </table>
-<div class="note">利息为估算值。实际按日计息（本金&times;4.25%&times;实际天数&divide;365），精确到天。具体金额以保司账单为准。</div>
+<div class="note">利息按日计息（本金&times;4.25%&times;实际天数&divide;365），8/31利息¥3,155.56已按此口径复核（对应约45天计息区间，合理）。具体金额以保司账单为准。</div>
 </div>
 
 <div class="card">
@@ -100,6 +104,7 @@ tr.d{color:#999;text-decoration:line-through}
 <h3>已还清 <span class="g">&#10004;</span></h3>
 <table>
 <tr class="d"><td>信美相互&times;2 保单贷款</td><td class="r">725,675元</td><td>2026年7月还清</td></tr>
+<tr><td>新华惠鑫宝 保单贷款（部分）</td><td class="r">800,000元</td><td>2026年7月¥40万 + 8月31日¥40万（剩¥20万11月到期）</td></tr>
 </table>
 </div>
 
@@ -107,13 +112,14 @@ tr.d{color:#999;text-decoration:line-through}
 <h3>还贷支出汇总（2026年内）</h3>
 <table>
 <tr><th>项目</th><th>月支出（元）</th><th>年支出（元）</th></tr>
-<tr><td>新华贷款利息（1-7月）</td><td class="r">约2,125</td><td class="r">约14,875</td></tr>
-<tr><td>新华贷款本金（8月+11月）</td><td class="r">—</td><td class="r">600,000</td></tr>
-<tr><td>车贷月供</td><td class="r">3,520</td><td class="r">42,240</td></tr>
-<tr class="tt"><td>利息类合计</td><td class="r">约5,645</td><td class="r">约57,115</td></tr>
-<tr class="tt"><td>含本金合计</td><td class="r">—</td><td class="r">约657,115</td></tr>
+<tr><td>新华贷款本金（7月+8月已还）</td><td class="r">—</td><td class="r">800,000</td></tr>
+<tr><td>新华贷款利息（8/31已付）</td><td class="r">—</td><td class="r">3,155.56</td></tr>
+<tr><td>新华贷款余额（11月到期待还）</td><td class="r">—</td><td class="r">200,000+息</td></tr>
+<tr><td>车贷月供</td><td class="r">3,520</td><td class="r">42,240（2026年内6期¥21,120）</td></tr>
+<tr class="tt"><td>利息类合计（新华已付）</td><td class="r">—</td><td class="r">3,155.56+</td></tr>
+<tr class="tt"><td>含本金合计（已执行）</td><td class="r">—</td><td class="r">约803,156</td></tr>
 </table>
-<div class="note">新华贷款11月还清后，月利息支出归零；车贷月供持续至2027年12月。</div>
+<div class="note">新华贷款余额¥20万于2026-11-19到期，还清后月利息归零；车贷月供持续至2027年12月。7月第一笔还款的利息以保司账单为准。</div>
 </div>
 
 </body>
