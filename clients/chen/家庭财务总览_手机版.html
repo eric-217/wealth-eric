@@ -51,7 +51,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="backbar" id="backbar"><a href="菜单.html">← 返回菜单</a> <span id="backtitle"></span></div>
 <div class="submenu" id="submenu"></div>
 <div class="c" id="container"></div>
-<footer>更新：2026-08-07</footer>
+<footer>更新：2026-09-03（口径v3：银行存款≈5万 / 车贷剩16期逐月递减至2027.12 / 总被动=实际可用+账面）</footer>
 
 <script>
 // ===== 主菜单 =====
@@ -92,17 +92,17 @@ var panels={};
 var defaultSub={'assets':'assets_fixincome','cashflow':'cf_fixincome'};
 
 // --- 总览 ---
-panels.overview='<div class="date-tag">📅 数据截止：2026年8月</div><div class="krow wide">'
+panels.overview='<div class="date-tag">📅 数据截止：2026年9月3日（银行存款口径已按实际≈¥5万核对修正）</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1406万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
 +'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1375万<div class="sub">净值率97.8%</div></div></div>'
-+'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥31万<div class="sub">负债率2.2%</div></div></div>'
++'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥30.6万<div class="sub">负债率2.2%（新华20万11/19到期+车贷16期+网贷）</div></div></div>'
 +'</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥49.7万<div class="sub">固收利息+保险分红+生存金</div></div></div>'
-+'<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥9.9万<div class="sub">日常¥7.5万+车贷¥2.4万</div></div></div>'
-+'<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">502%<div class="sub">被动收入÷总支出=5.0倍</div></div></div>'
++'<div class="kbox"><div class="kl">被动收入（2026实际到账）</div><div class="kv a">¥43.1万<div class="sub">固收全年利息¥43.05万+存款池息；加账面留存（生存金3.6+UA增值1.1）→2026总被动≈¥47.8万（v3三口径）</div></div></div>'
++'<div class="kbox"><div class="kl">生活支出（年）</div><div class="kv">≈¥6万<div class="sub">家庭生活基线（v3口径）；含保障/医疗/还贷的全口径2026≈¥13.6万</div></div></div>'
++'<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">≈7.2倍<div class="sub">2026实际可用¥43.1万÷生活支出¥6万；总被动口径≈8.0倍｜⚠2029后实际可用仅45%→决策点=现在</div></div></div>'
 +'</div><h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>'
 +'<h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>'
-+'<h3>📊 年度被动收入分布</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>'
++'<h3>📊 2026被动收入构成（总被动≈¥47.8万 = 实际可用+账面）</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>'
 +'<h3 style="margin-top:20px">💰 固收资产摘要</h3><div class="summary-row">'
 +'<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">9笔</div></div>'
 +'<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥450万</div></div>'
@@ -177,16 +177,16 @@ panels.assets_other='<div class="date-tag">📅 数据截止：2026年7月</div>
 // --- 负债明细 ---
 panels.debt='<table><tr><th>负债</th><th>本金</th><th>机构</th><th>月供/息</th><th>利率</th></tr>'
 +'<tr><td>新华惠鑫宝贷款</td><td class="tr">¥200,000</td><td>保险公司</td><td class="tr">¥708</td><td>4.25%日计息</td></tr>'
-+'<tr><td>车贷</td><td class="tr">¥63,360</td><td>银行</td><td class="tr">¥3,520</td><td>约18期未还</td></tr>'
-+'<tr><td>网贷</td><td class="tr">¥46,000</td><td>网贷平台</td><td class="tr">待确认</td><td>待确认</td></tr>'
-+'<tr class="tt"><td>合计</td><td class="tr">¥309,360</td><td></td><td class="tr">¥4,228/月</td><td></td></tr></table>'
-+'<p class="nt">信美相互贷款已还清 ✅ | 新华贷款本金已还¥80万（7月+8/31），余额¥20万、11/19到期 | 总负债率2.2%</p>';
++'<tr><td>车贷</td><td class="tr">¥56,320</td><td>银行</td><td class="tr">¥3,520</td><td>剩16期·2027.12还清</td></tr>'
++'<tr><td>网贷</td><td class="tr">¥49,700</td><td>借呗+百度</td><td class="tr">待确认</td><td>待确认</td></tr>'
++'<tr class="tt"><td>合计</td><td class="tr">¥306,020</td><td></td><td class="tr">¥4,228/月</td><td></td></tr></table>'
++'<p class="nt">信美相互贷款已还清 ✅ | 新华贷款本金已还¥80万（7月+8/31），余额¥20万、11/19到期 | 车贷18期计划：7/8月已还2期（¥7,040），当前剩16期、逐月递减至2027.12清零 | 总负债率2.2%（截至2026-09-03）</p>';
 
 // --- 趋势跟踪（跳转到详细页面）---
 panels.trend='<div class="date-tag">📅 基线：2026.07（口径v3：2026-09-03）</div><div class="krow">'
-+'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1,436→1,516万<div class="sub">2026.07→2028.12 固收到期本金入池回升</div></div></div>'
-+'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1,365→≈1,511万<div class="sub">2026.11新华还清后负债大降</div></div></div>'
-+'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→31万<div class="sub">新华贷已还¥80万，余额20万11/19到期</div></div></div>'
++'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1,436→1,514万<div class="sub">2026.07→2028.12 固收到期本金入池回升</div></div></div>'
++'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1,365→≈1,509万<div class="sub">2026.11新华还清后负债大降</div></div></div>'
++'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→30.6万<div class="sub">新华贷已还¥80万余额20万11/19到期；车贷逐月递减至2027.12</div></div></div>'
 +'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">37.4→2.7万<div class="sub">实际可用 2027→2029 固收到期骤降</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">2027自由度</div><div class="kv g">702%</div><div class="sub">总被动42.1万/支出6万</div></div>'
@@ -299,28 +299,31 @@ panels.cf_expense='<div class="date-tag">📅 近半年支出计划</div><table>
 +'<tr><td>A 生活</td><td>手机</td><td class="tr">¥7,000</td></tr>'
 +'<tr><td>B 教育</td><td>校服+餐费+夏令营</td><td class="tr">¥8,600</td></tr>'
 +'<tr><td>B 教育</td><td>托管+班费+文具</td><td class="tr">¥9,500</td></tr>'
-+'<tr><td>C 交通</td><td>车贷×6（每月¥3,520）</td><td class="tr">¥21,120</td></tr>'
++'<tr><td>C 交通</td><td>车贷×6（月供¥3,520，7/8月已还¥7,040，余9-12月4期¥14,080）</td><td class="tr">¥21,120</td></tr>'
 +'<tr><td>D 家庭</td><td>骨灰下葬+回老家等</td><td class="tr">¥3,000</td></tr>'
 +'<tr><td>E 旅游</td><td>秋游+秋假</td><td class="tr">¥3,500</td></tr>'
 +'<tr class="tt"><td colspan="2">合计</td><td class="tr">¥52,720</td></tr></table>';
 
-panels.cf_freedom='<div class="date-tag">📅 基于2026年7月数据</div><div class="krow">'
-+'<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">¥50.8万</div></div>'
-+'<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">502%</div></div>'
-+'<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">¥6.0万</div></div>'
-+'<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div>'
-+'<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>'
-+'<tr><td>2026</td><td class="tr">49.7万</td><td class="tr">9.9万</td><td style="color:#16a34a">502%</td></tr>'
-+'<tr><td>2027</td><td class="tr">44.9万</td><td class="tr">9.0万</td><td>499%</td></tr>'
-+'<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">8.1万</td><td class="tr">9.0万</td><td style="color:#dc2626">90%⚠</td></tr>'
-+'<tr><td>2036</td><td class="tr">9.4万</td><td class="tr">9.0万</td><td>104%</td></tr></table>';
+panels.cf_freedom='<div class="date-tag">📅 基于2026年9月3日 · v3口径（总被动=实际可用+账面）</div><div class="krow">'
++'<div class="kbox"><div class="kl">2026实际可用（自然年）</div><div class="kv g">¥43.1万<div class="sub">固收全年利息43.05+池息，到账可支配</div></div></div>'
++'<div class="kbox"><div class="kl">2026总被动</div><div class="kv a">¥47.8万<div class="sub">含账面4.7万（生存金3.6+UA增值1.1）</div></div></div>'
++'<div class="kbox"><div class="kl">2029实际可用</div><div class="kv r">¥2.7万<div class="sub">固收2029.03清零后仅余池息+国寿</div></div></div>'
++'<div class="kbox"><div class="kl">决策点</div><div class="kv a">= 现在<div class="sub">2027-28再配置执行期</div></div></div></div>'
++'<table><tr><th>年</th><th>实际可用</th><th>账面</th><th>总被动</th></tr>'
++'<tr><td>2026*</td><td class="tr">17.69万</td><td class="tr">1.56万</td><td class="tr">19.25万</td></tr>'
++'<tr><td>2027</td><td class="tr">37.37万</td><td class="tr">4.77万</td><td class="tr">42.14万</td></tr>'
++'<tr><td>2028</td><td class="tr">24.09万</td><td class="tr">4.87万</td><td class="tr">28.97万</td></tr>'
++'<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">2.72万</td><td class="tr">4.97万</td><td class="tr">7.69万⚠</td></tr>'
++'<tr><td>2030</td><td class="tr">1.71万</td><td class="tr">5.07万</td><td class="tr">6.78万</td></tr>'
++'<tr><td>2031</td><td class="tr">2.20万</td><td class="tr">5.17万</td><td class="tr">7.37万</td></tr></table>'
++'<p class="nt">*2026为v3测算自9月起算4个月；自然年口径实际可用≈43.1万/总被动≈47.8万。自由度=被动收入÷6万生活基线：2027总被动702%、2029总被动128%但实际可用仅45%→决策点=现在。</p>';
 
 panels.cf_expense_plan='<table><tr><th>项目</th><th>预算</th><th>时间</th></tr>'
 +'<tr><td>住房装修</td><td class="tr">¥20万</td><td>2029</td></tr>'
 +'<tr><td>郴州置业</td><td class="tr">¥45-60万</td><td>2029</td></tr>'
 +'<tr><td>房车</td><td class="tr">¥30-50万</td><td>2029-2030</td></tr>'
 +'<tr><td>教育婚嫁</td><td class="tr">¥120-180万</td><td>2032-2047</td></tr></table>'
-+'<h3>车贷偿还</h3><table><tr><td>2026下</td><td class="tr">6期·¥21,120</td><td>2027</td><td class="tr">12期·¥42,240</td></tr></table>';
++'<h3>车贷偿还</h3><table><tr><td>2026下</td><td class="tr">6期·¥21,120<br><span style="font-size:10px;color:#d97706">7/8月已还2期¥7,040 · 2027年12月还清</span></td><td>2027</td><td class="tr">12期·¥42,240</td></tr></table>';
 
 // --- 保险保障 ---
 panels.protection='<h3>保障配置状态</h3><div class="tbl-wrap"><table style="font-size:13px">'
@@ -349,7 +352,7 @@ panels.policies='<div class="date-tag">📅 数据截止：2026年7月</div>'
 // 缴费提醒
 +'<h3>💰 交费提醒</h3><table><tr><th>保单</th><th>交费日</th><th>金额</th><th>状态</th></tr>'
 // @@GEN_START:premium_reminders_js@@
-+'<tr><td>永明星河尊享2（港险）</td><td>2026-08-26</td><td class="tr">$15,012.82</td><td>🔴 待缴 <small>第2年保费</small></td></tr>'
++'<tr><td>永明星河尊享2（港险）</td><td>2026-08-26</td><td class="tr">$15,012.82</td><td><span class="bg">✅</span> <small>第2年保费（2026-09-03用户确认已缴，2年缴清无后续）</small></td></tr>'
 +'<tr><td>复星优选一号医疗险</td><td>2026-12-29</td><td class="tr">¥1,287.93</td><td>⏰ 年缴续保 <small>陈莹618.07+李春华669.86</small></td></tr>'
 +'<tr><td>周大福匠心传承2（港险）</td><td>预缴完成</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
 +'<tr><td>平安钟爱一生</td><td>已缴清</td><td class="tr">—</td><td><span class="bg">✅</span></td></tr>'
@@ -536,13 +539,13 @@ function initCharts(){
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
   new Chart(document.getElementById('chartDebt'),{type:'polarArea',
     data:{labels:['保险公司(新华)','银行(车贷)','网贷平台'],
-    datasets:[{data:[200,63,46],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
+    datasets:[{data:[20,5.6,5.0],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
   new Chart(document.getElementById('chartIncome'),{type:'bar',
-    data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],
-    datasets:[{data:[43.05,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
+    data:{labels:['实际可用（固收利息43.05+池息）','账面留存（新华生存金3.6+UA增值1.1）'],
+    datasets:[{data:[43.07,4.7],backgroundColor:['#2563eb','#7c3aed'],borderRadius:4}]},
     options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
-    scales:{x:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+    scales:{x:{title:{display:true,text:'万元/年（2026全年口径）',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
   new Chart(document.getElementById('chartInsType'),{type:'pie',
     data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[3,2,2,1],
     backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},

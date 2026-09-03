@@ -43,7 +43,7 @@
 .krow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .kbox{background:#f8fafc;border:1px solid #e2e6ea;border-radius:8px;padding:12px;text-align:center}
 .kbox .kl{font-size:11px;color:#889;margin-bottom:4px}.kbox .kv{font-size:20px;font-weight:700}
-.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}
+.kbox .kv.g{color:#16a34a}.kbox .kv.r{color:#dc2626}.kbox .kv.a{color:#d97706}.kbox .sub{font-size:11px;color:#999;margin-top:3px;line-height:1.4}
 table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th{background:#1a3a5c;color:#fff;padding:8px 6px;font-size:11px;text-align:left}
 td{padding:7px 6px;border:1px solid #ddd;font-size:12px}td.tr{text-align:right}tr:nth-child(even){background:#fafafa}
 tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}tr.warn{background:#fef2f2}tr.done{color:#aaa;text-decoration:line-through}
@@ -56,13 +56,13 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 
 <!-- 总览卡片 -->
 <div class="summary-card">
-  <div class="s-title">2026年总被动收入</div>
-  <div class="s-value">¥50.8万<span class="s-unit"> /年</span></div>
+  <div class="s-title">2026年总被动收入（自然年 · v3：实际可用+账面）</div>
+  <div class="s-value">¥47.8万<span class="s-unit"> /年</span></div>
   <div class="s-grid">
-    <div class="s-item"><div class="si-label">固收利息</div><div class="si-value">¥44.1万</div></div>
-    <div class="s-item"><div class="si-label">保险生存金</div><div class="si-value">¥3.8万</div></div>
-    <div class="s-item"><div class="si-label">万能账户增值</div><div class="si-value">¥1.1万</div></div>
-    <div class="s-item"><div class="si-label">财务自由度</div><div class="si-value">513%</div></div>
+    <div class="s-item"><div class="si-label">实际可用（到账）</div><div class="si-value">¥43.1万</div></div>
+    <div class="s-item"><div class="si-label">账面留存</div><div class="si-value">¥4.7万</div></div>
+    <div class="s-item"><div class="si-label">自由度（总被动÷6万）</div><div class="si-value">≈8.0倍</div></div>
+    <div class="s-item"><div class="si-label">2029实际可用</div><div class="si-value">¥2.7万⚠</div></div>
   </div>
 </div>
 
@@ -261,34 +261,33 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 
 </div></div>
 
-<!-- 被动收入·现金 -->
+<!-- 被动收入·实际可用 -->
 <div class="accordion" id="acc_passive_cash">
 <div class="accordion-header" onclick="toggleAcc('acc_passive_cash')">
-  <div class="ah-left">💵 被动收入 · 现金 <span class="ah-num">2026年 ≈¥48.2万</span></div>
+  <div class="ah-left">💵 被动收入 · 实际可用（真实到账） <span class="ah-num">2026年 ≈¥43.1万</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
-<table><tr><th>来源</th><th>2026年</th></tr>
+<table><tr><th>来源</th><th>2026年（自然年口径）</th></tr>
 <tr><td>固收利息</td><td class="tr">430,500元</td></tr>
-<tr><td>新华生存金</td><td class="tr">36,000元</td></tr>
-<tr><td>财富年年生存金</td><td class="tr">1,700元</td></tr>
-<tr><td>保险分红</td><td class="tr">≈3,000元</td></tr>
-<tr class="tt"><td>合计</td><td class="tr">≈471,200元</td></tr></table>
+<tr><td>存款池利息（固收到账逐月入池，活期0.35%）</td><td class="tr">≈500元</td></tr>
+<tr><td>国寿99鸿福</td><td class="tr">—（每3年实领5,000，2028年首笔）</td></tr>
+<tr class="tt"><td>合计（实际可用）</td><td class="tr">≈431,000元</td></tr></table>
+<p class="nt">v3口径「实际可用」=固收利息+存款池息+国寿实领，均真实进入银行存款池、可直接支出。新华生存金¥3,000/月默认留存注入万能账户滚存，归入下方「账面」；财富年年生存金¥1,700与保险分红≈¥3,000小额待确证，未计入主口径。若按v3测算表2026.09起算为¥176,925（4个月）。</p>
 </div></div>
 
 <!-- 被动收入·账面 -->
 <div class="accordion" id="acc_passive_book">
 <div class="accordion-header" onclick="toggleAcc('acc_passive_book')">
-  <div class="ah-left">📊 被动收入 · 账面 <span class="ah-num">2026年 ≈¥2.6万+</span></div>
+  <div class="ah-left">📊 被动收入 · 账面（留存增值） <span class="ah-num">2026年 ≈¥4.7万</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
-<table><tr><th>来源</th><th>2026年</th></tr>
-<tr><td>保险CV增值</td><td class="tr">≈15,000元</td></tr>
-<tr><td>万能账户增值</td><td class="tr">≈11,000元</td></tr>
-<tr><td>私募净值增值</td><td class="tr">待评估</td></tr>
-<tr><td>港险红利增值</td><td class="tr">待确认</td></tr>
-<tr class="tt"><td>合计</td><td class="tr">≈26,000元+</td></tr></table>
+<table><tr><th>来源</th><th>2026年（自然年口径）</th></tr>
+<tr><td>新华生存金留存（¥3,000/月注入万能账户）</td><td class="tr">36,000元</td></tr>
+<tr><td>万能账户增值（2.75%）</td><td class="tr">≈11,000元</td></tr>
+<tr class="tt"><td>合计（账面）</td><td class="tr">≈47,000元</td></tr></table>
+<p class="nt">v3口径「账面」=生存金留存+万能账户增值，默认滚存不动、需要时可实际提取；加「实际可用」→2026总被动≈¥47.8万。保险现金价值增值/私募净值/港险红利属资产增值而非年度现金流，不计入被动收入（避免与非经营性收益混淆）。</p>
 </div></div>
 
 <!-- 主动收入 -->
@@ -307,7 +306,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 支出明细 -->
 <div class="accordion" id="acc_expense">
 <div class="accordion-header" onclick="toggleAcc('acc_expense')">
-  <div class="ah-left">💳 支出明细 <span class="ah-num">近半年 ¥54,008</span></div>
+  <div class="ah-left">💳 支出明细 <span class="ah-num">2026下半年计划 ¥68,108（已执行以实际为准）</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
@@ -316,7 +315,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <tr><td>A 生活</td><td>手机</td><td class="tr">15,000元</td></tr>
 <tr><td>B 教育</td><td>校服+餐费+夏令营</td><td class="tr">8,600元</td></tr>
 <tr><td>B 教育</td><td>托管+班费+文具</td><td class="tr">9,500元</td></tr>
-<tr><td>C 交通</td><td>车贷×6</td><td class="tr">21,120元</td></tr>
+<tr><td>C 交通</td><td>车贷×6（2026.07-12：7/8月已还2期¥7,040）</td><td class="tr">21,120元</td></tr>
 <tr><td>D 家庭</td><td>骨灰下葬+回老家等</td><td class="tr">9,100元</td></tr>
 <tr><td>E 旅游</td><td>秋游+秋假</td><td class="tr">3,500元</td></tr>
 <tr><td>G 医疗</td><td>复星优选一号医疗险12月续保</td><td class="tr">1,288元</td></tr>
@@ -329,20 +328,23 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 财务自由度 -->
 <div class="accordion" id="acc_freedom">
 <div class="accordion-header" onclick="toggleAcc('acc_freedom')">
-  <div class="ah-left">🎯 财务自由度 <span class="ah-num">2026年 502% | 2029年预警</span></div>
+  <div class="ah-left">🎯 财务自由度 <span class="ah-num">2026总被动≈¥47.8万 | ⚠2029实际可用仅45%</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
 <div class="krow">
-<div class="kbox"><div class="kl">2026可提取</div><div class="kv g">497,000</div></div>
-<div class="kbox"><div class="kl">2026自由度</div><div class="kv g">502%</div></div>
-<div class="kbox"><div class="kl">2029可提取</div><div class="kv r">60,000</div></div>
-<div class="kbox"><div class="kl">2029自由度</div><div class="kv r">55%</div></div></div>
-<table><tr><th>年</th><th>被动收入</th><th>支出</th><th>自由度</th></tr>
-<tr><td>2026</td><td class="tr">497,000</td><td class="tr">99,000</td><td style="color:#16a34a">502%</td></tr>
-<tr><td>2027</td><td class="tr">449,000</td><td class="tr">90,000</td><td>499%</td></tr>
-<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">81,000</td><td class="tr">90,000</td><td style="color:#dc2626">90%</td></tr>
-<tr><td>2036</td><td class="tr">94,000</td><td class="tr">90,000</td><td>104%</td></tr></table>
+<div class="kbox"><div class="kl">2026实际可用（自然年）</div><div class="kv g">¥43.1万<div class="sub">固收全年利息¥43.05万+存款池息，到账可支配</div></div></div>
+<div class="kbox"><div class="kl">2026总被动</div><div class="kv a">¥47.8万<div class="sub">实际可用+账面4.7万（生存金3.6+UA增值1.1）</div></div></div>
+<div class="kbox"><div class="kl">2029实际可用</div><div class="kv r">¥2.7万<div class="sub">固收2029.03清零后仅余池息+国寿</div></div></div>
+<div class="kbox"><div class="kl">决策点</div><div class="kv a">= 现在<div class="sub">2027-28本金再配置执行期（160万+210万）</div></div></div></div>
+<table><tr><th>年</th><th>实际可用</th><th>账面留存</th><th>总被动</th><th>自由度(实际可用÷6万)</th></tr>
+<tr><td>2026*</td><td class="tr">176,925</td><td class="tr">15,578</td><td class="tr">192,502</td><td style="color:#16a34a">295%</td></tr>
+<tr><td>2027</td><td class="tr">373,717</td><td class="tr">47,723</td><td class="tr">421,440</td><td style="color:#16a34a">623%</td></tr>
+<tr><td>2028</td><td class="tr">240,942</td><td class="tr">48,713</td><td class="tr">289,654</td><td style="color:#16a34a">402%</td></tr>
+<tr class="warn"><td>2029</td><td class="tr" style="color:#dc2626">27,178</td><td class="tr">49,703</td><td class="tr">76,881</td><td style="color:#dc2626">45%</td></tr>
+<tr><td>2030</td><td class="tr">17,118</td><td class="tr">50,693</td><td class="tr">67,811</td><td style="color:#dc2626">29%</td></tr>
+<tr><td>2031</td><td class="tr">21,974</td><td class="tr">51,683</td><td class="tr">73,657</td><td style="color:#dc2626">37%</td></tr></table>
+<p class="nt">*2026年表内为v3测算自2026.09起算4个月值；自然年口径实际可用≈¥43.1万/总被动≈¥47.8万（见上方卡片）。财务自由度=被动收入÷生活支出基线¥6万/年（v3）；账面留存（生存金+UA增值）需时可提取，故总被动口径为上限。⚠2029年后实际可用仅45%→决策点=现在（2026），2027-28年固收到期本金（160万+210万）再配置是接续关键。2036年新华满期约¥212万属一次性返还，不计入年度被动收入。</p>
 </div></div>
 
 <!-- 支出计划 -->
@@ -359,11 +361,11 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <tr><td>房车</td><td class="tr">300,000-500,000</td><td>2029-30</td></tr>
 <tr><td>教育婚嫁</td><td class="tr">1,200,000-1,800,000</td><td>32-47</td></tr></table>
 <h4 style="margin-top:12px">车贷偿还</h4>
-<table><tr><td>2026下</td><td class="tr">6期 · 21,120元</td><td>2027</td><td class="tr">12期 · 42,240元</td></tr></table>
+<table><tr><td>2026下</td><td class="tr">6期 · 21,120元<br><span style="font-size:10px;color:#d97706">7/8月已还2期¥7,040 · 2027年12月还清</span></td><td>2027</td><td class="tr">12期 · 42,240元</td></tr></table>
 </div></div>
 
 </div>
-<footer>更新：2026-07-25</footer>
+<footer>更新：2026-09-03（口径v3：总被动=实际可用+账面 / 车贷剩16期逐月递减至2027.12 / 银行存款≈5万+固收到账逐月入池）</footer>
 <script>
 function toggleAcc(id){
   var el=document.getElementById(id);

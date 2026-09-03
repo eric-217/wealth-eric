@@ -30,16 +30,16 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="krow wide">
 <div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1406万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>
 <div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1375万<div class="sub">净值率97.8%</div></div></div>
-<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥31万<div class="sub">负债率2.2%</div></div></div>
+<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥30.6万<div class="sub">负债率2.2%（新华20万11/19到期+车贷16期+网贷）</div></div></div>
 </div>
 <div class="krow wide">
-<div class="kbox"><div class="kl">被动收入（年）</div><div class="kv a">¥49.7万<div class="sub">固收利息+保险分红+生存金</div></div></div>
-<div class="kbox"><div class="kl">年度总支出</div><div class="kv">≈¥9.9万<div class="sub">日常¥7.5万+车贷¥2.4万</div></div></div>
-<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">502%<div class="sub">被动收入÷总支出=5.0倍</div></div></div>
+<div class="kbox"><div class="kl">被动收入（2026实际到账）</div><div class="kv a">¥43.1万<div class="sub">固收全年利息¥43.05万+存款池息；加账面留存（生存金3.6+UA增值1.1）→2026总被动≈¥47.8万（v3三口径）</div></div></div>
+<div class="kbox"><div class="kl">生活支出（年）</div><div class="kv">≈¥6万<div class="sub">家庭生活基线（v3口径）；含保障/医疗/还贷的全口径2026≈¥13.6万</div></div></div>
+<div class="kbox"><div class="kl">财务自由度</div><div class="kv g">≈7.2倍<div class="sub">2026实际可用¥43.1万÷生活支出¥6万；总被动口径≈8.0倍｜⚠2029后实际可用仅45%→决策点=现在</div></div></div>
 </div>
 <h3 style="margin-top:20px">📊 总资产分布</h3><div class="chart-wrap"><canvas id="chartAssets" height="220"></canvas></div>
 <h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>
-<h3>📊 年度被动收入分布</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>
+<h3>📊 2026被动收入构成（总被动≈¥47.8万 = 实际可用+账面）</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>
 <h3 style="margin-top:20px">💰 固收资产摘要</h3><div class="summary-row">
 <div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">9笔</div></div>
 <div class="summary-item"><div class="sn">总本金</div><div class="sv">¥450万</div></div>
@@ -79,13 +79,13 @@ new Chart(document.getElementById('chartAssets'),{type:'doughnut',
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartDebt'),{type:'polarArea',
   data:{labels:['保险公司(新华)','银行(车贷)','网贷平台'],
-  datasets:[{data:[20,6.3,5.0],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
+  datasets:[{data:[20,5.6,5.0],backgroundColor:['rgba(220,38,38,0.6)','rgba(37,99,235,0.6)','rgba(217,119,6,0.6)'],borderColor:['#dc2626','#2563eb','#d97706'],borderWidth:2}]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartIncome'),{type:'bar',
-  data:{labels:['固收利息','保险生存金','万能账户增值','保险CV增值','保险分红','财富年年生存金'],
-  datasets:[{data:[43.05,3.6,1.1,1.5,0.3,0.17],backgroundColor:['#2563eb','#7c3aed','#16a34a','#0891b2','#d97706','#eab308'],borderRadius:4}]},
+  data:{labels:['实际可用（固收利息43.05+池息）','账面留存（新华生存金3.6+UA增值1.1）'],
+  datasets:[{data:[43.07,4.7],backgroundColor:['#2563eb','#7c3aed'],borderRadius:4}]},
   options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
-  scales:{x:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+  scales:{x:{title:{display:true,text:'万元/年（2026全年口径）',font:{size:10}},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
 new Chart(document.getElementById('chartInsType'),{type:'pie',
   data:{labels:['养老收入型','满期返还型','终身增值型','灵活账户型'],datasets:[{data:[3,2,2,1],
   backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706']}]},
