@@ -40,23 +40,23 @@ tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
 <a href="菜单.html" class="back">← 返回菜单</a>
 
 <h2>趋势变化跟踪</h2>
-<p class="note">基线日期：2026年7月 | 后续数据将按月/季度更新，追踪资产、负债、收益、支出的动态变化</p>
+<p class="note">基线日期：2026年7月 | 数据版本：2026-09-03（口径修正：银行存款实际≈¥5万；总被动收入=实际可用+账面；99鸿福固定¥5,000/3年；决策点=现在）| 后续数据将按月/季度更新，追踪资产、负债、收益、支出的动态变化</p>
 
 <!-- ===== 资产趋势 ===== -->
 <div class="card">
 <h3>资产变化趋势（万元）</h3>
 <div class="tbl-wrap"><table>
 <tr><th>资产类别</th><th>2026.07<br>（基线）</th><th>2026.12<br>（预估）</th><th>2027.12<br>（预估）</th><th>2028.12<br>（预估）</th><th>趋势方向</th><th>变动原因</th></tr>
-<tr><td>固收理财</td><td class="r">480</td><td class="r down">340</td><td class="r down">180</td><td class="r down">0</td><td class="down arrow-down">持续下降</td><td>37期/60期/浩腾2026到期；4笔2027到期；3笔2028到期；343期2029到期</td></tr>
+<tr><td>固收理财</td><td class="r">480</td><td class="r down">420</td><td class="r down">260</td><td class="r down">50</td><td class="down arrow-down">持续到期</td><td>60期2026.08退出（30万）；2026.11到期30万→2027年160万→2028年210万→2029年50万</td></tr>
 <tr><td>保险现金价值</td><td class="r">324</td><td class="r up">335</td><td class="r up">348</td><td class="r up">360</td><td class="up arrow-up">稳健增长</td><td>8份储蓄型保单持续增值；万能账户月复利</td></tr>
-<tr><td>私募股权</td><td class="r">285</td><td class="r stable">285</td><td class="r stable">290</td><td class="r stable">295</td><td class="stable">缓慢增长</td><td>7只净值基金；新增回款将降低投入基数</td></tr>
+<tr><td>私募股权</td><td class="r">285</td><td class="r stable">285</td><td class="r stable">290</td><td class="r stable">295</td><td class="stable">缓慢增长</td><td>7只基金按投入成本口径；新增回款将降低投入基数</td></tr>
 <tr><td>房产</td><td class="r">270</td><td class="r stable">270</td><td class="r stable">270</td><td class="r stable">270</td><td class="stable">持平</td><td>无买卖计划（2029装修提升价值）</td></tr>
-<tr><td>港险</td><td class="r">72</td><td class="r up">75</td><td class="r up">85</td><td class="r up">95</td><td class="up arrow-up">持续增长</td><td>永明+周大福红利累积；2026.08缴永明第2年</td></tr>
-<tr><td>银行存款</td><td class="r">53</td><td class="r down">35</td><td class="r stable">40</td><td class="r stable">50</td><td class="down arrow-down">短期下降</td><td>港险缴费+日常支出消耗；固收到期后回补</td></tr>
-<tr class="tt"><td>总资产</td><td class="r">1,484</td><td class="r down">1,340</td><td class="r down">1,213</td><td class="r down">1,070</td><td class="down arrow-down">下降（被动）</td><td>固收到期≠资产消失，资金转入其他类别</td></tr>
-<tr class="tt"><td>实际净资产变化</td><td class="r">1,413</td><td class="r up">1,440</td><td class="r up">1,500</td><td class="r up">1,580</td><td class="up arrow-up">实际增长</td><td>固收到期资金可用于还贷+再配置，净值上升</td></tr>
+<tr><td>港险</td><td class="r">72</td><td class="r up">75</td><td class="r up">85</td><td class="r up">95</td><td class="up arrow-up">持续增长</td><td>永明+周大福红利累积（2026.08永明第2期保费已缴）</td></tr>
+<tr><td>银行存款池</td><td class="r">5</td><td class="r up">29</td><td class="r up">218</td><td class="r up">446</td><td class="up arrow-up">随固收到账逐月增厚</td><td>固收利息+到期本金逐月入池；2026.11还新华贷20万；池内资金待再配置</td></tr>
+<tr class="tt"><td>总资产</td><td class="r">1,436</td><td class="r down">1,414</td><td class="r up">1,471</td><td class="r up">1,516</td><td class="up arrow-up">先降后升</td><td>2026年支出+保费+还贷暂压；2027起到期本金入池推动回升</td></tr>
+<tr class="tt"><td>净资产</td><td class="r">1,365</td><td class="r up">≈1,405</td><td class="r up">≈1,464</td><td class="r up">≈1,511</td><td class="up arrow-up">稳步上升</td><td>总资产-总负债（2026.11新华还清后负债由71万降至约11万）</td></tr>
 </table></div>
-<div class="note">说明：总资产下降是因为固收到期后本金回流为现金（银行存款），但若用于还贷则资产减少、负债也减少，净资产不变或上升。实际净资产变化行剔除了"固收→现金"的重复计算。</div>
+<div class="note">说明：银行存款池=固收到账（利息+本金）逐月流入后的模拟余额（口径：活期0.35%、暂不假设再配置），故2027-2028随到期高峰快速增厚——若执行"组合≥3%"再配置，池余额将降低、对应新增配置资产升高，总资产/净资产不变。净资产为估算值：2026.11新华还清后负债≈11万（车贷+网贷），2027.12≈7万。</div>
 </div>
 
 <!-- ===== 负债趋势 ===== -->
@@ -64,37 +64,38 @@ tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
 <h3>负债变化趋势（元）</h3>
 <div class="phase-bar">
   <div class="phase-item phase-past"><strong>2026.07前</strong><br>信美贷款74万<br>✅ 已还清</div>
-  <div class="phase-item phase-past"><strong>2026.06-07</strong><br>新华贷款60万<br>累计还款40万</div>
-  <div class="phase-item phase-now"><strong>2026.08</strong><br>还新华30万<br>剩余30万</div>
-  <div class="phase-item phase-future"><strong>2026.11</strong><br>全部还清<br>新华贷款=0</div>
-  <div class="phase-item phase-future"><strong>2027+</strong><br>仅剩车贷<br>月供¥3,520</div>
+  <div class="phase-item phase-past"><strong>2026.07-08</strong><br>新华累计还款80万<br>（7月40万+8/31还40万）</div>
+  <div class="phase-item phase-now"><strong>2026.09 现在</strong><br>新华余额20万<br>11/19到期</div>
+  <div class="phase-item phase-future"><strong>2026.11.19</strong><br>新华全部还清<br>负债降至约11万</div>
+  <div class="phase-item phase-future"><strong>2027+</strong><br>仅剩车贷/网贷<br>月供¥3,520递减</div>
 </div>
 <div class="tbl-wrap"><table>
-<tr><th>负债项目</th><th>2026.07<br>（当前）</th><th>2026.08<br>（还30万后）</th><th>2026.11<br>（全部还清后）</th><th>2027.12<br>（远期）</th><th>趋势</th></tr>
-<tr><td>新华惠鑫宝贷款</td><td class="r down">600,000</td><td class="r down">300,000</td><td class="r up" style="color:#16a34a">0</td><td class="r">0</td><td class="down arrow-down">快速下降</td></tr>
-<tr><td>车贷</td><td class="r">63,360</td><td class="r down">63,360</td><td class="r down">56,320</td><td class="r down">21,120</td><td class="down arrow-down">逐月递减</td></tr>
-<tr><td>借呗</td><td class="r">43,500</td><td class="r stable">43,500</td><td class="r">待定</td><td class="r">待定</td><td class="stable">待确认还款计划</td></tr>
-<tr><td>百度网贷</td><td class="r">6,200</td><td class="r stable">6,200</td><td class="r">待定</td><td class="r">待定</td><td class="stable">待确认还款计划</td></tr>
-<tr class="tt"><td>总负债</td><td class="r down">713,060</td><td class="r down">413,060</td><td class="r down">356,320</td><td class="r down">21,120</td><td class="down arrow-down">大幅下降</td></tr>
+<tr><th>负债项目</th><th>2026.07<br>（基线）</th><th>2026.09<br>（当前）</th><th>2026.11.19<br>（新华还清后）</th><th>2027.12<br>（远期）</th><th>趋势</th></tr>
+<tr><td>新华惠鑫宝贷款</td><td class="r down">600,000</td><td class="r down">200,000</td><td class="r up" style="color:#16a34a">0</td><td class="r">0</td><td class="down arrow-down">已还80万，11/19还清</td></tr>
+<tr><td>车贷</td><td class="r">63,360</td><td class="r">63,360</td><td class="r down">56,320</td><td class="r down">21,120</td><td class="down arrow-down">月供3,520逐月递减</td></tr>
+<tr><td>借呗</td><td class="r">43,500</td><td class="r">43,500</td><td class="r">43,500</td><td class="r">待定</td><td class="stable">待确认还款计划</td></tr>
+<tr><td>百度网贷</td><td class="r">6,200</td><td class="r">6,200</td><td class="r">6,200</td><td class="r">待定</td><td class="stable">待确认还款计划</td></tr>
+<tr class="tt"><td>总负债</td><td class="r down">713,060</td><td class="r down">313,060</td><td class="r down">106,020</td><td class="r down">21,120+待定</td><td class="down arrow-down">大幅下降</td></tr>
 </table></div>
-<div class="note">趋势判断：2026年是负债集中消化年，新华贷款全部还清后，总负债率将从4.8%降至约2.4%（8月）→约0.1%（11月后）。</div>
+<div class="note">趋势判断：2026年是负债集中消化年，新华贷款已还80万、余额20万于2026-11-19到期还清；总负债率从基线约5.0%（71.3万/总资产1,436万）→当前约2.2%（31.3万/1,406万）→11月还清后约0.75%（10.6万/约1,414万）。</div>
 </div>
 
 <!-- ===== 收益趋势 ===== -->
 <div class="card">
-<h3>被动收入变化趋势（万元/年）</h3>
+<h3>被动收入变化趋势（万元/年 · 三口径 v3）</h3>
 <div class="chart-wrap"><canvas id="chartIncome" height="240"></canvas></div>
 <div class="tbl-wrap"><table>
-<tr><th>收入来源</th><th>2026年</th><th>2027年</th><th>2028年</th><th>2029年</th><th>2030+</th><th>趋势</th></tr>
-<tr><td>固收利息</td><td class="r up">43.05</td><td class="r down">38.1</td><td class="r down">22.6</td><td class="r down">1.1</td><td class="r down">0</td><td class="down arrow-down">断崖下降</td></tr>
-<tr><td>新华生存金</td><td class="r">3.6</td><td class="r">3.6</td><td class="r">3.6</td><td class="r">3.6</td><td class="r">3.6</td><td class="stable">稳定</td></tr>
-<tr><td>万能账户增值</td><td class="r up">1.1</td><td class="r up">1.2</td><td class="r up">1.3</td><td class="r up">1.4</td><td class="r up">1.6</td><td class="up arrow-up">复利增长</td></tr>
-<tr><td>保险现金价值增值</td><td class="r up">1.5</td><td class="r up">1.6</td><td class="r up">1.7</td><td class="r up">1.8</td><td class="r up">2.0</td><td class="up arrow-up">稳定增长</td></tr>
-<tr><td>保险分红</td><td class="r">0.3</td><td class="r">0.3</td><td class="r">0.3</td><td class="r">0.3</td><td class="r">0.3</td><td class="stable">稳定</td></tr>
-<tr><td>财富年年生存金</td><td class="r">0.17</td><td class="r">0.17</td><td class="r">0.17</td><td class="r">0.17</td><td class="r">0.17</td><td class="stable">稳定</td></tr>
-<tr class="tt"><td>被动收入合计</td><td class="r up">49.7</td><td class="r down">45.0</td><td class="r down">29.7</td><td class="r down">8.4</td><td class="r down">7.7</td><td class="down arrow-down">2029骤降</td></tr>
+<tr><th>收入来源（万元/年）</th><th>2026<br>9-12月*</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th><th>2031</th><th>口径说明</th></tr>
+<tr><td>固收利息</td><td class="r up">17.68</td><td class="r up">37.16</td><td class="r down">22.70</td><td class="r down">1.04</td><td class="r">0</td><td class="r">0</td><td>2029年3月最后一笔到期后归零</td></tr>
+<tr><td>存款池利息（0.35%）</td><td class="r">0.01</td><td class="r">0.21</td><td class="r">0.90</td><td class="r">1.69</td><td class="r">1.72</td><td class="r">1.70</td><td>随固收到账入池而增厚</td></tr>
+<tr><td>国寿99鸿福</td><td class="r">—</td><td class="r">—</td><td class="r">0.50</td><td class="r">—</td><td class="r">—</td><td class="r">0.50</td><td>每3年8/28固定领¥5,000（不递增）</td></tr>
+<tr class="tt"><td>实际可用合计（到账）</td><td class="r up">17.69</td><td class="r up">37.37</td><td class="r down">24.10</td><td class="r down" style="color:#dc2626">2.72</td><td class="r down" style="color:#dc2626">1.72</td><td class="r down" style="color:#dc2626">2.20</td><td>真实进入存款池、可直接支出</td></tr>
+<tr><td>新华生存金留存（账面）</td><td class="r">1.20</td><td class="r">3.60</td><td class="r">3.60</td><td class="r">3.60</td><td class="r">3.60</td><td class="r">3.60</td><td>¥3,000/月，默认滚存UA</td></tr>
+<tr><td>万能账户增值（账面）</td><td class="r">0.36</td><td class="r up">1.17</td><td class="r up">1.27</td><td class="r up">1.37</td><td class="r up">1.47</td><td class="r up">1.57</td><td>UA复利2.75%</td></tr>
+<tr class="tt"><td>账面合计（留存UA）</td><td class="r">1.56</td><td class="r up">4.77</td><td class="r up">4.87</td><td class="r up">4.97</td><td class="r up">5.07</td><td class="r up">5.17</td><td>账面增长，需要时可实际提取</td></tr>
+<tr class="tt" style="background:#eef6ff"><td><b>总被动收入 = 实际可用+账面</b></td><td class="r"><b>19.25</b></td><td class="r"><b>42.14</b></td><td class="r"><b>28.97</b></td><td class="r"><b>7.69</b></td><td class="r"><b>6.79</b></td><td class="r"><b>7.37</b></td><td>每年被动收益全貌</td></tr>
 </table></div>
-<div class="note">⚠ 关键拐点：2029年固收全部到期后，被动收入从¥49.7万骤降至约¥8.4万/年。届时需依赖港险红利+保险生存金+再配置收益来弥补缺口。这是财富自由路径的核心挑战。</div>
+<div class="note">*2026年为9-12月口径（v3模型自2026-09起算）；2026全年9笔450万固收年息约¥41.04万。<br>⚠ 关键变化：2029年固收全部到期后，"实际可用"从约¥24万骤降至约¥2-3万/年，账面留存（生存金+UA增值）约¥5万/年可提取补缺——总被动收入仍可覆盖6万支出，但到账现金不足，这正是<b>决策点须前置到现在（2026）</b>的原因：用2027-2028年回笼的约370万本金做"≥3%"再配置，到2030年复利才能接续被动收入。</div>
 </div>
 
 <!-- ===== 支出趋势 ===== -->
@@ -114,40 +115,43 @@ tr.tt{font-weight:700;background:#f0f4f8;border-top:2px solid #1a3a5c}
 
 <!-- ===== 财务自由度趋势 ===== -->
 <div class="card">
-<h3>财务自由度趋势</h3>
+<h3>财务自由度趋势（年支出6万口径）</h3>
 <div class="chart-wrap"><canvas id="chartFreedom" height="200"></canvas></div>
 <table>
-<tr><th>年份</th><th>被动收入(万)</th><th>总支出(万)</th><th>自由度</th><th>状态</th></tr>
-<tr><td>2026</td><td class="r up">49.7</td><td class="r">13.6</td><td class="r up" style="color:#16a34a;font-weight:700">365%</td><td>✅ 极度充裕</td></tr>
-<tr><td>2027</td><td class="r down">45.0</td><td class="r">12.7</td><td class="r up" style="color:#16a34a;font-weight:700">354%</td><td>✅ 充裕</td></tr>
-<tr><td>2028</td><td class="r down">29.7</td><td class="r">11.1</td><td class="r" style="color:#2563eb;font-weight:700">268%</td><td>🟡 尚可</td></tr>
-<tr style="background:#fef2f2"><td>2029</td><td class="r down" style="color:#dc2626">8.4</td><td class="r">9.5</td><td class="r down" style="color:#dc2626;font-weight:700">88%</td><td>🔴 赤字预警</td></tr>
-<tr><td>2030+</td><td class="r" style="color:#d97706">7.7</td><td class="r up">10.0</td><td class="r down" style="color:#dc2626;font-weight:700">77%</td><td>🔴 持续赤字</td></tr>
+<tr><th>年份</th><th>实际可用(万)</th><th>账面(万)</th><th>总被动(万)</th><th>年支出(万)</th><th>自由度<br>（总被动/支出）</th><th>状态</th></tr>
+<tr><td>2026（9-12月）</td><td class="r up">17.69</td><td class="r">1.56</td><td class="r up">19.25</td><td class="r">6.0</td><td class="r up" style="color:#16a34a;font-weight:700">321%</td><td>✅ 充裕</td></tr>
+<tr><td>2027</td><td class="r up">37.37</td><td class="r">4.77</td><td class="r up">42.14</td><td class="r">6.0</td><td class="r up" style="color:#16a34a;font-weight:700">702%</td><td>✅ 充裕</td></tr>
+<tr><td>2028</td><td class="r up">24.10</td><td class="r">4.87</td><td class="r up">28.97</td><td class="r">6.0</td><td class="r up" style="color:#16a34a;font-weight:700">483%</td><td>✅ 充裕</td></tr>
+<tr style="background:#fffbeb"><td>2029</td><td class="r down" style="color:#d97706">2.72</td><td class="r">4.97</td><td class="r">7.69</td><td class="r">6.0</td><td class="r" style="color:#d97706;font-weight:700">128%</td><td>🟡 总被动可覆盖，实际可用不足</td></tr>
+<tr style="background:#fffbeb"><td>2030</td><td class="r down" style="color:#d97706">1.72</td><td class="r">5.07</td><td class="r">6.79</td><td class="r">6.0</td><td class="r" style="color:#d97706;font-weight:700">113%</td><td>🟡 需提取账面或再配置收益</td></tr>
+<tr style="background:#fffbeb"><td>2031</td><td class="r down" style="color:#d97706">2.20</td><td class="r">5.17</td><td class="r">7.37</td><td class="r">6.0</td><td class="r" style="color:#d97706;font-weight:700">123%</td><td>🟡 需提取账面或再配置收益</td></tr>
 </table>
-<div class="note">⚠ 2029年是关键转折点：固收利息归零后财务自由度跌破100%。解决方案：(1)固收到期资金再配置产生新被动收入；(2)港险红利提取（第5年起可提取）；(3)大额支出控制在增值部分内。</div>
+<div class="note">⚠ 拐点解读（决策点=现在）：2029年固收利息归零后，"实际可用"现金仅约¥2-3万/年，必须靠①提取账面留存（生存金+UA增值约¥5万/年，随时可提）②2027-2028回笼的约370万本金再配置（≥3%组合可支撑15万/年档）来接续。<b>增值需要时间，配置决策须现在（2026年）就定</b>，用2027-2028执行期分批建仓，2030年复利才赶得上接棒——等2030年再决定就来不及了。</div>
 </div>
 
 <script>
-// 被动收入趋势图
+// 被动收入趋势图（三口径，万元/年；2026*=9-12月）
+var yrs = ['2026*','2027','2028','2029','2030','2031'];
 new Chart(document.getElementById('chartIncome'),{type:'line',
-  data:{labels:['2026','2027','2028','2029','2030+'],
+  data:{labels:yrs,
   datasets:[
-    {label:'固收利息',data:[43.05,38.1,22.6,1.1,0],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.1)',fill:true,tension:0.3},
-    {label:'保险生存金+增值',data:[6.4,6.7,6.9,7.1,7.6],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.08)',fill:true,tension:0.3},
-    {label:'保险分红+其他',data:[0.47,0.47,0.47,0.47,0.47],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,0.08)',fill:true,tension:0.3}
+    {label:'总被动收入',data:[19.25,42.14,28.97,7.69,6.79,7.37],borderColor:'#d97706',backgroundColor:'rgba(217,119,6,0.08)',fill:true,tension:0.3,borderWidth:2},
+    {label:'实际可用(到账)',data:[17.69,37.37,24.10,2.72,1.72,2.20],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.1)',fill:true,tension:0.3},
+    {label:'账面(留存UA)',data:[1.56,4.77,4.87,4.97,5.07,5.17],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.08)',fill:true,tension:0.3}
   ]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},usePointStyle:true}}},
   scales:{y:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
 
-// 财务自由度趋势图
+// 财务自由度趋势图（总被动 vs 年支出6万）
 new Chart(document.getElementById('chartFreedom'),{type:'bar',
-  data:{labels:['2026','2027','2028','2029','2030+'],
+  data:{labels:yrs,
   datasets:[
-    {label:'被动收入',data:[49.7,45.0,29.7,8.4,7.7],backgroundColor:'#2563eb',borderRadius:4},
-    {label:'总支出',data:[13.6,12.7,11.1,9.5,10.0],backgroundColor:'#dc2626',borderRadius:4}
+    {label:'总被动收入',data:[19.25,42.14,28.97,7.69,6.79,7.37],backgroundColor:'#2563eb',borderRadius:4},
+    {label:'年支出',data:[6,6,6,6,6,6],backgroundColor:'#dc2626',borderRadius:4}
   ]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:10},usePointStyle:true}}},
   scales:{y:{title:{display:true,text:'万元/年',font:{size:10}},ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
 </script>
+<footer style="text-align:center;font-size:11px;color:#aaa;padding:14px 0 4px">船长财富管理 · 数据版本 2026-09-03（口径v3：银行存款≈5万 / 总被动收入=实际可用+账面 / 99鸿福固定¥5,000 / 决策点=现在）</footer>
 </body>
 </html>

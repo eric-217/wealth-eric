@@ -64,12 +64,14 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 总览卡片 -->
 <div class="summary-card">
   <div class="s-title">总资产</div>
-  <div class="s-value">¥1,447万</div>
+  <div class="s-value">¥1,406万</div>
   <div class="s-grid">
     <div class="s-item"><div class="si-label">固收资产</div><div class="si-value">¥450万</div></div>
     <div class="s-item"><div class="si-label">保险资产</div><div class="si-value">¥324万</div></div>
     <div class="s-item"><div class="si-label">私募股权</div><div class="si-value">¥285万</div></div>
     <div class="s-item"><div class="si-label">固定资产</div><div class="si-value">¥270万</div></div>
+    <div class="s-item"><div class="si-label">港险</div><div class="si-value">¥72万</div></div>
+    <div class="s-item"><div class="si-label">银行存款</div><div class="si-value">≈¥5万</div></div>
   </div>
 </div>
 
@@ -424,11 +426,11 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 银行存款（手风琴折叠） -->
 <div class="accordion" id="acc_bank">
 <div class="accordion-header" onclick="toggleAcc('acc_bank')">
-  <div class="ah-left">🏧 银行存款 <span class="ah-num">≈¥45.9万</span></div>
+  <div class="ah-left">🏧 银行存款 <span class="ah-num">≈¥5万</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
-<div class="date-tag">⚠ 账户明细待客户确认 | 合计估算≈¥45.9万（2026-08-31还贷后净额：60期到账¥330,600−还贷本金+息¥403,155.56）</div>
+<div class="date-tag">💰 2026-09-03 用户核对：银行存款实际约¥5万（原推算531,091→458,535链条作废）。固收到账本息逐月回流存款池，余额随利息联动增长（详见被动收入测算）。账户明细待更新</div>
 <table><tr><th>账户</th><th>金额</th></tr>
 <tr><td>灵活宝</td><td class="tr">⚠待更新</td></tr>
 <tr><td>其他存款</td><td class="tr">⚠待更新</td></tr></table>
@@ -445,7 +447,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </div></div>
 
 </div>
-<footer>更新：2026-09-02</footer>
+<footer>更新：2026-09-03（总资产≈1406万·存款口径修正）</footer>
 <script>
 function toggleAcc(id){
   var el=document.getElementById(id);

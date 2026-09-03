@@ -33,7 +33,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="card">
 <h3>🏗️ 资产结构分布趋势（万元）</h3>
 <div class="chart-wrap"><canvas id="chartStructure" height="220"></canvas></div>
-<div class="legend-note">各资产类别随时间的消长：固收本金 / 保单现金价值 / 港险 / 房产 / 私募净值 / 银行存款</div>
+<div class="legend-note">各资产类别随时间的消长：固收本金 / 保单现金价值 / 港险 / 房产 / 私募(投入成本口径) / 银行存款</div>
 </div>
 
 <div class="card">
@@ -42,9 +42,9 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <p class="nt">注：无实质变更的月份不新增记录点，对应曲线以平线延续。</p>
 </div>
 </div>
-<footer>船长财富管理 · 数据截至 2026-08-07</footer>
+<footer>船长财富管理 · 数据截至 2026-09-03</footer>
 <script>
-var HIST = {"client": "陈女士", "updated": "2026-08-10", "note": "财富趋势历史数据。每次实质变更（新增保单/固收到期/利率变更/资产变动）追加一条version记录。指标单位为万元，财务自由度=被动收入/年支出。", "versions": [{"date": "2026-07-25", "label": "v2026.07 基线", "总资产": 1484, "净资产": 1413, "总负债": 71, "被动收入": 49.7, "财务自由度": 502, "固收本金": 480, "保单现金价值": 324, "港险": 72, "房产": 270, "私募净值": 131.8, "银行存款": 53.1, "note": "首次记录：从v2026.07标签提取（7月≈8月，仅医疗险更新，CV为0不影响总量）"}, {"date": "2026-08-07", "label": "2026-08 复星医疗险建档", "总资产": 1484, "净资产": 1413, "总负债": 71, "被动收入": 49.7, "财务自由度": 502, "固收本金": 480, "保单现金价值": 324, "港险": 72, "房产": 270, "私募净值": 131.8, "银行存款": 53.1, "note": "新增复星优选一号医疗险（陈莹+李春华，年保费¥1,287.93，消费型CV=0），总资产/被动收入不变"}]};
+var HIST = {"client": "陈女士", "updated": "2026-09-03", "note": "财富趋势历史数据。每次实质变更（新增保单/固收到期/利率变更/资产变动）追加一条version记录。指标单位为万元，财务自由度=被动收入/年支出。2026-09-03口径修正：银行存款经用户核对实际≈¥5万（原531,091→458,535推算链条作废），历史各版存款统一为5.0，总资产/净资产联动重算（私募按投入285口径）。", "versions": [{"date": "2026-07-25", "label": "v2026.07 基线（存款口径已修正）", "总资产": 1436, "净资产": 1365, "总负债": 71, "被动收入": 49.7, "财务自由度": 502, "固收本金": 480, "保单现金价值": 324, "港险": 72, "房产": 270, "私募": 285, "银行存款": 5, "note": "首次记录：从v2026.07标签提取（7月≈8月，仅医疗险更新，CV为0不影响总量）。2026-09-03修正：银行存款53.1→5.0，总资产1484→1436、净资产1413→1365"}, {"date": "2026-08-07", "label": "2026-08 复星医疗险建档（存款口径已修正）", "总资产": 1436, "净资产": 1365, "总负债": 71, "被动收入": 49.7, "财务自由度": 502, "固收本金": 480, "保单现金价值": 324, "港险": 72, "房产": 270, "私募": 285, "银行存款": 5, "note": "新增复星优选一号医疗险（陈莹+李春华，年保费¥1,287.93，消费型CV=0），总资产/被动收入不变。2026-09-03修正：存款53.1→5.0、总资产1484→1436、净资产1413→1365"}, {"date": "2026-09-03", "label": "2026-09-03 银行存款口径核对修正", "总资产": 1406, "净资产": 1375, "总负债": 31, "被动收入": 49.7, "财务自由度": 502, "固收本金": 450, "保单现金价值": 324, "港险": 72, "房产": 270, "私募": 285, "银行存款": 5, "note": "用户2026-09-03核对：银行存款实际约¥5万（原推算链条作废，9-02版45.9万同步作废）；固收60期8/31退出后在途9笔¥450万；新华贷款余额¥20万11/19到期，总负债31万；总资产1406=固收450+CV324+港险72+房产270+私募285+存款5；固收到账本息逐月回流存款池"}]};
 
 // 渲染记录点
 document.getElementById('verCount').textContent = HIST.versions.length;
@@ -82,20 +82,20 @@ new Chart(document.getElementById('chartStructure'),{type:'line',
     {label:'保单现金价值',data:get('保单现金价值'),borderColor:'#7c3aed',tension:0.3,borderWidth:1.5},
     {label:'港险',data:get('港险'),borderColor:'#0891b2',tension:0.3,borderWidth:1.5},
     {label:'房产',data:get('房产'),borderColor:'#d97706',tension:0.3,borderWidth:1.5},
-    {label:'私募净值',data:get('私募净值'),borderColor:'#16a34a',tension:0.3,borderWidth:1.5},
+    {label:'私募(投入)',data:get('私募'),borderColor:'#16a34a',tension:0.3,borderWidth:1.5},
     {label:'银行存款',data:get('银行存款'),borderColor:'#eab308',tension:0.3,borderWidth:1.5}
   ]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:12,font:{size:10}}}},
     scales:{y:{title:{display:true,text:'万元'},ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
 
 // 历史明细表
-var keys = ['date','label','总资产','净资产','总负债','被动收入','财务自由度','固收本金','保单现金价值','港险','房产','私募净值','银行存款'];
+var keys = ['date','label','总资产','净资产','总负债','被动收入','财务自由度','固收本金','保单现金价值','港险','房产','私募','银行存款'];
 var h = '<table><tr><th>日期</th><th>版本说明</th><th>总资产</th><th>净资产</th><th>总负债</th><th>被动收入</th><th>自由度</th><th>固收</th><th>保单CV</th><th>港险</th><th>房产</th><th>私募</th><th>存款</th></tr>';
 HIST.versions.forEach(function(v){
   h += '<tr><td>'+v.date+'</td><td>'+v.label+'</td>';
   h += '<td class="r">'+v['总资产']+'</td><td class="r">'+v['净资产']+'</td><td class="r">'+v['总负债']+'</td>';
   h += '<td class="r">'+v['被动收入']+'</td><td class="r">'+v['财务自由度']+'%</td><td class="r">'+v['固收本金']+'</td>';
-  h += '<td class="r">'+v['保单现金价值']+'</td><td class="r">'+v['港险']+'</td><td class="r">'+v['房产']+'</td><td class="r">'+v['私募净值']+'</td><td class="r">'+v['银行存款']+'</td></tr>';
+  h += '<td class="r">'+v['保单现金价值']+'</td><td class="r">'+v['港险']+'</td><td class="r">'+v['房产']+'</td><td class="r">'+v['私募']+'</td><td class="r">'+v['银行存款']+'</td></tr>';
 });
 h += '</table>';
 document.getElementById('histTable').innerHTML = h;

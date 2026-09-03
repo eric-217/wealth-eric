@@ -26,10 +26,10 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </style><script>window.__AUTH_LOGIN_URL__="../../login.html";</script><script src="../../assets/auth.js"></script></head><body>
 <div class="backbar"><a href="菜单.html">← 返回菜单</a> 总览</div>
 <div class="c"><div class="card">
-<div class="date-tag">📅 数据截止：2026年8月</div>
+<div class="date-tag">📅 数据截止：2026年9月3日（银行存款口径已按实际≈¥5万核对修正）</div>
 <div class="krow wide">
-<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1447万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>
-<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1416万<div class="sub">净值率97.8%</div></div></div>
+<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1406万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>
+<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1375万<div class="sub">净值率97.8%</div></div></div>
 <div class="kbox"><div class="kl">总负债</div><div class="kv r">¥31万<div class="sub">负债率2.2%</div></div></div>
 </div>
 <div class="krow wide">
@@ -64,17 +64,17 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <h3>🛡️ 保障类保险分布（家庭总保额）</h3><div class="chart-wrap"><canvas id="chartProtType" height="180"></canvas></div>
 <p class="nt" style="margin-top:4px">✅ 复星联合优选一号医疗险已配置（陈莹+李春华，家庭总保额800万/年赔付限额400万）。华贵大麦·安居保2份保障型条款待读取。钟爱一生附加重疾¥10万（是否仍有效待确认）</p>
 <h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">
-<div class="kbox"><div class="kl">流动比率</div><div class="kv g">7.8x<div class="sub">流动资产≈¥105.7万/流动负债¥13.5万</div></div></div>
-<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">54个月<div class="sub">参考基准6-12月,资金利用效率待优化</div></div></div>
+<div class="kbox"><div class="kl">流动比率</div><div class="kv g">3.1x<div class="sub">流动资产≈¥35万（存款5+2026年内固收到期30）/流动负债≈¥11.3万</div></div></div>
+<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">10个月<div class="sub">按银行存款¥5万÷月支出¥0.5万；11月固收到期后增厚</div></div></div>
 <div class="kbox"><div class="kl">固收集中度</div><div class="kv b">22%<div class="sub">最大单笔¥100万占固收总额22%</div></div></div>
 <div class="kbox"><div class="kl">保险占比</div><div class="kv b">22.4%<div class="sub">储蓄型8份·保障型已配置(医疗800万)</div></div></div>
 </div>
 </div></div>
-<footer>更新：2026-09-02</footer>
+<footer>更新：2026-09-03（存款口径修正：≈1406万/≈1375万/银行存款≈5万）</footer>
 <script>
 new Chart(document.getElementById('chartAssets'),{type:'doughnut',
   data:{labels:['固收理财','保险现金价值','私募股权','房产','港险','银行存款'],
-  datasets:[{data:[450,324,285,270,72,45.9],
+  datasets:[{data:[450,324,285,270,72,5],
   backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},
   options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
 new Chart(document.getElementById('chartDebt'),{type:'polarArea',
