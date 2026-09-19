@@ -93,8 +93,8 @@ var defaultSub={'assets':'assets_fixincome','cashflow':'cf_fixincome'};
 
 // --- 总览 ---
 panels.overview='<div class="date-tag">📅 数据截止：2026年9月3日（银行存款口径已按实际≈¥5万核对修正）</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1406万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
-+'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1375万<div class="sub">净值率97.8%</div></div></div>'
++'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1431万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
++'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1400万<div class="sub">净值率97.9%</div></div></div>'
 +'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥30.6万<div class="sub">负债率2.2%（新华20万11/19到期+车贷16期+网贷）</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">被动收入（2026实际到账）</div><div class="kv a">¥43.1万<div class="sub">固收全年利息¥43.05万+存款池息；加账面留存（生存金3.6+UA增值1.1）→2026总被动≈¥47.8万（v3三口径）</div></div></div>'
@@ -165,10 +165,10 @@ panels.assets_pe='<h3>私募股权（10只·投入¥285万）</h3><div class="tb
 +'<tr><td>经纬中国等6只</td><td class="tr">95万</td><td class="tr">净值0.96-0.99</td><td>正常</td></tr></table></div>'
 +'<p class="nt">✅ 100%数据覆盖 | 已回款¥70万 | 7只净值合计¥131.8万 | 数据截止2025.12.31</p>';
 
-panels.assets_property='<div class="date-tag">📅 数据截止：2026年7月</div><table><tr><th>房产</th><th>面积</th><th>估值</th></tr>'
-+'<tr><td>佛山住宅A</td><td>120㎡</td><td class="tr">≈¥150万</td></tr>'
-+'<tr><td>佛山住宅B</td><td>140㎡</td><td class="tr">≈¥120万</td></tr>'
-+'<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥270万</td></tr></table>';
+panels.assets_property='<div class="date-tag">📅 数据截止：2026年9月（成交价口径）</div><table><tr><th>房产</th><th>面积</th><th>估值</th></tr>'
++'<tr><td>A·怡景丽苑（禅城）</td><td>120㎡</td><td class="tr">≈¥120万</td></tr>'
++'<tr><td>B·保利东悦花园（乐从）</td><td>140㎡</td><td class="tr">≈¥175万</td></tr>'
++'<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥295万</td></tr></table><div style="font-size:10px;color:#6b7280;padding:4px 8px 8px">*2026-09-19 改按实际成交价口径估值（原150/120万口径作废）</div>';
 panels.assets_bank='<div class="date-tag">📅 2026-09-03 用户核对：银行存款实际≈¥5万（原推算45.9万作废）</div><table><tr><th>账户</th><th>金额</th><th>备注</th></tr>'
 +'<tr><td>银行存款（合计）</td><td class="tr">≈¥5万</td><td>随固收利息+到期本金逐月入池增厚</td></tr>'
 +'<tr><td>理赔金¥207,090.73</td><td class="tr">已另有安排</td><td>去向待确认（未计入存款池）</td></tr></table>';
@@ -184,8 +184,8 @@ panels.debt='<table><tr><th>负债</th><th>本金</th><th>机构</th><th>月供/
 
 // --- 趋势跟踪（跳转到详细页面）---
 panels.trend='<div class="date-tag">📅 基线：2026.07（口径v3：2026-09-03）</div><div class="krow">'
-+'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1,436→1,514万<div class="sub">2026.07→2028.12 固收到期本金入池回升</div></div></div>'
-+'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1,365→≈1,509万<div class="sub">2026.11新华还清后负债大降</div></div></div>'
++'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1,436→1,539万<div class="sub">2026.07→2028.12 固收到期本金入池回升（含房产成交口径重估+25万）</div></div></div>'
++'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1,365→≈1,534万<div class="sub">2026.11新华还清后负债大降</div></div></div>'
 +'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→30.6万<div class="sub">新华贷已还¥80万余额20万11/19到期；车贷逐月递减至2027.12</div></div></div>'
 +'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">37.4→2.7万<div class="sub">实际可用 2027→2029 固收到期骤降</div></div></div>'
 +'</div><div class="krow wide">'
@@ -534,7 +534,7 @@ function initCharts(){
   if(chartsDone||!document.getElementById('chartAssets'))return; chartsDone=true;
   new Chart(document.getElementById('chartAssets'),{type:'doughnut',
     data:{labels:['固收理财','保险现金价值','私募股权','房产','港险','银行存款'],
-    datasets:[{data:[450,324,285,270,72,5],
+    datasets:[{data:[450,324,285,295,72,5],
     backgroundColor:['#2563eb','#7c3aed','#16a34a','#d97706','#dc2626','#0891b2']}]},
     options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12,usePointStyle:true}}}}});
   new Chart(document.getElementById('chartDebt'),{type:'polarArea',
