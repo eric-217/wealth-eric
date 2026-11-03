@@ -64,12 +64,12 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 总览卡片 -->
 <div class="summary-card">
   <div class="s-title">总资产</div>
-  <div class="s-value">¥1,431万</div>
+  <div class="s-value">¥1,473万</div>
   <div class="s-grid">
     <div class="s-item"><div class="si-label">固收资产</div><div class="si-value">¥450万</div></div>
     <div class="s-item"><div class="si-label">保险资产</div><div class="si-value">¥324万</div></div>
     <div class="s-item"><div class="si-label">私募股权</div><div class="si-value">¥285万</div></div>
-    <div class="s-item"><div class="si-label">固定资产</div><div class="si-value">¥295万</div></div>
+    <div class="s-item"><div class="si-label">固定资产</div><div class="si-value">¥337万</div></div>
     <div class="s-item"><div class="si-label">港险</div><div class="si-value">¥72万</div></div>
     <div class="s-item"><div class="si-label">银行存款</div><div class="si-value">≈¥5万</div></div>
   </div>
@@ -413,15 +413,16 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <!-- 固定资产（手风琴折叠） -->
 <div class="accordion" id="acc_property">
 <div class="accordion-header" onclick="toggleAcc('acc_property')">
-  <div class="ah-left">🏠 固定资产 <span class="ah-num">2套 · ¥295万</span></div>
+  <div class="ah-left">🏠 固定资产 <span class="ah-num">2套 · ¥337万</span></div>
   <div class="ah-arrow">▼</div>
 </div>
 <div class="accordion-body">
 <table><tr><th>房产</th><th>面积</th><th>估值</th></tr>
-<tr><td>住宅A · 怡景丽苑<span style="font-size:11px;color:#6b7280">（禅城·湾华）</span></td><td>120㎡</td><td class="tr">≈¥120万</td></tr>
-<tr><td>住宅B · 保利东悦花园<span style="font-size:11px;color:#6b7280">（顺德乐从）</span></td><td>140㎡</td><td class="tr">≈¥175万</td></tr>
-<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥295万</td></tr></table>
-<p style="font-size:11px;color:#6b7280;margin-top:4px">*2026-09-19 估值改按实际成交价口径：怡景取贝壳成交均价9,931元/㎡（月成交55套样本）取整10,000/㎡；东悦无公开成交样本，按业主实际报价11,350-15,639中值打约7%成交折让取12,500/㎡（平台挂牌均价17,107虚高，不采用）。</p>
+<tr><td>住宅A · 怡景丽苑<span style="font-size:11px;color:#6b7280">（禅城·湾华）</span></td><td>120㎡</td><td class="tr">≈¥137万</td></tr>
+<tr><td>住宅B · 保利东悦花园<span style="font-size:11px;color:#6b7280">（顺德乐从）</span></td><td>140㎡</td><td class="tr">≈¥200万</td></tr>
+<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥337万</td></tr></table>
+<p style="font-size:11px;color:#6b7280;margin-top:4px">*2026-10-02 月度重估（成交口径）：怡景取贝壳/链家参考成交均价 11,435元/㎡（上月成交56套）×120＝137.22万；东悦取130-155㎡标的户型在售实际报价区间13,088-17,630中值15,359×约7%折让＝14,250元/㎡×140＝199.5万。挂牌均价（怡景1.10万/东悦1.78万）不采用。</p>
+<p style="font-size:11px;color:#b45309;margin-top:2px">⚠ 本次较上月 +41.7万 主要来自**口径修正**（上月东悦误用101㎡三房报价区间估140㎡房产），同期同口径行情实为 -0.95%~-8.6%（佛山二手仍在下行）。<b>不可读作"房产升值"</b>；明细见《房地产行情跟踪/佛山_行情跟踪.md》七、卖出测算联动。</p>
 </div></div>
 
 <!-- 银行存款（手风琴折叠） -->
@@ -448,7 +449,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 </div></div>
 
 </div>
-<footer>更新：2026-09-19（房产估值改实际成交价口径：怡景120万/东悦175万，总资产≈1431万）</footer>
+<footer>更新：2026-10-02（房产按成交口径月度重估：怡景137万/东悦200万，固定资产≈337万，总资产≈1473万｜⚠+41.7万主要系口径修正非行情上涨）</footer>
 <script>
 function toggleAcc(id){
   var el=document.getElementById(id);
