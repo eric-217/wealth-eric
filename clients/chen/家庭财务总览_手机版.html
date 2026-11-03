@@ -51,7 +51,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="backbar" id="backbar"><a href="菜单.html">← 返回菜单</a> <span id="backtitle"></span></div>
 <div class="submenu" id="submenu"></div>
 <div class="c" id="container"></div>
-<footer>更新：2026-10-02（房产按成交口径月度重估：怡景137万/东悦200万→固定资产337万，总资产≈1473万/净资产≈1442万；⚠+41.7万系口径修正非行情上涨）</footer>
+<footer>更新：2026-11-03（房产按成交口径月度重估·记10月行情：怡景118万/东悦200万→固定资产317万，总资产≈1453万/净资产≈1423万；⚠-19.4万系怡景真实成交下探，非口径修正）</footer>
 
 <script>
 // ===== 主菜单 =====
@@ -92,9 +92,9 @@ var panels={};
 var defaultSub={'assets':'assets_fixincome','cashflow':'cf_fixincome'};
 
 // --- 总览 ---
-panels.overview='<div class="date-tag">📅 数据截止：2026年10月2日（房产按成交口径月度重估；银行存款≈¥5万已核对）</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1473万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
-+'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1442万<div class="sub">净值率97.9%</div></div></div>'
+panels.overview='<div class="date-tag">📅 数据截止：2026年11月3日（房产按成交口径月度重估·记10月行情；银行存款≈¥5万已核对）</div><div class="krow wide">'
++'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1453万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
++'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1423万<div class="sub">净值率97.9%</div></div></div>'
 +'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥30.6万<div class="sub">负债率2.1%（新华20万11/19到期+车贷16期+网贷）</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">被动收入（2026实际到账）</div><div class="kv a">¥43.1万<div class="sub">固收全年利息¥43.05万+存款池息；加账面留存（生存金3.6+UA增值1.1）→2026总被动≈¥47.8万（v3三口径）</div></div></div>'
@@ -165,10 +165,10 @@ panels.assets_pe='<h3>私募股权（10只·投入¥285万）</h3><div class="tb
 +'<tr><td>经纬中国等6只</td><td class="tr">95万</td><td class="tr">净值0.96-0.99</td><td>正常</td></tr></table></div>'
 +'<p class="nt">✅ 100%数据覆盖 | 已回款¥70万 | 7只净值合计¥131.8万 | 数据截止2025.12.31</p>';
 
-panels.assets_property='<div class="date-tag">📅 数据截止：2026年10月2日（成交价口径·月度重估）</div><table><tr><th>房产</th><th>面积</th><th>估值</th></tr>'
-+'<tr><td>A·怡景丽苑（禅城）</td><td>120㎡</td><td class="tr">≈¥137万</td></tr>'
+panels.assets_property='<div class="date-tag">📅 数据截止：2026年11月3日（成交价口径·月度重估·记10月行情）</div><table><tr><th>房产</th><th>面积</th><th>估值</th></tr>'
++'<tr><td>A·怡景丽苑（禅城）</td><td>120㎡</td><td class="tr">≈¥118万</td></tr>'
 +'<tr><td>B·保利东悦花园（乐从）</td><td>140㎡</td><td class="tr">≈¥200万</td></tr>'
-+'<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥337万</td></tr></table><div style="font-size:10px;color:#6b7280;padding:4px 8px 2px">*2026-10-02 按成交口径重估：怡景 贝壳参考成交11,435元/㎡×120＝137.22万；东悦 130-155㎡报价中值15,359×0.93＝14,250元/㎡×140＝199.5万。挂牌均价不采用。</div><div style="font-size:10px;color:#b45309;padding:0 8px 8px">⚠ 较上月+41.7万系**口径修正**（上月东悦误用101㎡三房区间），同口径行情实为 -0.95%~-8.6%，**非升值**。</div>';
++'<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥317万</td></tr></table><div style="font-size:10px;color:#6b7280;padding:4px 8px 2px">*2026-11-03 按成交口径重估·记10月行情：怡景 10月真实成交样本 9,821元/㎡×120＝117.85万（单套，待验证）；东悦维持 14,250元/㎡×140＝199.5万（报价中值上移+6%判定为挂牌噪声）。</div><div style="font-size:10px;color:#b45309;padding:0 8px 8px">⚠ 较上月-19.4万系怡景真实成交下探（较挂牌折让-10.5%），**非口径修正**；东悦持稳待成交验证。</div>';
 panels.assets_bank='<div class="date-tag">📅 2026-09-03 用户核对：银行存款实际≈¥5万（原推算45.9万作废）</div><table><tr><th>账户</th><th>金额</th><th>备注</th></tr>'
 +'<tr><td>银行存款（合计）</td><td class="tr">≈¥5万</td><td>随固收利息+到期本金逐月入池增厚</td></tr>'
 +'<tr><td>理赔金¥207,090.73</td><td class="tr">已另有安排</td><td>去向待确认（未计入存款池）</td></tr></table>';
