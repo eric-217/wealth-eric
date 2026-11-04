@@ -51,7 +51,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding:16px}
 <div class="backbar" id="backbar"><a href="菜单.html">← 返回菜单</a> <span id="backtitle"></span></div>
 <div class="submenu" id="submenu"></div>
 <div class="c" id="container"></div>
-<footer>更新：2026-11-03（房产按成交口径月度重估·记10月行情：怡景118万/东悦200万→固定资产317万，总资产≈1453万/净资产≈1423万；⚠-19.4万系怡景真实成交下探，非口径修正）</footer>
+<footer>更新：2026-11-04（浩腾恒烨30万到期本息307,410.41入池＋新华贷款20万还清→总负债10.6万，总资产≈1434万/净资产≈1423万；净资产+0.6万=浩腾利息7,410−新华利息约1,467；存款≈15.6万待对账）</footer>
 
 <script>
 // ===== 主菜单 =====
@@ -92,10 +92,10 @@ var panels={};
 var defaultSub={'assets':'assets_fixincome','cashflow':'cf_fixincome'};
 
 // --- 总览 ---
-panels.overview='<div class="date-tag">📅 数据截止：2026年11月3日（房产按成交口径月度重估·记10月行情；银行存款≈¥5万已核对）</div><div class="krow wide">'
-+'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1453万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
-+'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1423万<div class="sub">净值率97.9%</div></div></div>'
-+'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥30.6万<div class="sub">负债率2.1%（新华20万11/19到期+车贷16期+网贷）</div></div></div>'
+panels.overview='<div class="date-tag">📅 数据截止：2026年11月4日（浩腾恒烨30万到期本息入池＋新华贷款20万还清；银行存款≈¥15.6万待对账）</div><div class="krow wide">'
++'<div class="kbox"><div class="kl">总资产</div><div class="kv b">≈1434万<div class="sub">固收+保险+房产+港险+私募+存款</div></div></div>'
++'<div class="kbox"><div class="kl">净资产</div><div class="kv g">≈1423万<div class="sub">净值率99.3%</div></div></div>'
++'<div class="kbox"><div class="kl">总负债</div><div class="kv r">¥10.6万<div class="sub">负债率0.7%（车贷+网贷；新华贷款20万已还清✅）</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">被动收入（2026实际到账）</div><div class="kv a">¥43.1万<div class="sub">固收全年利息¥43.05万+存款池息；加账面留存（生存金3.6+UA增值1.1）→2026总被动≈¥47.8万（v3三口径）</div></div></div>'
 +'<div class="kbox"><div class="kl">生活支出（年）</div><div class="kv">≈¥6万<div class="sub">家庭生活基线（v3口径）；含保障/医疗/还贷的全口径2026≈¥13.6万</div></div></div>'
@@ -104,11 +104,11 @@ panels.overview='<div class="date-tag">📅 数据截止：2026年11月3日（�
 +'<h3>📊 总负债分布（按机构）</h3><div class="chart-wrap"><canvas id="chartDebt" height="200"></canvas></div>'
 +'<h3>📊 2026被动收入构成（总被动≈¥47.8万 = 实际可用+账面）</h3><div class="chart-wrap"><canvas id="chartIncome" height="220"></canvas></div>'
 +'<h3 style="margin-top:20px">💰 固收资产摘要</h3><div class="summary-row">'
-+'<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">9笔</div></div>'
-+'<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥450万</div></div>'
-+'<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">1笔</div></div>'
-+'<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥30万</div></div>'
-+'<div class="summary-item"><div class="sn">未来6个月利息收入</div><div class="sv">¥10.3万</div></div>'
++'<div class="summary-item"><div class="sn">剩余笔数</div><div class="sv">8笔</div></div>'
++'<div class="summary-item"><div class="sn">总本金</div><div class="sv">¥420万</div></div>'
++'<div class="summary-item"><div class="sn">半年内到期</div><div class="sv">0笔</div></div>'
++'<div class="summary-item"><div class="sn">半年到期额</div><div class="sv">¥0（下笔2027-06）</div></div>'
++'<div class="summary-item"><div class="sn">未来6个月利息收入</div><div class="sv">¥21.8万</div></div>'
 +'</div><h3 style="margin-top:20px">🏢 私募股权投资摘要</h3><div class="summary-row">'
 +'<div class="summary-item"><div class="sn">持有基金</div><div class="sv">10只</div></div>'
 +'<div class="summary-item"><div class="sn">总投入</div><div class="sv">¥285万</div></div>'
@@ -122,19 +122,19 @@ panels.overview='<div class="date-tag">📅 数据截止：2026年11月3日（�
 +'<div class="summary-item"><div class="sn">保障总额</div><div class="sv">≈¥2,350万</div></div>'
 +'<div class="summary-item"><div class="sn">保障覆盖率</div><div class="sv" style="color:#16a34a">186%</div></div>'
 +'</div><h3 style="margin-top:20px">📐 资产配置健康指标</h3><div class="krow">'
-+'<div class="kbox"><div class="kl">流动比率</div><div class="kv g">3.1x<div class="sub">流动资产≈¥35万（存款5+2026年内固收到期30）/流动负债≈¥11.3万</div></div></div>'
-+'<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">10个月<div class="sub">按银行存款¥5万÷月支出¥0.5万；11月固收到期后增厚</div></div></div>'
-+'<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">22%<div class="sub">最大单笔¥100万占固收总额22%</div></div></div>'
-+'<div class="kbox"><div class="kl">保险占比</div><div class="kv b">22.4%<div class="sub">储蓄型8份·私募指¥285万按投入成本计</div></div></div>';
++'<div class="kbox"><div class="kl">流动比率</div><div class="kv g">1.5x<div class="sub">流动资产≈¥15.6万（存款15.6，年内固收已无到期）/流动负债≈¥10.6万</div></div></div>'
++'<div class="kbox"><div class="kl">应急备用金</div><div class="kv a">31个月<div class="sub">按银行存款¥15.6万÷月支出¥0.5万；浩腾本息入池后增厚</div></div></div>'
++'<div class="kbox"><div class="kl">固收集中度</div><div class="kv b">24%<div class="sub">最大单笔¥100万占固收总额24%</div></div></div>'
++'<div class="kbox"><div class="kl">保险占比</div><div class="kv b">22.6%<div class="sub">储蓄型8份·私募按¥285万投入成本计</div></div></div>';
 
 // --- 资产明细子页面 ---
-panels.assets_fixincome='<h3>固收（9笔·¥450万）</h3><div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>'
+panels.assets_fixincome='<h3>固收（8笔在途·¥420万）</h3><div class="tbl-wrap"><table><tr><th>产品</th><th>本金</th><th>利率</th><th>到期</th></tr>'
 +'<tr class="done"><td>众享淳盈37期</td><td class="tr">80万</td><td class="tr">10.2%</td><td>✅退出</td></tr>'
 +'<tr class="done"><td>众享淳盈60期</td><td class="tr">30万</td><td class="tr">10.2%</td><td>✅退出</td></tr>'
-+'<tr><td>浩腾恒烨</td><td class="tr">30万</td><td class="tr">9.8%</td><td>2026-11</td></tr>'
++'<tr class="done"><td>浩腾恒烨</td><td class="tr">30万</td><td class="tr">9.8%</td><td>✅退出（本息307,410.41入池）</td></tr>'
 +'<tr><td>悦享36694</td><td class="tr">20万</td><td class="tr">9.0%</td><td>2027-10</td></tr>'
 +'<tr><td>众享淳盈105期</td><td class="tr">30万</td><td class="tr">9.6%</td><td>2027-08</td></tr>'
-+'<tr><td>悦享36606</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-07</td></tr>'
++'<tr><td>悦享36606</td><td class="tr">20万</td><td class="tr">9.4%</td><td>2027-06</td></tr>'
 +'<tr><td>众享淳盈137期</td><td class="tr">90万</td><td class="tr">9.4%</td><td>2027-12</td></tr>'
 +'<tr><td>悦享36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td>2028-06</td></tr>'
 +'<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td>2028-10</td></tr>'
@@ -169,24 +169,24 @@ panels.assets_property='<div class="date-tag">📅 数据截止：2026年11月3�
 +'<tr><td>A·怡景丽苑（禅城）</td><td>120㎡</td><td class="tr">≈¥118万</td></tr>'
 +'<tr><td>B·保利东悦花园（乐从）</td><td>140㎡</td><td class="tr">≈¥200万</td></tr>'
 +'<tr class="tt"><td>合计</td><td>260㎡</td><td class="tr">≈¥317万</td></tr></table><div style="font-size:10px;color:#6b7280;padding:4px 8px 2px">*2026-11-03 按成交口径重估·记10月行情：怡景 10月真实成交样本 9,821元/㎡×120＝117.85万（单套，待验证）；东悦维持 14,250元/㎡×140＝199.5万（报价中值上移+6%判定为挂牌噪声）。</div><div style="font-size:10px;color:#b45309;padding:0 8px 8px">⚠ 较上月-19.4万系怡景真实成交下探（较挂牌折让-10.5%），**非口径修正**；东悦持稳待成交验证。</div>';
-panels.assets_bank='<div class="date-tag">📅 2026-09-03 用户核对：银行存款实际≈¥5万（原推算45.9万作废）</div><table><tr><th>账户</th><th>金额</th><th>备注</th></tr>'
-+'<tr><td>银行存款（合计）</td><td class="tr">≈¥5万</td><td>随固收利息+到期本金逐月入池增厚</td></tr>'
+panels.assets_bank='<div class="date-tag">📅 2026-11-04：≈¥15.6万（=期初5万+浩腾本息307,410−新华还贷本息约201,467；9-10月零星收支待对账）</div><table><tr><th>账户</th><th>金额</th><th>备注</th></tr>'
++'<tr><td>银行存款（合计）</td><td class="tr">≈¥15.6万</td><td>浩腾本息入池、新华还贷出池；随固收利息逐月增厚</td></tr>'
 +'<tr><td>理赔金¥207,090.73</td><td class="tr">已另有安排</td><td>去向待确认（未计入存款池）</td></tr></table>';
 panels.assets_other='<div class="date-tag">📅 数据截止：2026年7月</div><p class="nt">暂无其他在投资产。后续如有贵金属、外汇、信托等资产将在此展示。</p>';
 
 // --- 负债明细 ---
 panels.debt='<table><tr><th>负债</th><th>本金</th><th>机构</th><th>月供/息</th><th>利率</th></tr>'
-+'<tr><td>新华惠鑫宝贷款</td><td class="tr">¥200,000</td><td>保险公司</td><td class="tr">¥708</td><td>4.25%日计息</td></tr>'
++'<tr class="done"><td>新华惠鑫宝贷款</td><td class="tr">✅已还清</td><td>保险公司</td><td class="tr">¥0</td><td>4.25%日计息</td></tr>'
 +'<tr><td>车贷</td><td class="tr">¥56,320</td><td>银行</td><td class="tr">¥3,520</td><td>剩16期·2027.12还清</td></tr>'
 +'<tr><td>网贷</td><td class="tr">¥49,700</td><td>借呗+百度</td><td class="tr">待确认</td><td>待确认</td></tr>'
-+'<tr class="tt"><td>合计</td><td class="tr">¥306,020</td><td></td><td class="tr">¥4,228/月</td><td></td></tr></table>'
-+'<p class="nt">信美相互贷款已还清 ✅ | 新华贷款本金已还¥80万（7月+8/31），余额¥20万、11/19到期 | 车贷18期计划：7/8月已还2期（¥7,040），当前剩16期、逐月递减至2027.12清零 | 总负债率2.2%（截至2026-09-03）</p>';
++'<tr class="tt"><td>合计</td><td class="tr">¥106,020</td><td></td><td class="tr">¥3,520/月+</td><td></td></tr></table>'
++'<p class="nt">信美相互贷款已还清 ✅ | 新华贷款（原贷¥100万）已全部还清 ✅（2026-11-04尾款20万+息约1,467） | 车贷18期计划：当前剩16期（9-11月扣款待核）、逐月递减至2027.12清零 | 总负债率0.74%（截至2026-11-04）</p>';
 
 // --- 趋势跟踪（跳转到详细页面）---
 panels.trend='<div class="date-tag">📅 基线：2026.07（口径v3：2026-09-03）</div><div class="krow">'
 +'<div class="kbox"><div class="kl">总资产趋势</div><div class="kv b">1,436→1,581万<div class="sub">2026.07→2028.12 固收到期本金入池回升（含房产成交口径重估+41.7万）</div></div></div>'
 +'<div class="kbox"><div class="kl">净资产趋势</div><div class="kv g">1,365→≈1,534万<div class="sub">2026.11新华还清后负债大降</div></div></div>'
-+'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→30.6万<div class="sub">新华贷已还¥80万余额20万11/19到期；车贷逐月递减至2027.12</div></div></div>'
++'<div class="kbox"><div class="kl">负债趋势</div><div class="kv a">71万→10.6万<div class="sub">新华贷¥100万已全部还清（11-04尾款20万）；车贷逐月递减至2027.12</div></div></div>'
 +'<div class="kbox"><div class="kl">被动收入趋势</div><div class="kv r">37.4→2.7万<div class="sub">实际可用 2027→2029 固收到期骤降</div></div></div>'
 +'</div><div class="krow wide">'
 +'<div class="kbox"><div class="kl">2027自由度</div><div class="kv g">702%</div><div class="sub">总被动42.1万/支出6万</div></div>'
@@ -196,18 +196,19 @@ panels.trend='<div class="date-tag">📅 基线：2026.07（口径v3：2026-09-0
 +'<a href="趋势跟踪.html" style="display:inline-block;padding:6px 12px;background:#1a3a5c;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;margin-top:8px">查看完整趋势分析 →</a>';
 
 // --- 现金流子页面 ---
-panels.cf_fixincome='<div class="date-tag">📅 2026年09月—11月 | 利息=本金×年化×实际天数÷365（精确到分） | 绿=利息，红=本+息</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>09月</th><th>10月</th><th>11月</th></tr>'
-+'<tr><td>悦享债权转让项目36694</td><td class="tr">20万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">4,536.99</td><td class="tr">—</td></tr>'
-+'<tr><td>悦享债权转让项目36606</td><td class="tr">20万</td><td class="tr">9.4%</td><td class="tr" style="color:#1d9e75">4,738.63</td><td class="tr">—</td><td class="tr">—</td></tr>'
-+'<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,684.93</td><td class="tr">—</td></tr>'
-+'<tr><td>众享淳盈328期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,684.93</td></tr>'
-+'<tr><td>众享淳盈343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td class="tr" style="color:#1d9e75">10,586.30</td><td class="tr">—</td><td class="tr">—</td></tr>'
-+'<tr><td>悦享债权转让项目36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td class="tr" style="color:#1d9e75">2,218.08</td><td class="tr">—</td><td class="tr">—</td></tr>'
-+'<tr><td>浩腾恒烨收益权转让计划</td><td class="tr">30万</td><td class="tr">9.8%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#dc2626;font-weight:700">307,410.41<br><span style="font-size:9px;color:#999">本+息</span></td></tr>'
-+'<tr class="tt"><td>3个月合计</td><td class="tr">330万</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">17,543.01</td><td class="tr" style="color:#1d9e75">27,221.92</td><td class="tr" style="color:#dc2626">330,095.34</td></tr>'
-+'<tr class="tt"><td>其中：利息</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">17,543.01</td><td class="tr" style="color:#1d9e75">27,221.92</td><td class="tr" style="color:#1d9e75">30,095.34</td></tr>'
-+'<tr class="tt"><td>其中：本金返还</td><td class="tr">—</td><td class="tr">—</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#dc2626">300,000</td></tr></table></div>'
-+'<p class="nt">3个月总流入 374,860.27元（利息 74,860.27 + 本金 300,000）。利息按起息/到期日（2026-09-03合同核对，较原记录提前1天）精确测算，到账日=计息周期届满日（预计，节假日顺延以实际到账为准）| 已到期退出：众享淳盈37期（2026-07-14，881,600元）+ 众享淳盈60期（2026-08-30，330,600元，8/31归还新华贷款）| 在途9笔·¥450万 | 完整逐月到账见 固收现金流明细</p>';
+panels.cf_fixincome='<div class="date-tag">📅 2026年11月—2027年01月 | 利息=本金×年化×实际天数÷365（精确到分） | 绿=利息，红=本+息</div><div class="tbl-wrap"><table><tr><th>产品名称</th><th>本金</th><th>年化</th><th>11月</th><th>12月</th><th>01月</th></tr>'
++'<tr><td>众享淳盈328期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr" style="color:#1d9e75">22,684.93</td><td class="tr">—</td><td class="tr">—</td></tr>'
++'<tr><td>悦享债权转让项目36851</td><td class="tr">10万</td><td class="tr">8.8%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">2,193.97</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈343期</td><td class="tr">50万</td><td class="tr">8.4%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">10,471.23</td><td class="tr">—</td></tr>'
++'<tr><td>众享淳盈137期</td><td class="tr">90万</td><td class="tr">9.4%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">84,600.00</td><td class="tr">—</td></tr>'
++'<tr><td>悦享债权转让项目36606</td><td class="tr">20万</td><td class="tr">9.4%</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">4,687.12</td><td class="tr">—</td></tr>'
++'<tr><td>悦享债权转让项目36694</td><td class="tr">20万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">4,536.99</td></tr>'
++'<tr><td>众享淳盈295期</td><td class="tr">100万</td><td class="tr">9.0%</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,684.93</td></tr>'
++'<tr class="done"><td>浩腾恒烨（已退出）</td><td class="tr">30万</td><td class="tr">9.8%</td><td colspan="3">✅ 2026-11-03到期，本息307,410.41已入池</td></tr>'
++'<tr class="tt"><td>3个月合计</td><td class="tr">420万</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,684.93</td><td class="tr" style="color:#1d9e75">101,952.32</td><td class="tr" style="color:#1d9e75">27,221.92</td></tr>'
++'<tr class="tt"><td>其中：利息</td><td class="tr">—</td><td class="tr">—</td><td class="tr" style="color:#1d9e75">22,684.93</td><td class="tr" style="color:#1d9e75">101,952.32</td><td class="tr" style="color:#1d9e75">27,221.92</td></tr>'
++'<tr class="tt"><td>其中：本金返还</td><td class="tr">—</td><td class="tr">—</td><td class="tr">—</td><td class="tr">—</td><td class="tr">—</td></tr></table></div>'
++'<p class="nt">3个月总流入 151,859.17元（全部为利息，无本金到期；下笔本金返还2027-06-28悦享36606 20万）| 已到期退出：众享淳盈37期（2026-07-14，881,600元）+ 众享淳盈60期（2026-08-30，330,600元）+ 浩腾恒烨（2026-11-03，307,410.41元，11-04到账入池）| 在途8笔·¥420万 | 完整逐月到账见 固收现金流明细</p>';
 
 panels.cf_insurance='<div style="overflow-x:auto;white-space:nowrap;margin:0 0 12px;padding-bottom:4px;border-bottom:1px solid #e0e5ea">'
 +'<button class="insbtn active" onclick="switchIns(1)">生存金</button>'
@@ -406,7 +407,7 @@ panels.policies='<div class="date-tag">📅 数据截止：2026年7月</div>'
 +'<h3>⚠️ 保单条款注意事项</h3><table><tr><th>保单</th><th>注意事项</th></tr>'
 +'<tr><td>信美挚信一生×2</td><td>60岁前无生存金发放; 保证领取25年(60-85岁); 身故赔付=max(¥50万,CV)</td></tr>'
 +'<tr><td>钟爱一生</td><td>附加重疾(9201)¥10万已缴清⚠️是否仍有效待确认; 豁免重疾B已失效(无保费可豁免)</td></tr>'
-+'<tr><td>新华惠鑫宝</td><td>保单贷款余额¥20万(4.25%日计息; 原贷¥100万已还¥80万, 2026-11-19到期); 生存金自动转入万能账户; 万能账户保证2.5%</td></tr>'
++'<tr><td>新华惠鑫宝</td><td>保单贷款已全部还清✅(2026-11-04, 本息约¥201,467; 原贷¥100万); 生存金自动转入万能账户; 万能账户保证2.5%</td></tr>'
 +'<tr><td>永明星河尊享2</td><td>归原红利公布即保证✅; 意外护理$30万免费至65岁; 5年后可价值锁定50%</td></tr>'
 +'<tr><td>周大福匠心传承2</td><td>复归红利现金价值非保证⚠️(与永明不同); 第10年可选财富跃进; 保费豁免2年免费</td></tr>'
 +'<tr><td>国寿99鸿福</td><td>生存金¥5,000/3年(固定,不随保额增长); 保额5%/年仅影响身故赔付</td></tr>'
